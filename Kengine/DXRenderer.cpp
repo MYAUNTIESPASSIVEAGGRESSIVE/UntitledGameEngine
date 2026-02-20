@@ -148,4 +148,5 @@ void DXRenderer::RenderFrame()
 
 void DXRenderer::Release()
 {
+
 }
