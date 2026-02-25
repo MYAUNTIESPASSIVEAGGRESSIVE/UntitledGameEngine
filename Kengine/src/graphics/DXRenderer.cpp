@@ -2,6 +2,7 @@
 #include "Debugger.h"
 #include "d3d11.h"
 #include "DXWindow.h"
+#include "DirectXColors.h"
 
 DXRenderer::DXRenderer(DXWindow& inWindow)
 	: window(inWindow)
@@ -144,9 +145,18 @@ long DXRenderer::InitDepthBuffer()
 
 void DXRenderer::RenderFrame()
 {
+	// clear back buffer with colour
+	devcon->ClearRenderTargetView(backBuffer, DirectX::Colors::Gray);
+
+	// flip the back and front buffers
+	swapchain->Present(0, 0);
 }
 
 void DXRenderer::Release()
 {
-
+	if (backBuffer) backBuffer->Release();
+	if (swapchain) swapchain->Release();
+	if (device) device->Release();
+	if (devcon) devcon->Release();
+	if (depthBuffer) depthBuffer->Release();
 }

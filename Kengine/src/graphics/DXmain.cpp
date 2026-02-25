@@ -11,6 +11,7 @@ int WINAPI WinMain(
 	DXWindow _dxWind{ 800, 600, hInstance, nCmdShow };
 	DXRenderer _dxRend{ _dxWind };
 
+
 	MSG msg;
 
 	Debugging::OpenConsole();
@@ -28,10 +29,12 @@ int WINAPI WinMain(
 		}
 		else 
 		{
-			
+			_dxRend.RenderFrame();
 
 		}
 	}
+
+	_dxRend.Release();
 
 	return 0;
 }
