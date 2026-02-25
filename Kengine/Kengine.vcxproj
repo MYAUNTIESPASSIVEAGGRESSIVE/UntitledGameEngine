@@ -132,6 +132,7 @@
     <ClCompile Include="DXMaterial.cpp" />
     <ClCompile Include="DXRenderer.cpp" />
     <ClCompile Include="DXWindow.cpp" />
+    <ClCompile Include="IRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CoreRenderer.h" />
