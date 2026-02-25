@@ -15,52 +15,68 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DXRenderer.cpp">
+    <ClCompile Include="src\graphics\DXRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DXWindow.cpp">
+    <ClCompile Include="src\graphics\DXWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Debugger.cpp">
+    <ClCompile Include="src\graphics\Debugger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CoreRenderer.cpp">
+    <ClCompile Include="src\engine\CoreRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DXmain.cpp">
+    <ClCompile Include="src\graphics\DXmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DXMaterial.cpp">
+    <ClCompile Include="src\graphics\DXMaterial.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CoreWindow.cpp">
+    <ClCompile Include="src\engine\CoreWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="IRenderer.cpp">
+    <ClCompile Include="src\IRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\ShaderLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DXRenderer.h">
+    <ClInclude Include="src\graphics\DXRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DXWindow.h">
+    <ClInclude Include="src\graphics\DXWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Debugger.h">
+    <ClInclude Include="src\graphics\Debugger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CoreRenderer.h">
+    <ClInclude Include="src\engine\CoreRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MathHelper.h">
+    <ClInclude Include="src\engine\MathHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DXMaterial.h">
+    <ClInclude Include="src\graphics\DXMaterial.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CoreWindow.h">
+    <ClInclude Include="src\engine\CoreWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\IRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\ShaderLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\ReadData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="src\graphics\shaders\BasePixelShader.hlsl" />
+    <FxCompile Include="src\graphics\shaders\BaseVertexShader.hlsl" />
   </ItemGroup>
 </Project>

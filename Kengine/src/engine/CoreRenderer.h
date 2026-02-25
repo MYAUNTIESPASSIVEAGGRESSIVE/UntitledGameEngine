@@ -1,5 +1,7 @@
 #pragma once
 
+class IRenderer;
+
 class CoreRenderer
 {
 public:
@@ -9,5 +11,9 @@ public:
 	~CoreRenderer();
 	
 	void Render();
+
+private:
+
+	//IRenderer& interface;
 };
 
