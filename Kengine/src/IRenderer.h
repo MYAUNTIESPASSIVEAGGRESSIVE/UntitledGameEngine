@@ -11,7 +11,7 @@ public:
 	IRenderer(DXRenderer *_dxRend);
 	~IRenderer() { delete dxRend; }
 
-	bool InitDrawCall();
-	void IRenderFrame();
+	virtual bool InitDrawCall() = 0;
+	virtual void IRenderFrame() = 0;
 };
 
