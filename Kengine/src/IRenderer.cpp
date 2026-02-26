@@ -1,5 +1,5 @@
 #include "IRenderer.h"
-#include "DXRenderer.h"
+#include "graphics/DXRenderer.h"
 
 IRenderer::IRenderer(DXRenderer* _dxRend)
 	:dxRend(_dxRend)

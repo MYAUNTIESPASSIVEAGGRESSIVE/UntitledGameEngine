@@ -73,7 +73,6 @@ namespace ShaderLoading
 		D3D11_INPUT_ELEMENT_DESC* ied = new D3D11_INPUT_ELEMENT_DESC[desc.InputParameters]{ 0 };
 		for (size_t i = 0; i < desc.InputParameters; i++)
 		{
-			// this thing is disgusting.. too bad!!
 			ied[i].SemanticName = signatureParamDesc[i].SemanticName;
 			ied[i].SemanticIndex = signatureParamDesc[i].SemanticIndex;
 			if (signatureParamDesc[i].ComponentType == D3D_REGISTER_COMPONENT_FLOAT32) {
