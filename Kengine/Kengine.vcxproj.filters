@@ -99,5 +99,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="src\graphics\shaders\common.hlsli" />
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
