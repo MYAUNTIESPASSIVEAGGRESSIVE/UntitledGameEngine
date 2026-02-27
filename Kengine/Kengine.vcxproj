@@ -128,6 +128,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\graphics\DXMesh.cpp" />
+    <ClCompile Include="src\graphics\DXTexture.cpp" />
     <ClCompile Include="src\engine\AssetManager.cpp" />
     <ClCompile Include="src\graphics\ShaderLoader.cpp" />
     <ClCompile Include="src\engine\CoreRenderer.cpp" />
@@ -140,6 +142,8 @@
     <ClCompile Include="src\IRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\graphics\DXMesh.h" />
+    <ClInclude Include="src\graphics\DXTexture.h" />
     <ClInclude Include="src\engine\AssetManager.h" />
     <ClInclude Include="src\graphics\ReadData.h" />
     <ClInclude Include="src\graphics\ShaderLoader.h" />
