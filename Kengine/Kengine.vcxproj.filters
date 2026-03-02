@@ -51,6 +51,9 @@
     <ClCompile Include="src\graphics\DXMesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OBJModelLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\graphics\DXRenderer.h">
@@ -92,6 +95,9 @@
     <ClInclude Include="src\graphics\DXMesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="OBJModelLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="src\graphics\shaders\BasePixelShader.hlsl" />
@@ -99,6 +105,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="src\graphics\shaders\common.hlsli" />
-    <None Include="packages.config" />
+    <None Include="packages\packages.config" />
   </ItemGroup>
 </Project>

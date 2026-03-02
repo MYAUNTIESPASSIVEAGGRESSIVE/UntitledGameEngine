@@ -4,6 +4,7 @@
 #include "d3d11.h"
 
 #include "DXRenderer.h"
+#include "Debugger.h"
 
 
 
@@ -29,9 +30,13 @@ DXTexture::DXTexture(DXRenderer& dxRend, std::string assetPath)
 
 	sampDesc.MaxAnisotropy = 8;
 	sampDesc.ComparisonFunc = D3D11_COMPARISON_ALWAYS;
-	//anisotropicDesc.BorderColor = 0.0f;
 	sampDesc.MinLOD = 0;
-	sampDesc.MaxLOD = 0;
+	sampDesc.MaxLOD = D3D11_FLOAT32_MAX;
+
+	if (FAILED(dev->CreateSamplerState(&sampDesc, &sampler)))
+	{
+		LOG("Failed to create sampler state");
+	}
 }
 
 DXTexture::~DXTexture()
