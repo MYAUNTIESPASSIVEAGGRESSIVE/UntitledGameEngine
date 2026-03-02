@@ -75,19 +75,62 @@ namespace ShaderLoading
 		{
 			ied[i].SemanticName = signatureParamDesc[i].SemanticName;
 			ied[i].SemanticIndex = signatureParamDesc[i].SemanticIndex;
-			if (signatureParamDesc[i].ComponentType == D3D_REGISTER_COMPONENT_FLOAT32) {
-				switch (signatureParamDesc[i].Mask) {
-				case 1: ied[i].Format = DXGI_FORMAT_R32_FLOAT;			 break; // float1
-				case 3: ied[i].Format = DXGI_FORMAT_R32G32_FLOAT;		 break; // float2
-				case 7: ied[i].Format = DXGI_FORMAT_R32G32B32_FLOAT;	 break; // float3
-				case 15: ied[i].Format = DXGI_FORMAT_R32G32B32A32_FLOAT; break; // float4
-				default: break; // error handling
-				}
-			} // ^^^ only covers ---x, --yx, -zyx, wzyx. may be possible for masks to be -yx- (6), etc.
 			ied[i].InputSlot = 0;
 			ied[i].AlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;
 			ied[i].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
 			ied[i].InstanceDataStepRate = 0;
+
+			// determine DXGI format
+			if (signatureParamDesc[i].Mask == 1)
+			{
+				if (signatureParamDesc[i].ComponentType == D3D_REGISTER_COMPONENT_UINT32) 
+					ied[i].Format = DXGI_FORMAT_R32_UINT;
+				else if (signatureParamDesc[i].ComponentType == D3D_REGISTER_COMPONENT_SINT32) 
+					ied[i].Format = DXGI_FORMAT_R32_SINT;
+				else if (signatureParamDesc[i].ComponentType == D3D_REGISTER_COMPONENT_FLOAT32) 
+					ied[i].Format = DXGI_FORMAT_R32_FLOAT;
+			}
+			else if (signatureParamDesc[i].Mask <= 3)
+			{
+				if (signatureParamDesc[i].ComponentType == D3D_REGISTER_COMPONENT_UINT32) 
+					ied[i].Format = DXGI_FORMAT_R32G32_UINT;
+				else if (signatureParamDesc[i].ComponentType == D3D_REGISTER_COMPONENT_SINT32) 
+					ied[i].Format = DXGI_FORMAT_R32G32_SINT;
+				else if (signatureParamDesc[i].ComponentType == D3D_REGISTER_COMPONENT_FLOAT32) 
+					ied[i].Format = DXGI_FORMAT_R32G32_FLOAT;
+			}
+			else if (signatureParamDesc[i].Mask <= 7)
+			{
+				if (signatureParamDesc[i].ComponentType == D3D_REGISTER_COMPONENT_UINT32) 
+					ied[i].Format = DXGI_FORMAT_R32G32B32_UINT;
+				else if (signatureParamDesc[i].ComponentType == D3D_REGISTER_COMPONENT_SINT32) 
+					ied[i].Format = DXGI_FORMAT_R32G32B32_SINT;
+				else if (signatureParamDesc[i].ComponentType == D3D_REGISTER_COMPONENT_FLOAT32) 
+					ied[i].Format = DXGI_FORMAT_R32G32B32_FLOAT;
+			}
+			else if (signatureParamDesc[i].Mask <= 15)
+			{
+				if (signatureParamDesc[i].ComponentType == D3D_REGISTER_COMPONENT_UINT32) 
+					ied[i].Format = DXGI_FORMAT_R32G32B32A32_UINT;
+				else if (signatureParamDesc[i].ComponentType == D3D_REGISTER_COMPONENT_SINT32) 
+					ied[i].Format = DXGI_FORMAT_R32G32B32A32_SINT;
+				else if (signatureParamDesc[i].ComponentType == D3D_REGISTER_COMPONENT_FLOAT32) 
+					ied[i].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+			}
+
+
+			// ---- old version from AGP ----
+			//ied[i].SemanticName = signatureParamDesc[i].SemanticName;
+			//ied[i].SemanticIndex = signatureParamDesc[i].SemanticIndex;
+			//if (signatureParamDesc[i].ComponentType == D3D_REGISTER_COMPONENT_FLOAT32) {
+			//	switch (signatureParamDesc[i].Mask) {
+			//	case 1: ied[i].Format = DXGI_FORMAT_R32_FLOAT;			 break; // float1
+			//	case 3: ied[i].Format = DXGI_FORMAT_R32G32_FLOAT;		 break; // float2
+			//	case 7: ied[i].Format = DXGI_FORMAT_R32G32B32_FLOAT;	 break; // float3
+			//	case 15: ied[i].Format = DXGI_FORMAT_R32G32B32A32_FLOAT; break; // float4
+			//	default: break;
+			//	}
+			//}
 		}
 
 		// creates input element COM object

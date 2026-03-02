@@ -1,4 +1,15 @@
-float4 main( float4 pos : POSITION ) : SV_POSITION
+#include "common.hlsli"
+
+struct VSout
 {
-	return pos;
+    float4 outPosition;
+    float3 outColour;
+};
+
+VSout main(VSinput input)
+{
+    VSout output;
+    //output.outPosition = 
+    
+    return output;
 }
