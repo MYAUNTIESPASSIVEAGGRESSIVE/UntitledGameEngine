@@ -16,6 +16,9 @@ public:
 
 	//TODO: transparency and clipping textures
 
+	ID3D11ShaderResourceView* GetTexture() { return texture; }
+	ID3D11SamplerState* GetSampler() { return sampler; }
+
 private:
 
 	ID3D11SamplerState* sampler = nullptr;
