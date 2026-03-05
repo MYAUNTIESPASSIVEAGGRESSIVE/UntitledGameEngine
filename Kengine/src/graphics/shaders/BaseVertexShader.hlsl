@@ -10,8 +10,8 @@ struct VSout
 VSout main(VSinput input)
 {
     VSout output;
-    //output.position = mul(WVP, float4(input.position, 1));
-    //output.uv = input.uv;
+    output.position = mul(WVP, float4(input.position, 1));
+    output.uv = input.uv;
     
     output.colour = float4(1, 1, 1, 1);
     
