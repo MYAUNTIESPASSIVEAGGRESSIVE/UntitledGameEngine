@@ -1,5 +1,4 @@
 #include "CoreRenderer.h"
-#include "IRenderer.h"
 
 CoreRenderer::CoreRenderer()
 {
