@@ -2,21 +2,21 @@
 #include "WICTextureLoader.h" // REGULAR TEXTURES
 #include "DDSTextureLoader.h" // CUBE MAPS
 #include "d3d11.h"
-
 #include "DXRenderer.h"
 #include "Debugger.h"
 
-
-
-DXTexture::DXTexture(DXRenderer& dxRend, std::string assetPath)
+DXTexture::DXTexture(DXRenderer& dxRend)
+	:dev(dxRend.GetDevice()), devcon(dxRend.GetDeviceContext())
 {
-	ID3D11Device* dev = dxRend.GetDevice();
-	ID3D11DeviceContext* devcon = dxRend.GetDeviceContext();
-	// get wide string of assets path
-	std::wstring path = std::wstring(assetPath.begin(), assetPath.end());
+}
+
+// override func for loading of textures
+void DXTexture::LoadTexture(std::string assetPath)
+{
+	std::wstring assetloc = std::wstring(assetPath.begin(), assetPath.end());
 
 	// create WICtexture
-	DirectX::CreateWICTextureFromFile(dev, devcon, path.c_str(), NULL, &texture);
+	DirectX::CreateWICTextureFromFile(dev, devcon, assetloc.c_str(), NULL, &texture);
 
 	// set filters
 	D3D11_SAMPLER_DESC sampDesc;
@@ -42,6 +42,5 @@ DXTexture::DXTexture(DXRenderer& dxRend, std::string assetPath)
 DXTexture::~DXTexture()
 {
 	if (texture) texture = nullptr;
-
 	if (sampler) sampler = nullptr;
 }

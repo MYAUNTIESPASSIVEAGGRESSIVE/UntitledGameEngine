@@ -128,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\GameObject.cpp" />
     <ClCompile Include="src\OBJModelLoader.cpp" />
     <ClCompile Include="src\graphics\DXMesh.cpp" />
     <ClCompile Include="src\graphics\DXTexture.cpp" />
@@ -140,9 +141,12 @@
     <ClCompile Include="src\graphics\DXMaterial.cpp" />
     <ClCompile Include="src\graphics\DXRenderer.cpp" />
     <ClCompile Include="src\graphics\DXWindow.cpp" />
-    <ClCompile Include="src\IRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\GameObject.h" />
+    <ClInclude Include="src\interfaces\IMaterial.h" />
+    <ClInclude Include="src\interfaces\IMesh.h" />
+    <ClInclude Include="src\interfaces\ITexture.h" />
     <ClInclude Include="src\OBJModelLoader.h" />
     <ClInclude Include="src\graphics\DXMesh.h" />
     <ClInclude Include="src\graphics\DXTexture.h" />
@@ -155,7 +159,6 @@
     <ClInclude Include="src\graphics\DXMaterial.h" />
     <ClInclude Include="src\graphics\DXRenderer.h" />
     <ClInclude Include="src\graphics\DXWindow.h" />
-    <ClInclude Include="src\IRenderer.h" />
     <ClInclude Include="src\engine\MathHelper.h" />
   </ItemGroup>
   <ItemGroup>

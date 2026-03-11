@@ -143,15 +143,29 @@ long DXRenderer::InitDepthBuffer()
 	return S_OK;
 }
 
+
 void DXRenderer::RenderFrame()
 {
 	// clear back buffer with colour
 	devcon->ClearRenderTargetView(backBuffer, DirectX::Colors::Gray);
 
+	// calculate viewprojection func
+	CalculateProjection();
+
+
+
 	// flip the back and front buffers
 	swapchain->Present(0, 0);
 }
 
+// calculates the camera projection and WVP for the constant buffer
+void DXRenderer::CalculateProjection()
+{
+
+
+}
+
+// cleanup
 void DXRenderer::Release()
 {
 	if (backBuffer) backBuffer->Release();
