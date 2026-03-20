@@ -135,12 +135,12 @@
     <ClCompile Include="src\engine\AssetManager.cpp" />
     <ClCompile Include="src\graphics\ShaderLoader.cpp" />
     <ClCompile Include="src\engine\CoreRenderer.cpp" />
-    <ClCompile Include="src\engine\CoreWindow.cpp" />
     <ClCompile Include="src\graphics\Debugger.cpp" />
     <ClCompile Include="src\graphics\DXmain.cpp" />
     <ClCompile Include="src\graphics\DXMaterial.cpp" />
     <ClCompile Include="src\graphics\DXRenderer.cpp" />
     <ClCompile Include="src\graphics\DXWindow.cpp" />
+    <ClCompile Include="src\engine\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\GameObject.h" />
@@ -154,12 +154,12 @@
     <ClInclude Include="src\graphics\ReadData.h" />
     <ClInclude Include="src\graphics\ShaderLoader.h" />
     <ClInclude Include="src\engine\CoreRenderer.h" />
-    <ClInclude Include="src\engine\CoreWindow.h" />
     <ClInclude Include="src\graphics\Debugger.h" />
     <ClInclude Include="src\graphics\DXMaterial.h" />
     <ClInclude Include="src\graphics\DXRenderer.h" />
     <ClInclude Include="src\graphics\DXWindow.h" />
     <ClInclude Include="src\engine\MathHelper.h" />
+    <ClInclude Include="src\engine\Transform.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="src\graphics\shaders\BasePixelShader.hlsl">

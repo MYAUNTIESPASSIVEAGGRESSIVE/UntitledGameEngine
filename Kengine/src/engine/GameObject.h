@@ -1,5 +1,10 @@
 #pragma once
-class GameObject
+namespace Kengine
 {
-};
+	class GameObject
+	{
+		
+	};
+}
+
 
