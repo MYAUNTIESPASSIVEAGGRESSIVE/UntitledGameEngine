@@ -128,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\PhysicsManager.cpp" />
     <ClCompile Include="src\engine\GameObject.cpp" />
     <ClCompile Include="src\OBJModelLoader.cpp" />
     <ClCompile Include="src\graphics\DXMesh.cpp" />
@@ -143,6 +144,7 @@
     <ClCompile Include="src\engine\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\PhysicsManager.h" />
     <ClInclude Include="src\engine\GameObject.h" />
     <ClInclude Include="src\interfaces\IMaterial.h" />
     <ClInclude Include="src\interfaces\IMesh.h" />
