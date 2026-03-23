@@ -10,8 +10,10 @@ namespace Kengine
 		Vector3 rotation{ 0.0f, 0.0f, 0.0f };
 		Vector3 scale{ 1.0f, 1.0f, 1.0f };
 
+		Matrix GetWorldMatrix();
+
 		void Translate(Vector3 translation);
-		void Rotate(Vector3 inRotation);
+		void Rotate(float inRotation);
 
 		Vector3 GetForward();
 		Vector3 GetRight();
