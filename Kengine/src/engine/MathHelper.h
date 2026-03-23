@@ -75,7 +75,11 @@ namespace Kengine
 	// rotation of a vector 3 by an angle (float)
 	inline Vector3 RotateVector3(Vector3& vector, float angle)
 	{
+		float radAngle = (float)(angle * DEG_TO_RAD);
 
+		return Vector3(
+			(float)(vector.x * cos(radAngle) - vector.y * sin(radAngle)),
+			(float)(vector.x * sin(radAngle) + vector.y * cos(radAngle)));
 	}
 
 	inline Vector3 CrossProduct(const Vector3& lhs, const Vector3& rhs)
@@ -112,12 +116,62 @@ namespace Kengine
 			_31, _32, _33, _34,
 			_41, _42, _43, _44,
 		};
+
 		Vector3 vm[4];
 	};
 
 	inline Matrix operator+(const Matrix& lhs, const Matrix& rhs)
 	{
+		Matrix result
+		{
+			lhs.m[1][1] + rhs.m[1][1], lhs.m[1][2] + rhs.m[1][2], lhs.m[1][3] + rhs.m[1][3], lhs.m[1][4] + rhs.m[1][4],
+			lhs.m[2][1] + rhs.m[2][1], lhs.m[2][2] + rhs.m[2][2], lhs.m[2][3] + rhs.m[2][3], lhs.m[2][4] + rhs.m[2][4],
+			lhs.m[3][1] + rhs.m[3][1], lhs.m[3][2] + rhs.m[3][2], lhs.m[3][3] + rhs.m[3][3], lhs.m[3][4] + rhs.m[3][4],
+			lhs.m[4][1] + rhs.m[4][1], lhs.m[4][2] + rhs.m[4][2], lhs.m[4][3] + rhs.m[4][3], lhs.m[4][4] + rhs.m[4][4],
+		};
 
+		return result;
+	}
+
+	inline Matrix operator-(const Matrix& lhs, const Matrix& rhs)
+	{
+		Matrix result
+		{
+			lhs.m[1][1] - rhs.m[1][1], lhs.m[1][2] - rhs.m[1][2], lhs.m[1][3] - rhs.m[1][3], lhs.m[1][4] - rhs.m[1][4],
+			lhs.m[2][1] - rhs.m[2][1], lhs.m[2][2] - rhs.m[2][2], lhs.m[2][3] - rhs.m[2][3], lhs.m[2][4] - rhs.m[2][4],
+			lhs.m[3][1] - rhs.m[3][1], lhs.m[3][2] - rhs.m[3][2], lhs.m[3][3] - rhs.m[3][3], lhs.m[3][4] - rhs.m[3][4],
+			lhs.m[4][1] - rhs.m[4][1], lhs.m[4][2] - rhs.m[4][2], lhs.m[4][3] - rhs.m[4][3], lhs.m[4][4] - rhs.m[4][4],
+		};
+
+		return result;
+	}
+
+	inline Matrix operator*(const Matrix& lhs, const Matrix& rhs)
+	{
+		Matrix result
+		{
+			(lhs.m[1][1] * rhs.m[1][1]) + (lhs.m[1][2] * rhs.m[2][1]) + (lhs.m[1][3] * rhs.m[3][1]) + (lhs.m[1][4] * rhs.m[4][1]),
+			(lhs.m[1][1] * rhs.m[1][2]) + (lhs.m[1][2] * rhs.m[2][2]) + (lhs.m[1][3] * rhs.m[3][2]) + (lhs.m[1][4] * rhs.m[4][2]),
+			(lhs.m[1][1] * rhs.m[1][3]) + (lhs.m[1][2] * rhs.m[2][3]) + (lhs.m[1][3] * rhs.m[3][3]) + (lhs.m[1][4] * rhs.m[4][3]),
+			(lhs.m[1][1] * rhs.m[1][3]) + (lhs.m[1][2] * rhs.m[2][4]) + (lhs.m[1][3] * rhs.m[3][4]) + (lhs.m[1][4] * rhs.m[4][4]),
+
+			(lhs.m[2][1] * rhs.m[1][1]) + (lhs.m[2][2] * rhs.m[2][1]) + (lhs.m[2][3] * rhs.m[3][1]) + (lhs.m[2][4] * rhs.m[4][1]),
+			(lhs.m[2][1] * rhs.m[1][2]) + (lhs.m[2][2] * rhs.m[2][2]) + (lhs.m[2][3] * rhs.m[3][2]) + (lhs.m[2][4] * rhs.m[4][2]),
+			(lhs.m[2][1] * rhs.m[1][3]) + (lhs.m[2][2] * rhs.m[2][3]) + (lhs.m[2][3] * rhs.m[3][3]) + (lhs.m[2][4] * rhs.m[4][3]),
+			(lhs.m[2][1] * rhs.m[1][3]) + (lhs.m[2][2] * rhs.m[2][4]) + (lhs.m[2][3] * rhs.m[3][4]) + (lhs.m[2][4] * rhs.m[4][4]),
+
+			(lhs.m[3][1] * rhs.m[1][1]) + (lhs.m[3][2] * rhs.m[2][1]) + (lhs.m[3][3] * rhs.m[3][1]) + (lhs.m[3][4] * rhs.m[4][1]),
+			(lhs.m[3][1] * rhs.m[1][2]) + (lhs.m[3][2] * rhs.m[2][2]) + (lhs.m[3][3] * rhs.m[3][2]) + (lhs.m[3][4] * rhs.m[4][2]),
+			(lhs.m[3][1] * rhs.m[1][3]) + (lhs.m[3][2] * rhs.m[2][3]) + (lhs.m[3][3] * rhs.m[3][3]) + (lhs.m[3][4] * rhs.m[4][3]),
+			(lhs.m[3][1] * rhs.m[1][3]) + (lhs.m[3][2] * rhs.m[2][4]) + (lhs.m[3][3] * rhs.m[3][4]) + (lhs.m[3][4] * rhs.m[4][4]),
+
+			(lhs.m[4][1] * rhs.m[1][1]) + (lhs.m[4][2] * rhs.m[2][1]) + (lhs.m[4][3] * rhs.m[3][1]) + (lhs.m[4][4] * rhs.m[4][1]),
+			(lhs.m[4][1] * rhs.m[1][2]) + (lhs.m[4][2] * rhs.m[2][2]) + (lhs.m[4][3] * rhs.m[3][2]) + (lhs.m[4][4] * rhs.m[4][2]),
+			(lhs.m[4][1] * rhs.m[1][3]) + (lhs.m[4][2] * rhs.m[2][3]) + (lhs.m[4][3] * rhs.m[3][3]) + (lhs.m[4][4] * rhs.m[4][3]),
+			(lhs.m[4][1] * rhs.m[1][3]) + (lhs.m[4][2] * rhs.m[2][4]) + (lhs.m[4][3] * rhs.m[3][4]) + (lhs.m[4][4] * rhs.m[4][4]),
+		};
+
+		return result;
 	}
 
 	inline Matrix ScaleFromVector(Vector3 scale)
