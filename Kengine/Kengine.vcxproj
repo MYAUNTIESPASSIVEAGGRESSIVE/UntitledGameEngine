@@ -135,7 +135,6 @@
     <ClCompile Include="src\graphics\DXTexture.cpp" />
     <ClCompile Include="src\engine\AssetManager.cpp" />
     <ClCompile Include="src\graphics\ShaderLoader.cpp" />
-    <ClCompile Include="src\engine\CoreRenderer.cpp" />
     <ClCompile Include="src\graphics\Debugger.cpp" />
     <ClCompile Include="src\graphics\DXmain.cpp" />
     <ClCompile Include="src\graphics\DXMaterial.cpp" />
@@ -146,16 +145,12 @@
   <ItemGroup>
     <ClInclude Include="src\engine\PhysicsManager.h" />
     <ClInclude Include="src\engine\GameObject.h" />
-    <ClInclude Include="src\interfaces\IMaterial.h" />
-    <ClInclude Include="src\interfaces\IMesh.h" />
-    <ClInclude Include="src\interfaces\ITexture.h" />
     <ClInclude Include="src\OBJModelLoader.h" />
     <ClInclude Include="src\graphics\DXMesh.h" />
     <ClInclude Include="src\graphics\DXTexture.h" />
     <ClInclude Include="src\engine\AssetManager.h" />
     <ClInclude Include="src\graphics\ReadData.h" />
     <ClInclude Include="src\graphics\ShaderLoader.h" />
-    <ClInclude Include="src\engine\CoreRenderer.h" />
     <ClInclude Include="src\graphics\Debugger.h" />
     <ClInclude Include="src\graphics\DXMaterial.h" />
     <ClInclude Include="src\graphics\DXRenderer.h" />

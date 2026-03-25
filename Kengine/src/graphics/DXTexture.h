@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-#include "interfaces/ITexture.h"
 
 class DXRenderer;
 
@@ -10,14 +9,11 @@ struct ID3D11Device;
 struct ID3D11DeviceContext;
 
 class DXTexture
-	: public ITexture
 {
 
 public:
 
-	DXTexture(DXRenderer& dxRend);
-
-	virtual void LoadTexture(std::string assetPath) override;
+	DXTexture(DXRenderer& dxRend, std::string assetPath);
 
 	~DXTexture();
 

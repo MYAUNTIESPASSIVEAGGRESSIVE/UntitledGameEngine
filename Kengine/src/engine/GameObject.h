@@ -1,9 +1,14 @@
 #pragma once
+#include <memory>
 #include <string>
 #include "Transform.h"
 
 namespace Kengine
 {
+	class DXMaterial;
+
+	class DXMesh;
+
 	class GameObject
 	{
 	public:

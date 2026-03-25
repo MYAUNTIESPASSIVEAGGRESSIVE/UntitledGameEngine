@@ -5,13 +5,8 @@
 #include "DXRenderer.h"
 #include "Debugger.h"
 
-DXTexture::DXTexture(DXRenderer& dxRend)
+DXTexture::DXTexture(DXRenderer& dxRend, std::string assetPath)
 	:dev(dxRend.GetDevice()), devcon(dxRend.GetDeviceContext())
-{
-}
-
-// override func for loading of textures
-void DXTexture::LoadTexture(std::string assetPath)
 {
 	std::wstring assetloc = std::wstring(assetPath.begin(), assetPath.end());
 
