@@ -20,9 +20,10 @@ public:
 
 private:
 
+	DXRenderer& dxRend;
+
 	std::map<std::shared_ptr<DXTexture>, std::string> TextureMap;
 	std::map<std::shared_ptr<DXMesh>, std::string> MeshMap;
-
 
 };
 
