@@ -2,7 +2,7 @@
 #include <d3d11.h>
 
 #include "DXRenderer.h"
-#include "OBJModelLoader.h"
+#include "ModelLoaders/OBJModelLoader.h"
 #include "Debugger.h"
 
 DXMesh::DXMesh(DXRenderer& renderer, std::string objPath, bool doubleSided)

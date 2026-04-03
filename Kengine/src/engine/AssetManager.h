@@ -2,6 +2,7 @@
 #include <memory>
 #include <string>
 #include <map>
+#include "graphics/Debugger.h"
 
 class DXRenderer;
 
@@ -16,27 +17,46 @@ public:
 
 	AssetManager(DXRenderer& inRend);
 
-	void Load(std::string filePath, std::string ID);
+	void LoadAsset(std::string filePath, std::string ID,
+		bool isTransparent = false, bool isDoubleSided = false);
 
-	DXTexture& GetTexture(std::string ID) { return TextureMap.at(ID); }
+	std::shared_ptr<DXTexture> GetTexture(std::string ID)
+	{
+		auto asset = TextureMap[ID].lock();
 
-	DXMesh& GetMesh(std::string ID) { return MeshMap.at(ID); }
+		if (!asset) LOG("Texture is not in map or innaccessible");
+
+		return asset;
+	}
+
+	std::shared_ptr<DXMesh> GetMesh(std::string ID)
+	{
+		auto asset = MeshMap[ID].lock();
+
+		if (!asset) LOG("Texture is not in map or innaccessible");
+
+		return asset;
+	}
 
 private:
 
 	DXRenderer& dxRend;
 
-	std::map<std::shared_ptr<DXTexture>, std::string> TextureMap;
-	std::map<std::shared_ptr<DXMesh>, std::string> MeshMap;
+	std::map<std::string, std::weak_ptr<DXTexture>> TextureMap;
+	std::map<std::string, std::weak_ptr<DXMesh>> MeshMap;
 
 	std::string obj = "obj", png = "png", jpg = "jpg", jpeg = "jpeg", bmp = "bmp";
 
-	enum class FileExtension
+	enum class AssetType
 	{
-		UNKNOWN, OBJ, PNG, JPG, JPEG, BMP, NONE
+		UNKNOWN, TEXTURE, TEXTRANS, MESH, MESH2SIDE, NONE
 	};
 
-	FileExtension fileExe;
+	AssetType aType;
+
+	AssetType CheckType(std::string type,
+		bool isTransparent = false, bool isDoubleSided = false);
+
 
 
 };
