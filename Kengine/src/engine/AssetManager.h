@@ -57,7 +57,5 @@ private:
 	AssetType CheckType(std::string type,
 		bool isTransparent = false, bool isDoubleSided = false);
 
-
-
 };
 

@@ -27,7 +27,11 @@ void AssetManager::LoadAsset(std::string filePath, std::string ID,
 	{
 	case(AssetType::MESH):
 	{
-		std::shared_ptr<DXMesh> mesh(new DXMesh(dxRend, filePath));
+		std::shared_ptr<DXMesh> mesh(new DXMesh(dxRend, filePath), 
+			[](DXMesh* s)
+			{
+				if (s) delete s;
+			});
 
 		MeshMap.emplace(mesh, ID);
 		LOG("Mesh added to map");
@@ -37,7 +41,11 @@ void AssetManager::LoadAsset(std::string filePath, std::string ID,
 	}
 	case(AssetType::MESH2SIDE):
 	{
-		std::shared_ptr<DXMesh> mesh(new DXMesh(dxRend, filePath));
+		std::shared_ptr<DXMesh> mesh(new DXMesh(dxRend, filePath),
+			[](DXMesh* s)
+			{
+				if (s) delete s;
+			});
 
 		MeshMap.emplace(mesh, ID);
 		LOG("Mesh added to map");
@@ -47,20 +55,34 @@ void AssetManager::LoadAsset(std::string filePath, std::string ID,
 	}
 	case(AssetType::TEXTURE):
 	{
-		auto tex = std::make_shared<DXTexture>(dxRend, filePath);
+		std::shared_ptr<DXTexture> tex(new DXTexture(dxRend, filePath),
+			[](DXTexture* s)
+			{
+				if (s) {
+					s->~DXTexture();
+					delete s;
+				}
+			});
 
 		TextureMap.emplace(tex, ID);
-		LOG("Mesh added to map");
+		LOG("Texture added to map");
 
 		aType = AssetType::UNKNOWN;
 		break;
 	}
 	case(AssetType::TEXTRANS):
 	{
-		auto tex = std::make_shared<DXTexture>(dxRend, filePath);
+		std::shared_ptr<DXTexture> tex(new DXTexture(dxRend, filePath),
+			[](DXTexture* s)
+			{
+				if (s) {
+					s->~DXTexture();
+					delete s;
+				}
+			});
 
 		TextureMap.emplace(tex, ID);
-		LOG("Mesh added to map");
+		LOG("Texture added to map");
 
 		aType = AssetType::UNKNOWN;
 		break;
