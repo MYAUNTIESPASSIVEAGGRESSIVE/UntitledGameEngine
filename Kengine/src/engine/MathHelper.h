@@ -336,5 +336,8 @@ namespace Kengine
 
 #pragma endregion
 
+#pragma region CollisionMaths
+
+#pragma endregion
 
 }
