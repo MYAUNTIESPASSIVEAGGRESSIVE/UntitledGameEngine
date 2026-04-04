@@ -7,9 +7,7 @@ namespace Kengine
 	{
 	public:
 
-		static bool CircleCollision(Vector3 c1, float r1, Vector3 c2, float r2);
-
-		static bool BoxCollision();
+		static bool OnCollide(Vector3 c1, Vector3 c2);
 	};
 }
 

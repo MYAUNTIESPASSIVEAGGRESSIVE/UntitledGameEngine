@@ -72,7 +72,7 @@ namespace Kengine
 		return Vector3(lhs.x * rhs, lhs.y * rhs, lhs.z * rhs);
 	}
 
-	// rotation of a vector 3 by an angle (float)
+	// rotation of a vector 3 by an angle (float) TODO ADD V3Z
 	inline Vector3 RotateVector3(Vector3& vector, float angle)
 	{
 		float radAngle = (float)(angle * DEG_TO_RAD);
@@ -103,6 +103,82 @@ namespace Kengine
 			lhs.z * rhs.z,
 		};
 	}
+
+	inline float Distance(Vector3 v1, Vector3 v2)
+	{
+		float dx = v2.x - v1.x;
+		float dy = v2.y - v1.y;
+		float dz = v2.z - v1.z;
+
+		return sqrt((dx * dx) + (dy * dy) + (dz * dz));
+	}
+
+#pragma endregion
+
+#pragma region Vector2
+
+	struct Vector2
+	{
+		float x;
+		float y;
+
+		Vector2(float _x = 0.0f, float _y = 0.0f)
+			:x(_x), y(_y) {
+		}
+
+		float MagnitudeSqr()
+		{
+			return x * x + y * y;
+		}
+
+		float Magnitude()
+		{
+			return (float)sqrt(x * x + y * y);
+		}
+
+		Vector2 Normalized()
+		{
+			float mag = Magnitude();
+
+			return Vector2(x / mag, y / mag);
+		}
+
+		Vector2& operator +=(const Vector3& rhs)
+		{
+			x += rhs.x;
+			y += rhs.y;
+
+			return *this;
+		}
+
+
+		Vector2& operator -=(const Vector3& rhs)
+		{
+			x -= rhs.x;
+			y -= rhs.y;
+
+			return *this;
+		}
+	};
+
+	// addition of two vectors (left added by right)
+	inline Vector2 operator +(const Vector2& lhs, const Vector2& rhs)
+	{
+		return Vector2(lhs.x + rhs.x, lhs.y + rhs.y);
+	}
+
+	// subtraction of two vectors (left subtracted by right)
+	inline Vector2 operator -(const Vector2& lhs, const Vector2& rhs)
+	{
+		return Vector2(lhs.x - rhs.x, lhs.y - rhs.y);
+	}
+
+	// Multiplication of two vectors (left multiplied by right)
+	inline Vector2 operator *(const Vector2& lhs, const float& rhs)
+	{
+		return Vector2(lhs.x * rhs, lhs.y * rhs);
+	}
+
 #pragma endregion
 
 #pragma region Matricies
