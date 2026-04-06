@@ -128,29 +128,37 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\engine\Collision.cpp" />
-    <ClCompile Include="src\engine\PhysicsManager.cpp" />
-    <ClCompile Include="src\engine\GameObject.cpp" />
+    <ClCompile Include="src\engine\gameobjects\LightObject.cpp" />
+    <ClCompile Include="src\engine\memory\ResourceManager.cpp" />
+    <ClCompile Include="src\engine\InitGame.cpp" />
+    <ClCompile Include="src\engine\physics\Collision.cpp" />
+    <ClCompile Include="src\engine\physics\PhysicsManager.cpp" />
+    <ClCompile Include="src\engine\gameobjects\GameObject.cpp" />
     <ClCompile Include="src\ModelLoaders\OBJModelLoader.cpp" />
     <ClCompile Include="src\graphics\DXMesh.cpp" />
     <ClCompile Include="src\graphics\DXTexture.cpp" />
-    <ClCompile Include="src\engine\AssetManager.cpp" />
+    <ClCompile Include="src\engine\memory\AssetManager.cpp" />
     <ClCompile Include="src\graphics\ShaderLoader.cpp" />
     <ClCompile Include="src\graphics\Debugger.cpp" />
     <ClCompile Include="src\graphics\DXmain.cpp" />
     <ClCompile Include="src\graphics\DXMaterial.cpp" />
     <ClCompile Include="src\graphics\DXRenderer.cpp" />
     <ClCompile Include="src\graphics\DXWindow.cpp" />
-    <ClCompile Include="src\engine\Transform.cpp" />
+    <ClCompile Include="src\engine\gameobjects\Transform.cpp" />
+    <ClCompile Include="src\engine\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\engine\Collision.h" />
-    <ClInclude Include="src\engine\PhysicsManager.h" />
-    <ClInclude Include="src\engine\GameObject.h" />
+    <ClInclude Include="src\engine\gameobjects\LightObject.h" />
+    <ClInclude Include="src\engine\memory\ResourceManager.h" />
+    <ClInclude Include="src\engine\InitGame.h" />
+    <ClInclude Include="src\engine\physics\Collision.h" />
+    <ClInclude Include="src\engine\physics\PhysicsManager.h" />
+    <ClInclude Include="src\engine\gameobjects\GameObject.h" />
+    <ClInclude Include="src\graphics\Lighting.h" />
     <ClInclude Include="src\ModelLoaders\OBJModelLoader.h" />
     <ClInclude Include="src\graphics\DXMesh.h" />
     <ClInclude Include="src\graphics\DXTexture.h" />
-    <ClInclude Include="src\engine\AssetManager.h" />
+    <ClInclude Include="src\engine\memory\AssetManager.h" />
     <ClInclude Include="src\graphics\ReadData.h" />
     <ClInclude Include="src\graphics\ShaderLoader.h" />
     <ClInclude Include="src\graphics\Debugger.h" />
@@ -158,7 +166,8 @@
     <ClInclude Include="src\graphics\DXRenderer.h" />
     <ClInclude Include="src\graphics\DXWindow.h" />
     <ClInclude Include="src\engine\MathHelper.h" />
-    <ClInclude Include="src\engine\Transform.h" />
+    <ClInclude Include="src\engine\gameobjects\Transform.h" />
+    <ClInclude Include="src\engine\Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="src\graphics\shaders\BasePixelShader.hlsl">
@@ -180,6 +189,7 @@
     <None Include="packages.config" />
     <None Include="packages\packages.config" />
     <None Include="src\graphics\shaders\common.hlsli" />
+    <None Include="src\graphics\shaders\Lighting.hlsli" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

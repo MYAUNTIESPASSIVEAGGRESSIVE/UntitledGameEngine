@@ -33,7 +33,7 @@
     <ClCompile Include="src\graphics\ShaderLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\AssetManager.cpp">
+    <ClCompile Include="src\engine\memory\AssetManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\graphics\DXTexture.cpp">
@@ -45,16 +45,28 @@
     <ClCompile Include="src\ModelLoaders\OBJModelLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\GameObject.cpp">
+    <ClCompile Include="src\engine\gameobjects\GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\Transform.cpp">
+    <ClCompile Include="src\engine\gameobjects\Transform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\PhysicsManager.cpp">
+    <ClCompile Include="src\engine\physics\PhysicsManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\Collision.cpp">
+    <ClCompile Include="src\engine\physics\Collision.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\InitGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\Timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\memory\ResourceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\gameobjects\LightObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -80,7 +92,7 @@
     <ClInclude Include="src\graphics\ReadData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\AssetManager.h">
+    <ClInclude Include="src\engine\memory\AssetManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\graphics\DXTexture.h">
@@ -92,16 +104,31 @@
     <ClInclude Include="src\ModelLoaders\OBJModelLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\GameObject.h">
+    <ClInclude Include="src\engine\gameobjects\GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\Transform.h">
+    <ClInclude Include="src\engine\gameobjects\Transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\PhysicsManager.h">
+    <ClInclude Include="src\engine\physics\PhysicsManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\Collision.h">
+    <ClInclude Include="src\engine\physics\Collision.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\InitGame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\Timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\Lighting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\memory\ResourceManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\gameobjects\LightObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -113,5 +140,6 @@
     <None Include="src\graphics\shaders\common.hlsli" />
     <None Include="packages\packages.config" />
     <None Include="packages.config" />
+    <None Include="src\graphics\shaders\Lighting.hlsli" />
   </ItemGroup>
 </Project>

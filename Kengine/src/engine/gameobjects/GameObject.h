@@ -15,7 +15,7 @@ namespace Kengine
 
 		Transform transform;
 
-		std::string GetName() { return objectName; }
+		std::string GetName() { return objectName; };
 
 		GameObject(std::string objectName, DXMesh* objectMesh, DXMaterial* objMaterial);
 

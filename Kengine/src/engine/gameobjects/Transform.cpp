@@ -17,7 +17,7 @@ namespace Kengine
 
 	void Transform::Rotate(float inRotation)
 	{
-		rotation = RotateVector3(rotation, inRotation);
+		rotation = Vector3AddAngles(rotation, inRotation);
 	}
 
 	Vector3 Transform::GetForward()

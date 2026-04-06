@@ -3,6 +3,21 @@
 #include "d3d11.h"
 #include "DXWindow.h"
 #include "DirectXColors.h"
+#include "DirectXMath.h"
+using namespace DirectX;
+
+struct CBuffer_PerObject
+{
+	XMMATRIX World;
+	XMMATRIX WVP;
+};
+
+struct CBuffer_PerFrame
+{
+	XMFLOAT3 camPos;
+	float padding;
+};
+
 
 DXRenderer::DXRenderer(DXWindow& inWindow)
 	: window(inWindow)
@@ -99,7 +114,67 @@ long DXRenderer::InitD3D()
 
 void DXRenderer::InitGraphics()
 {
+	D3D11_BUFFER_DESC cbd = { 0 };
+	cbd.Usage = D3D11_USAGE_DEFAULT;
+	cbd.ByteWidth = sizeof(CBuffer_PerObject);
+	cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 
+	if (FAILED(device->CreateBuffer(&cbd, NULL, &cBuffer_PerObject)))
+	{
+		LOG("failed to create Cbuffer_perobj");
+	}
+
+	cbd.ByteWidth = sizeof(CBuffer_PerFrame);
+
+	if (FAILED(device->CreateBuffer(&cbd, NULL, &cBuffer_PerFrame)))
+	{
+		LOG("failed to create Cbuffer_perframe");
+	}
+
+	D3D11_RASTERIZER_DESC rsDesc;
+	ZeroMemory(&rsDesc, sizeof(D3D11_RASTERIZER_DESC));
+	rsDesc.CullMode = D3D11_CULL_NONE;
+	rsDesc.FillMode = D3D11_FILL_SOLID;
+	//rsDesc.FillMode = D3D11_FILL_WIREFRAME; // use for debugging
+
+	// create no culling rasteriser
+	device->CreateRasterizerState(&rsDesc, &rasterizerCullNone);
+
+	// create backface culling rasteriser
+	rsDesc.CullMode = D3D11_CULL_BACK;
+	device->CreateRasterizerState(&rsDesc, &rasterizerCullBack);
+
+	// create front rasteriser
+	rsDesc.CullMode = D3D11_CULL_FRONT;
+	device->CreateRasterizerState(&rsDesc, &rasterizerCullFront);
+
+	D3D11_BLEND_DESC bdDesc = { 0 };
+	bdDesc.IndependentBlendEnable = FALSE;
+	bdDesc.AlphaToCoverageEnable = FALSE;
+	bdDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+	bdDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+	bdDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+	bdDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+	bdDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+	bdDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
+	bdDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+
+	// transparent blend state
+	bdDesc.RenderTarget[0].BlendEnable = TRUE;
+	device->CreateBlendState(&bdDesc, &blendTransparent);
+
+	// opaque blend state
+	bdDesc.RenderTarget[0].BlendEnable = TRUE;
+	device->CreateBlendState(&bdDesc, &blendOpaque);
+
+
+	D3D11_DEPTH_STENCIL_DESC dsDesc = { 0 };
+	//depth test params
+	dsDesc.DepthEnable = true;
+	dsDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
+	dsDesc.DepthFunc = D3D11_COMPARISON_LESS;
+
+	device->CreateDepthStencilState(&dsDesc, &depthWriteOff);
 }
 
 long DXRenderer::InitDepthBuffer()
@@ -148,21 +223,21 @@ void DXRenderer::RenderFrame()
 {
 	// clear back buffer with colour
 	devcon->ClearRenderTargetView(backBuffer, DirectX::Colors::Gray);
+	devcon->ClearDepthStencilView(depthBuffer, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
-	// calculate viewprojection func
-	CalculateProjection();
+	//CBuffer_PerFrame cbufferPerFrameData;
+	//XMStoreFloat3(&cbufferPerFrameData.camPos, /*camera.transform.position*/);
+	//devcon->UpdateSubresource(cBuffer_PerFrame, NULL, NULL, &cbufferPerFrameData, NULL, NULL);
+	//devcon->VSSetConstantBuffers(11, 1, &cBuffer_PerFrame);
+
+	//CBuffer_PerObject cbufferData;
+	//XMMATRIX view = camera.GetViewMatrix();
+	//XMMATRIX projection = camera.GetProjectionMatrix(window.GetWidth(), window.GetHeight());
 
 
 
 	// flip the back and front buffers
 	swapchain->Present(0, 0);
-}
-
-// calculates the camera projection and WVP for the constant buffer
-void DXRenderer::CalculateProjection()
-{
-
-
 }
 
 // cleanup

@@ -73,7 +73,7 @@ namespace Kengine
 	}
 
 	// rotation of a vector 3 by an angle (float) TODO ADD V3Z
-	inline Vector3 RotateVector3(Vector3& vector, float angle)
+	inline Vector3 Vector3AddAngles(Vector3& vector, float angle)
 	{
 		float radAngle = (float)(angle * DEG_TO_RAD);
 
@@ -81,6 +81,16 @@ namespace Kengine
 			(float)(vector.x * cos(radAngle) - vector.y * sin(radAngle)),
 			(float)(vector.x * sin(radAngle) + vector.y * cos(radAngle)));
 	}
+
+	//inline Vector3 Vector3AddQuaternion(Vector3& vector, Quaternion& quaternion)
+	//{
+	//	// add quaternion rotation here
+	//}
+
+	//inline Vector3 Vector3AddMatrix(Vector3& vector, Matrix& matrix)
+	//{
+	//	// add matrix rotation here
+	//}
 
 	inline Vector3 CrossProduct(const Vector3& lhs, const Vector3& rhs)
 	{
@@ -336,7 +346,30 @@ namespace Kengine
 
 #pragma endregion
 
+#pragma region Quaternions
+
+	struct Quaternion
+	{
+		float x;
+		float y;
+		float z;
+		float w;
+
+		Quaternion(float _x = 0.0f, float _y = 0.0f, float _z = 0.0f, float _w = 0.0f)
+			: x(_x), y(_y), z(_z), w(_w) {
+
+		}
+
+
+
+	};
+
+#pragma endregion
+
+
 #pragma region CollisionMaths
+
+
 
 #pragma endregion
 

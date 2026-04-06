@@ -1,7 +1,6 @@
 #include "Collision.h"
 namespace Kengine
 {
-
 	bool Collision::OnCircleCollide(Vector3 c1, Vector3 c2)
 	{
 		float distance = Distance(c1, c2);
