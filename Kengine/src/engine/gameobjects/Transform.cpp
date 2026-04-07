@@ -1,61 +1,62 @@
 #include "Transform.h"
 namespace Kengine
 {
-	Matrix Transform::GetWorldMatrix()
+	DirectX::XMMATRIX Transform::GetWorldMatrix()
 	{
-		Matrix scaleMat = ScaleFromVector(scale);
-		Matrix rotationMat = RotationFromVector(rotation);
-		Matrix translationMat = TranslateFromVector(position);
+		DirectX::XMMATRIX scaleMat = DirectX::XMMatrixScalingFromVector(scale);
+		DirectX::XMMATRIX rotationMat = DirectX::XMMatrixRotationRollPitchYawFromVector(rotation);
+		DirectX::XMMATRIX translationMat = DirectX::XMMatrixTranslationFromVector(position);
 
 		return scaleMat * rotationMat * translationMat;
 	}
 
-	void Transform::Translate(Vector3 translation)
+	void Transform::Translate(DirectX::XMVECTOR translation)
 	{
-		position = operator+(position, translation);
+		position = DirectX::XMVectorAdd(position, translation);
 	}
 
-	void Transform::Rotate(float inRotation)
+	void Transform::Rotate(DirectX::XMVECTOR inRotation)
 	{
-		rotation = Vector3AddAngles(rotation, inRotation);
+		rotation = DirectX::XMVectorAddAngles(rotation, inRotation);
 	}
 
-	Vector3 Transform::GetForward()
+	DirectX::XMVECTOR Transform::GetForward()
 	{
-		float pitch = rotation.x;
-		float yaw = rotation.y;
+		float pitch = DirectX::XMVectorGetX(rotation);
+		float yaw = DirectX::XMVectorGetY(rotation);
 
-		Vector3 direction
+		DirectX::XMVECTOR direction
 		{
 			cosf(pitch) * sinf(yaw),
 			sinf(pitch),
 			cosf(pitch) * cosf(yaw),
 		};
 
-		return direction.Normalized();
+		return DirectX::XMVector3Normalize(direction);
 	}
 
-	Vector3 Transform::GetRight()
+	DirectX::XMVECTOR Transform::GetRight()
 	{
-		float pitch = rotation.x;
-		float yaw = rotation.y;
-		float roll = rotation.z;
+		float pitch = DirectX::XMVectorGetX(rotation);
+		float yaw = DirectX::XMVectorGetY(rotation);
+		float roll = DirectX::XMVectorGetZ(rotation);
 
-		Vector3 direction
+		DirectX::XMVECTOR direction
 		{
 			cosf(roll) * cosf(yaw) + sinf(roll) * sinf(pitch) * sinf(yaw),  // X
 			sinf(roll) * cosf(pitch),									    // Y
 			cosf(roll) * -sinf(yaw) + sinf(roll) * sinf(pitch) * cosf(yaw), // Z
 		};
 
-		return direction.Normalized();
+		return DirectX::XMVector3Normalize(direction);
 	}
 
-	Vector3 Transform::GetUp()
+	// get the up vector
+	DirectX::XMVECTOR Transform::GetUp()
 	{
-		Vector3 cross = CrossProduct(GetForward(), GetRight());
+		DirectX::XMVECTOR cross = DirectX::XMVector3Cross(GetForward(), GetRight());
 
-		return cross.Normalized();
+		return DirectX::XMVector3Normalize(cross);
 	}
 }
 

@@ -146,9 +146,11 @@
     <ClCompile Include="src\graphics\DXWindow.cpp" />
     <ClCompile Include="src\engine\gameobjects\Transform.cpp" />
     <ClCompile Include="src\engine\Timer.cpp" />
+    <ClCompile Include="src\engine\gameobjects\Viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\gameobjects\LightObject.h" />
+    <ClInclude Include="src\engine\MathHelper.h" />
     <ClInclude Include="src\engine\memory\ResourceManager.h" />
     <ClInclude Include="src\engine\InitGame.h" />
     <ClInclude Include="src\engine\physics\Collision.h" />
@@ -165,9 +167,9 @@
     <ClInclude Include="src\graphics\DXMaterial.h" />
     <ClInclude Include="src\graphics\DXRenderer.h" />
     <ClInclude Include="src\graphics\DXWindow.h" />
-    <ClInclude Include="src\engine\MathHelper.h" />
     <ClInclude Include="src\engine\gameobjects\Transform.h" />
     <ClInclude Include="src\engine\Timer.h" />
+    <ClInclude Include="src\engine\gameobjects\Viewport.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="src\graphics\shaders\BasePixelShader.hlsl">

@@ -1,5 +1,5 @@
 #pragma once
-#include "engine/MathHelper.h"
+#include <DirectXMath.h>
 
 namespace Kengine
 {
@@ -7,9 +7,9 @@ namespace Kengine
 	{
 	public:
 
-		static bool OnCircleCollide(Vector3 c1, Vector3 c2);
+		static bool OnCircleCollide(DirectX::XMVECTOR c1, DirectX::XMVECTOR c2);
 
-		static bool OnBoxCollide(Vector3 c1, Vector3 c2);
+		static bool OnBoxCollide(DirectX::XMVECTOR c1, DirectX::XMVECTOR c2);
 	};
 }
 

@@ -69,7 +69,7 @@ namespace ShaderLoading
 		}
 
 		// signature param desc masks: float4 = 15, float3 = 7, float2 = 3, float[1] = 1. (bitmasks)
-		// input element description - desctibes how the shader interperates vertex buffer data
+		// input element description - describes how the shader interperates vertex buffer data
 		D3D11_INPUT_ELEMENT_DESC* ied = new D3D11_INPUT_ELEMENT_DESC[desc.InputParameters]{ 0 };
 		for (size_t i = 0; i < desc.InputParameters; i++)
 		{

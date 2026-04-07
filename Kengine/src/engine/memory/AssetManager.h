@@ -20,11 +20,14 @@ public:
 	void LoadAsset(std::string filePath, std::string ID,
 		bool isTransparent = false, bool isDoubleSided = false);
 
+	// gets a texture
 	std::shared_ptr<DXTexture> GetTexture(std::string ID)
 	{
 		auto asset = TextureMap[ID].lock();
 
 		if (!asset) LOG("Texture is not in map or innaccessible");
+
+		if (asset.use_count() < 1) std::make_shared<DXTexture>(asset);
 
 		return asset;
 	}
@@ -34,6 +37,8 @@ public:
 		auto asset = MeshMap[ID].lock();
 
 		if (!asset) LOG("Texture is not in map or innaccessible");
+
+		if (asset.use_count() < 1) std::make_shared<DXMesh>(asset);
 
 		return asset;
 	}

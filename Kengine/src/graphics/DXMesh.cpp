@@ -11,11 +11,10 @@ DXMesh::DXMesh(DXRenderer& renderer, std::string objPath, bool doubleSided)
 	OBJModelLoader ml{ objPath };
 
 	D3D11_BUFFER_DESC bd = { 0 };
-	bd.Usage = D3D11_USAGE_DYNAMIC; // allows for CPU-write and GPU-read
-	//bdesc.ByteWidth = sizeof(Vertex) * 3; // size of buffer - sizeof vertex * num of vertices
-	bd.ByteWidth = (unsigned int)ml.GetVertexBufferSize(); // can use this but only in local scope
-	bd.BindFlags = D3D11_BIND_VERTEX_BUFFER; // use as vertex buffer
-	bd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE; // allow CPU to write in buffer
+	bd.Usage = D3D11_USAGE_DYNAMIC;
+	bd.ByteWidth = (unsigned int)ml.GetVertexBufferSize();
+	bd.BindFlags = D3D11_BIND_VERTEX_BUFFER; 
+	bd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE; 
 	if (FAILED(dev->CreateBuffer(&bd, NULL, &vBuffer)))
 	{
 		LOG("failed to create vertex buffer");
@@ -24,8 +23,8 @@ DXMesh::DXMesh(DXRenderer& renderer, std::string objPath, bool doubleSided)
 
 	//copy the verticies into the buffer
 	D3D11_MAPPED_SUBRESOURCE ms;
-	devcon->Map(vBuffer, NULL, D3D11_MAP_WRITE_DISCARD, NULL, &ms); // map the buffer
-	memcpy(ms.pData, ml.GetVertexData(), ml.GetVertexBufferSize()); // copy the data into the buffer
+	devcon->Map(vBuffer, NULL, D3D11_MAP_WRITE_DISCARD, NULL, &ms); 
+	memcpy(ms.pData, ml.GetVertexData(), ml.GetVertexBufferSize());
 	devcon->Unmap(vBuffer, NULL);
 
 	// fill in a buffer description
@@ -55,8 +54,8 @@ void DXMesh::Render()
 	// select which vertex buffer to use
 	UINT stride = sizeof(VertexPosUVNorm);
 	UINT offset = 0;
-	devcon->IASetVertexBuffers(0, 1, &vBuffer, &stride, &offset); // This tells the rendering context which vertex buffers should be used.
-	devcon->IASetIndexBuffer(iBuffer, DXGI_FORMAT_R32_UINT, 0); // This tells the rendering context which vertex buffers should be used.
+	devcon->IASetVertexBuffers(0, 1, &vBuffer, &stride, &offset); 
+	devcon->IASetIndexBuffer(iBuffer, DXGI_FORMAT_R32_UINT, 0);
 
 	devcon->DrawIndexed(indexCount, 0, 0);
 }

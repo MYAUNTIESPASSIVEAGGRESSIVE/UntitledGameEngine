@@ -1,0 +1,16 @@
+#include "Viewport.h"
+
+DirectX::XMMATRIX Viewport::GetViewMatrix()
+{
+	DirectX::XMVECTOR eyePos = transform.position;
+	DirectX::XMVECTOR lookAt = transform.GetForward();
+	DirectX::XMVECTOR camUp = transform.GetUp();
+
+
+	return DirectX::XMMatrixLookToLH(eyePos, lookAt, camUp); // looks foward (at the object)
+}
+
+DirectX::XMMATRIX Viewport::GetProjectionMatrix(int screenWidth, int screenHeight)
+{
+	return DirectX::XMMATRIX();
+}
