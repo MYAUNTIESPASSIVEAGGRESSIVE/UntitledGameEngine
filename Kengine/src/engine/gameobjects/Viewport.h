@@ -6,7 +6,7 @@ class Viewport
 {
 public:
 
-	Kengine::Transform transform;
+	Transform transform;
 
 	float fov = 65;
 	float nearCliipingPlane = 0.1f;

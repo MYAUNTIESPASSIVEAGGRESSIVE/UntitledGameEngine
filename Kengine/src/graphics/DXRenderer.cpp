@@ -4,6 +4,10 @@
 #include "DXWindow.h"
 #include "DirectXColors.h"
 #include "DirectXMath.h"
+#include "engine/gameobjects/GameObject.h"
+#include "DXMaterial.h"
+#include "DXMesh.h"
+#include "DXTexture.h"
 using namespace DirectX;
 
 struct CBuffer_PerObject
@@ -225,16 +229,34 @@ void DXRenderer::RenderFrame()
 	devcon->ClearRenderTargetView(backBuffer, DirectX::Colors::Gray);
 	devcon->ClearDepthStencilView(depthBuffer, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
-	//CBuffer_PerFrame cbufferPerFrameData;
-	//XMStoreFloat3(&cbufferPerFrameData.camPos, /*camera.transform.position*/);
-	//devcon->UpdateSubresource(cBuffer_PerFrame, NULL, NULL, &cbufferPerFrameData, NULL, NULL);
-	//devcon->VSSetConstantBuffers(11, 1, &cBuffer_PerFrame);
+	CBuffer_PerFrame cbufferPerFrameData;
+	XMStoreFloat3(&cbufferPerFrameData.camPos, camera.transform.position);
+	devcon->UpdateSubresource(cBuffer_PerFrame, NULL, NULL, &cbufferPerFrameData, NULL, NULL);
+	devcon->VSSetConstantBuffers(11, 1, &cBuffer_PerFrame);
 
-	//CBuffer_PerObject cbufferData;
-	//XMMATRIX view = camera.GetViewMatrix();
-	//XMMATRIX projection = camera.GetProjectionMatrix(window.GetWidth(), window.GetHeight());
+	CBuffer_PerObject cbufferData;
+	XMMATRIX view = camera.GetViewMatrix();
+	XMMATRIX projection = camera.GetProjectionMatrix(window.GetWidth(), window.GetHeight());
 
+	XMMATRIX world = testGO->transform.GetWorldMatrix();
+	cbufferData.World = world;
+	cbufferData.WVP = world * view * projection;
 
+	devcon->UpdateSubresource(cBuffer_PerObject, NULL, NULL, &cbufferData, NULL, NULL);
+	devcon->VSSetConstantBuffers(12, 1, &cBuffer_PerObject);
+
+	devcon->RSSetState(testGO->GetObjectMesh()->isDoubleSided ?
+		rasterizerCullNone : rasterizerCullBack);
+
+	devcon->OMSetBlendState(testGO->GetObjectMaterial()->GetTexture()->isTransparent ?
+		blendTransparent : blendOpaque, 0, 0xffffffff);
+
+	devcon->OMSetDepthStencilState(testGO->GetObjectMaterial()->GetTexture()->isTransparent ?
+		depthWriteOff : nullptr, 1);
+
+	testGO->GetObjectMaterial()->UpdateMaterial(testGO);
+	testGO->GetObjectMaterial()->Bind();
+	testGO->GetObjectMesh()->Render();
 
 	// flip the back and front buffers
 	swapchain->Present(0, 0);

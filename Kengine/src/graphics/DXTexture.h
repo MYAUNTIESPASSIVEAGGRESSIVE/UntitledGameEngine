@@ -13,7 +13,7 @@ class DXTexture
 
 public:
 
-	DXTexture(DXRenderer& dxRend, std::string assetPath);
+	DXTexture(DXRenderer& dxRend, std::string assetPath, bool transparent = false);
 
 	~DXTexture();
 
@@ -21,6 +21,8 @@ public:
 
 	ID3D11ShaderResourceView* GetTexture() { return texture; }
 	ID3D11SamplerState* GetSampler() { return sampler; }
+
+	bool isTransparent = false;
 
 private:
 
@@ -33,4 +35,3 @@ private:
 	ID3D11ShaderResourceView* texture = nullptr;
 
 };
-

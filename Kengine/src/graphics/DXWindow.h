@@ -1,5 +1,7 @@
 #pragma once
 #include "Windows.h"
+#include <Keyboard.h>
+#include <Mouse.h>
 
 class DXWindow
 {
@@ -7,6 +9,9 @@ private:
 	HWND handle = NULL;
 	HINSTANCE instance = NULL;
 	int height = 32, width = 32;
+
+	DirectX::Keyboard keyboard;
+	DirectX::Mouse mouse;
 
 	static LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
@@ -17,5 +22,7 @@ public:
 	int GetWidth() { return width; }
 
 	DXWindow(int width, int height, HINSTANCE instance, int nCmdShow);
+
+	DirectX::Keyboard::KeyboardStateTracker kbTracker;
 };
 

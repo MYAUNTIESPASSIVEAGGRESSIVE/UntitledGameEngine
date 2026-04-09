@@ -4,31 +4,28 @@
 #include "Transform.h"
 #include "graphics/Lighting.h"
 
-namespace Kengine
+class LightObject
 {
-	class LightObject
+public:
+
+	enum class LightType
 	{
-	public:
-
-		enum class LightType
-		{
-			POINT,
-			DIRECTIONAL,
-			SPOT
-		};
-
-		Transform transform;
-
-		std::string GetName() { return objectName; };
-
-		LightObject(std::string name, LightType type);
-
-
-	private:
-
-		std::string objectName = "LightObject";
-
-
+		POINT,
+		DIRECTIONAL,
+		SPOT
 	};
-}
+
+	Transform transform;
+
+	std::string GetName() { return objectName; };
+
+	LightObject(std::string name, LightType type);
+
+
+private:
+
+	std::string objectName = "LightObject";
+
+
+};
 

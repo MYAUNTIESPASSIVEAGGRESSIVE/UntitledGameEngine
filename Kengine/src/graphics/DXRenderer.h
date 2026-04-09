@@ -1,5 +1,5 @@
 #pragma once
-#include <vector>
+#include "engine/gameobjects/Viewport.h"
 
 #define MAX_POINT_LIGHTS 32
 
@@ -20,9 +20,15 @@ struct ID3D11Buffer;
 
 class DXWindow;
 
+class GameObject;
+
 class DXRenderer
 {
 public:
+
+	Viewport camera;
+
+	GameObject* testGO;
 
 	DXRenderer(DXWindow& inWindow);
 	void Release();

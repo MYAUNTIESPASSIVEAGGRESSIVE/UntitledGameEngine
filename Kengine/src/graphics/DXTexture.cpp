@@ -5,8 +5,8 @@
 #include "DXRenderer.h"
 #include "Debugger.h"
 
-DXTexture::DXTexture(DXRenderer& dxRend, std::string assetPath)
-	:dev(dxRend.GetDevice()), devcon(dxRend.GetDeviceContext())
+DXTexture::DXTexture(DXRenderer& dxRend, std::string assetPath, bool transparent)
+	:dev(dxRend.GetDevice()), devcon(dxRend.GetDeviceContext()), isTransparent(transparent)
 {
 	std::wstring assetloc = std::wstring(assetPath.begin(), assetPath.end());
 

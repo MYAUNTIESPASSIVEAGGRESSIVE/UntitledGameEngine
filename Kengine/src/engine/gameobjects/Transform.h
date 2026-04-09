@@ -1,24 +1,22 @@
 #pragma once
 #include <DirectXMath.h>
-namespace Kengine
+
+class Transform
 {
-	class Transform
-	{
-	public:
+public:
 
-		DirectX::XMVECTOR position{ 0.0f, 0.0f, 0.0f };
-		DirectX::XMVECTOR rotation{ 0.0f, 0.0f, 0.0f };
-		DirectX::XMVECTOR scale{ 1.0f, 1.0f, 1.0f };
+	DirectX::XMVECTOR position{ 0.0f, 0.0f, 0.0f };
+	DirectX::XMVECTOR rotation{ 0.0f, 0.0f, 0.0f };
+	DirectX::XMVECTOR scale{ 1.0f, 1.0f, 1.0f };
 
-		DirectX::XMMATRIX GetWorldMatrix();
+	DirectX::XMMATRIX GetWorldMatrix();
 
-		void Translate(DirectX::XMVECTOR translation);
-		void Rotate(DirectX::XMVECTOR inRotation);
+	void Translate(DirectX::XMVECTOR translation);
+	void Rotate(DirectX::XMVECTOR inRotation);
 
-		DirectX::XMVECTOR GetForward();
-		DirectX::XMVECTOR GetRight();
-		DirectX::XMVECTOR GetUp();
-	};
-}
+	DirectX::XMVECTOR GetForward();
+	DirectX::XMVECTOR GetRight();
+	DirectX::XMVECTOR GetUp();
+};
 
 

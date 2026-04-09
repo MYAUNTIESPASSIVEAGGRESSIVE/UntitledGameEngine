@@ -3,8 +3,6 @@
 #define PI 3.14159265
 #define DEG_TO_RAD PI/180.0f
 
-namespace Kengine
-{
 ///<summary>
 // IGNORE DUE TO REFORMAT TO DIRECTXMATH
 #pragma region Vectors
@@ -368,6 +366,3 @@ namespace Kengine
 //
 #pragma endregion
 ///</summary>
-
-
-}

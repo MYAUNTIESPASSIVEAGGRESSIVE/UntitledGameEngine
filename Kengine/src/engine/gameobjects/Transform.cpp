@@ -1,6 +1,4 @@
 #include "Transform.h"
-namespace Kengine
-{
 	DirectX::XMMATRIX Transform::GetWorldMatrix()
 	{
 		DirectX::XMMATRIX scaleMat = DirectX::XMMatrixScalingFromVector(scale);
@@ -58,6 +56,4 @@ namespace Kengine
 
 		return DirectX::XMVector3Normalize(cross);
 	}
-}
-
 

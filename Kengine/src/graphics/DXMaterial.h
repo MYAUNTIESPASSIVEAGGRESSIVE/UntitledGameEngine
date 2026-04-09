@@ -13,6 +13,8 @@ struct ID3D11Buffer;
 class DXRenderer;
 class DXTexture;
 
+class GameObject;
+
 class DXMaterial
 {
 public:
@@ -23,6 +25,8 @@ public:
 	DXTexture* GetTexture() { return texture; }
 
 	virtual void Bind(); // set rendering state + bind then draw material
+
+	virtual void UpdateMaterial(GameObject* entiry) {}
 
 	~DXMaterial();
 
