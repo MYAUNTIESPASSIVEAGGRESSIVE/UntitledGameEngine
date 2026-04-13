@@ -12,5 +12,9 @@ DirectX::XMMATRIX Viewport::GetViewMatrix()
 
 DirectX::XMMATRIX Viewport::GetProjectionMatrix(int screenWidth, int screenHeight)
 {
-	return DirectX::XMMATRIX();
+	return DirectX::XMMatrixPerspectiveFovLH(
+		DirectX::XMConvertToRadians(fov),
+		screenWidth / (float)screenHeight,
+		nearClippingPlane,
+		farClippingPlane);
 }

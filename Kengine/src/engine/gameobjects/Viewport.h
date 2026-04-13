@@ -9,7 +9,7 @@ public:
 	Transform transform;
 
 	float fov = 65;
-	float nearCliipingPlane = 0.1f;
+	float nearClippingPlane = 0.1f;
 	float farClippingPlane = 1000.0f;
 
 	DirectX::XMMATRIX GetViewMatrix();

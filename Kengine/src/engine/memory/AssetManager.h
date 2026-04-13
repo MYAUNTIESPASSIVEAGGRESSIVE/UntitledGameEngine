@@ -20,31 +20,31 @@ public:
 	void LoadAsset(std::string filePath, std::string ID,
 		bool isTransparent = false, bool isDoubleSided = false);
 
-	//// gets a texture
-	//std::shared_ptr<DXTexture> GetTexture(std::string ID)
-	//{
-	//	auto asset = TextureMap[ID].lock();
+	// gets a texture
+	std::shared_ptr<DXTexture> GetTexture(std::string ID)
+	{
+		auto asset = TextureMap[ID].lock();
 
-	//	if (!asset) LOG("Texture is not in map or innaccessible");
+		if (!asset) LOG("Texture is not in map or innaccessible");
 
-	//	if (asset.use_count() < 1) std::make_shared<DXTexture>(asset);
-	//}
+		if (asset.use_count() < 1) return std::make_shared<DXTexture>(asset);
+	}
 
-	//std::shared_ptr<DXMesh> GetMesh(std::string ID)
-	//{
-	//	auto asset = MeshMap[ID].lock();
+	std::shared_ptr<DXMesh> GetMesh(std::string ID)
+	{
+		auto asset = MeshMap[ID].lock();
 
-	//	if (!asset) LOG("Texture is not in map or innaccessible");
+		if (!asset) LOG("Texture is not in map or innaccessible");
 
-	//	if (asset.use_count() < 1) std::make_shared<DXMesh>(asset);
-	//}
+		if (asset.use_count() < 1) return std::make_shared<DXMesh>(asset);
+	}
 
 private:
 
 	DXRenderer& dxRend;
 
-	//std::map<std::string, std::weak_ptr<DXTexture>> TextureMap;
-	//std::map<std::string, std::weak_ptr<DXMesh>> MeshMap;
+	std::map<std::string, std::weak_ptr<DXTexture>> TextureMap;
+	std::map<std::string, std::weak_ptr<DXMesh>> MeshMap;
 
 	std::string obj = "obj", png = "png", jpg = "jpg", jpeg = "jpeg", bmp = "bmp";
 
@@ -57,6 +57,9 @@ private:
 
 	AssetType CheckType(std::string type,
 		bool isTransparent = false, bool isDoubleSided = false);
+
+	void DeleteTexture();
+	void DeleteMesh();
 
 };
 

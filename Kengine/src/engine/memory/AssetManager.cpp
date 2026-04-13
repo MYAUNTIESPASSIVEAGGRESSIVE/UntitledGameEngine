@@ -12,53 +12,53 @@ AssetManager::AssetManager(DXRenderer& inRend)
 void AssetManager::LoadAsset(std::string filePath, std::string ID,
 	bool isTransparent, bool isDoubleSided)
 {
-	//aType = AssetType::UNKNOWN;
-	//// extract final .fileext
-	//// if/switch texture then contruct texture or if/switch obj then constuct mesh
-	//std::string subs;
-	//auto npos = filePath.find('.');
-	//if (npos != std::string::npos)
-	//	subs = filePath.substr(npos + 1);
+	aType = AssetType::UNKNOWN;
+	// extract final .fileext
+	// if/switch texture then contruct texture or if/switch obj then constuct mesh
+	std::string subs;
+	auto npos = filePath.find('.');
+	if (npos != std::string::npos)
+		subs = filePath.substr(npos + 1);
 
-	//if (!subs.empty() && aType == AssetType::UNKNOWN)
-	//	CheckType(subs);
+	if (!subs.empty() && aType == AssetType::UNKNOWN)
+		CheckType(subs);
 
-	//switch (aType)
-	//{
-	//case(AssetType::MESH):
-	//{
-	//	MeshMap.emplace(DXMesh(dxRend, filePath), ID);
-	//	LOG("Mesh added to map");
+	switch (aType)
+	{
+	case(AssetType::MESH):
+	{
+		MeshMap.emplace(DXMesh(dxRend, filePath), ID);
+		LOG("Mesh added to map");
 
-	//	aType = AssetType::UNKNOWN;
-	//	break;
-	//}
-	//case(AssetType::MESH2SIDE):
-	//{
-	//	MeshMap.emplace(DXMesh(dxRend,filePath), ID);
-	//	LOG("Mesh added to map");
+		aType = AssetType::UNKNOWN;
+		break;
+	}
+	case(AssetType::MESH2SIDE):
+	{
+		MeshMap.emplace(DXMesh(dxRend,filePath), ID);
+		LOG("Mesh added to map");
 
-	//	aType = AssetType::UNKNOWN;
-	//	break;
-	//}
-	//case(AssetType::TEXTURE):
-	//{
-	//	TextureMap.emplace(DXTexture(dxRend,filePath), ID);
-	//	LOG("Texture added to map");
+		aType = AssetType::UNKNOWN;
+		break;
+	}
+	case(AssetType::TEXTURE):
+	{
+		TextureMap.emplace(DXTexture(dxRend,filePath), ID);
+		LOG("Texture added to map");
 
-	//	aType = AssetType::UNKNOWN;
-	//	break;
-	//}
-	//case(AssetType::TEXTRANS):
-	//{
-	//	TextureMap.emplace(DXTexture(dxRend, filePath), ID);
-	//	LOG("Texture added to map");
+		aType = AssetType::UNKNOWN;
+		break;
+	}
+	case(AssetType::TEXTRANS):
+	{
+		TextureMap.emplace(DXTexture(dxRend, filePath), ID);
+		LOG("Texture added to map");
 
-	//	aType = AssetType::UNKNOWN;
-	//	break;
-	//}
+		aType = AssetType::UNKNOWN;
+		break;
+	}
 
-	//}
+	}
 }
 
 AssetManager::AssetType AssetManager::CheckType(std::string type,

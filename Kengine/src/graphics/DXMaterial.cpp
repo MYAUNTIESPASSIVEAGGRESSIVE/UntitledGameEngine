@@ -7,7 +7,7 @@
 
 DXMaterial::DXMaterial(std::string name, DXRenderer& renderer,
 	std::string vShaderFilename, std::string pShaderFilename,
-	DXTexture* texture)
+	std::shared_ptr<DXTexture> texture)
 	: name(name), renderer(renderer), dev(renderer.GetDevice()), devcon(renderer.GetDeviceContext()), texture(texture)
 	
 {

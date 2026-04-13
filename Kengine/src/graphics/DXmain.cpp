@@ -5,6 +5,7 @@
 #include "engine/gameobjects/GameObject.h"
 #include "DXTexture.h"
 #include "DXMaterial.h"
+#include "engine/memory/AssetManager.h"
 
 int WINAPI WinMain(
 	_In_ HINSTANCE hInstance,
@@ -14,16 +15,23 @@ int WINAPI WinMain(
 {
 	DXWindow _dxWind{ 800, 600, hInstance, nCmdShow };
 	DXRenderer _dxRend{ _dxWind };
+	AssetManager _AM{ _dxRend };
 
-	DXMesh mesh{ _dxRend, "Assets/cube.obj" };
-	DXTexture tex{ _dxRend, "Assets/SampleTexture.jpg" };
-	DXMaterial material{ "Test",_dxRend,"src/Compiled Shaders/BaseVertexShader.cso","src/Compiled Shaders/BasePixelShader.cso", &tex };
+	//DXMesh mesh{ _dxRend, "Assets/cube.obj" };
+	//DXTexture tex{ _dxRend, "Assets/SampleTexture.jpg" };
+	//DXMaterial material{ "Test",_dxRend,"src/Compiled Shaders/BaseVertexShader.cso","src/Compiled Shaders/BasePixelShader.cso", &tex };
 
-	GameObject go_test { "GO" , &mesh, &material};
+	//GameObject go_test { "GO" , &mesh, &material};
+
+	//_dxRend.testGO = &go_test;
+
+	_AM.LoadAsset("Assets/cube.obj", "SampleMesh");
+	_AM.LoadAsset("Assets/SampleTexture.jpg", "SampleTexture");
+	DXMaterial material{ "Test",_dxRend,"src/Compiled Shaders/BaseVertexShader.cso","src/Compiled Shaders/BasePixelShader.cso", _AM.GetTexture("SampleTexture")};
+
+	GameObject go_test { "GO" , _AM.GetMesh("SampleMesh"), &material};
 
 	_dxRend.testGO = &go_test;
-
-	go_test.transform.position = DirectX::XMVectorSet(20, 0, 12, 1);
 
 	_dxRend.camera.transform.position = DirectX::XMVectorSetZ(_dxRend.camera.transform.position, -10);
 

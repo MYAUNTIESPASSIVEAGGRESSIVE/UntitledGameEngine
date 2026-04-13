@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <memory>
 
 struct ID3D11Device;
 struct ID3D11DeviceContext;
@@ -20,9 +21,9 @@ class DXMaterial
 public:
 	DXMaterial(std::string name, DXRenderer& renderer,
 		std::string vShaderFilename, std::string pShaderFilename,
-		DXTexture* texture);
+		 std::shared_ptr<DXTexture> texture);
 
-	DXTexture* GetTexture() { return texture; }
+	std::shared_ptr<DXTexture> GetTexture() { return texture; }
 
 	virtual void Bind(); // set rendering state + bind then draw material
 
@@ -47,7 +48,7 @@ protected:
 	ID3D11PixelShader* pShader = nullptr;
 	ID3D11InputLayout* vLayout = nullptr;
 
-	DXTexture* texture = nullptr;
+	std::shared_ptr<DXTexture> texture = nullptr;
 
 	ID3D11Buffer* cbuffer = nullptr;
 

@@ -15,13 +15,13 @@ public:
 
 	std::string GetName() { return objectName; };
 
-	GameObject(std::string objectName, DXMesh* objectMesh, DXMaterial* objMaterial);
+	GameObject(std::string objectName, std::shared_ptr<DXMesh> objectMesh, DXMaterial* objMaterial);
 
 	void SetParent(GameObject* parent);
 
 	GameObject* GetParent() { return parentObject; }
 
-	DXMesh* GetObjectMesh() { return ObjectMesh; }
+	std::shared_ptr<DXMesh> GetObjectMesh() { return ObjectMesh; }
 	DXMaterial* GetObjectMaterial() { return ObjectMaterial; }
 
 	DXMesh* SetObjectMesh(DXMesh* inMesh);
@@ -34,7 +34,7 @@ public:
 
 	GameObject* parentObject = nullptr;
 
-	DXMesh* ObjectMesh;
+	std::shared_ptr<DXMesh> ObjectMesh;
 
 	DXMaterial* ObjectMaterial;
 };

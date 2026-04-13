@@ -3,7 +3,7 @@
 struct VSout
 {
     float4 position : SV_Position;
-    float2 uv : TEXCOORD;
+    float2 uv : TEXCOORD1;
     float4 colour : COLOR;
 };
 
