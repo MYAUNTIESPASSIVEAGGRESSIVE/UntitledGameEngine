@@ -27,7 +27,7 @@ void AssetManager::LoadAsset(std::string filePath, std::string ID,
 	{
 	case(AssetType::MESH):
 	{
-		MeshMap.emplace(DXMesh(dxRend, filePath), ID);
+		MeshMap.emplace(ID, DXMesh(dxRend, filePath));
 		LOG("Mesh added to map");
 
 		aType = AssetType::UNKNOWN;
@@ -35,7 +35,7 @@ void AssetManager::LoadAsset(std::string filePath, std::string ID,
 	}
 	case(AssetType::MESH2SIDE):
 	{
-		MeshMap.emplace(DXMesh(dxRend,filePath), ID);
+		MeshMap.emplace(ID, DXMesh(dxRend, filePath));
 		LOG("Mesh added to map");
 
 		aType = AssetType::UNKNOWN;
@@ -43,7 +43,7 @@ void AssetManager::LoadAsset(std::string filePath, std::string ID,
 	}
 	case(AssetType::TEXTURE):
 	{
-		TextureMap.emplace(DXTexture(dxRend,filePath), ID);
+		TextureMap.emplace(ID, DXTexture(dxRend, filePath));
 		LOG("Texture added to map");
 
 		aType = AssetType::UNKNOWN;
@@ -51,7 +51,7 @@ void AssetManager::LoadAsset(std::string filePath, std::string ID,
 	}
 	case(AssetType::TEXTRANS):
 	{
-		TextureMap.emplace(DXTexture(dxRend, filePath), ID);
+		TextureMap.emplace(ID, DXTexture(dxRend, filePath));
 		LOG("Texture added to map");
 
 		aType = AssetType::UNKNOWN;

@@ -1,8 +1,9 @@
 #pragma once
-#include <memory>
 #include <string>
 #include <map>
 #include "graphics/Debugger.h"
+#include "graphics/DXMesh.h"
+#include "graphics/DXTexture.h"
 
 class DXRenderer;
 
@@ -21,30 +22,36 @@ public:
 		bool isTransparent = false, bool isDoubleSided = false);
 
 	// gets a texture
-	std::shared_ptr<DXTexture> GetTexture(std::string ID)
+	DXTexture& GetTexture(std::string ID)
 	{
-		auto asset = TextureMap[ID].lock();
+		auto it = TextureMap.find(ID);
 
-		if (!asset) LOG("Texture is not in map or innaccessible");
-
-		if (asset.use_count() < 1) return std::make_shared<DXTexture>(asset);
+		if (it == TextureMap.end())
+		{
+			LOG("Texture Map does not contain " + ID);
+		}
+		else 
+			return TextureMap.at(ID);
 	}
 
-	std::shared_ptr<DXMesh> GetMesh(std::string ID)
+	DXMesh& GetMesh(std::string ID)
 	{
-		auto asset = MeshMap[ID].lock();
+		auto it = MeshMap.find(ID);
 
-		if (!asset) LOG("Texture is not in map or innaccessible");
-
-		if (asset.use_count() < 1) return std::make_shared<DXMesh>(asset);
+		if (it == MeshMap.end())
+		{
+			LOG("Mesh Map does not contain " + ID);
+		}
+		else
+			return MeshMap.at(ID);
 	}
 
 private:
 
 	DXRenderer& dxRend;
 
-	std::map<std::string, std::weak_ptr<DXTexture>> TextureMap;
-	std::map<std::string, std::weak_ptr<DXMesh>> MeshMap;
+	std::map<std::string, DXTexture> TextureMap;
+	std::map<std::string, DXMesh> MeshMap;
 
 	std::string obj = "obj", png = "png", jpg = "jpg", jpeg = "jpeg", bmp = "bmp";
 

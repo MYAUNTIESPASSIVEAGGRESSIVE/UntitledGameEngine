@@ -27,9 +27,9 @@ int WINAPI WinMain(
 
 	_AM.LoadAsset("Assets/cube.obj", "SampleMesh");
 	_AM.LoadAsset("Assets/SampleTexture.jpg", "SampleTexture");
-	DXMaterial material{ "Test",_dxRend,"src/Compiled Shaders/BaseVertexShader.cso","src/Compiled Shaders/BasePixelShader.cso", _AM.GetTexture("SampleTexture")};
+	DXMaterial material{ "Test",_dxRend,"src/Compiled Shaders/BaseVertexShader.cso","src/Compiled Shaders/BasePixelShader.cso", &_AM.GetTexture("SampleTexture")};
 
-	GameObject go_test { "GO" , _AM.GetMesh("SampleMesh"), &material};
+	GameObject go_test { "GO" , &_AM.GetMesh("SampleMesh"), &material};
 
 	_dxRend.testGO = &go_test;
 

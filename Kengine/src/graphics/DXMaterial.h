@@ -21,9 +21,10 @@ class DXMaterial
 public:
 	DXMaterial(std::string name, DXRenderer& renderer,
 		std::string vShaderFilename, std::string pShaderFilename,
-		 std::shared_ptr<DXTexture> texture);
+		 DXTexture* texture);
 
-	std::shared_ptr<DXTexture> GetTexture() { return texture; }
+	
+	DXTexture* GetTexture() { return texture; }
 
 	virtual void Bind(); // set rendering state + bind then draw material
 
@@ -48,7 +49,7 @@ protected:
 	ID3D11PixelShader* pShader = nullptr;
 	ID3D11InputLayout* vLayout = nullptr;
 
-	std::shared_ptr<DXTexture> texture = nullptr;
+	DXTexture* texture = nullptr;
 
 	ID3D11Buffer* cbuffer = nullptr;
 

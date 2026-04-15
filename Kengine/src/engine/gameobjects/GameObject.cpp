@@ -1,6 +1,6 @@
 #include "GameObject.h"
 
-GameObject::GameObject(std::string objName, std::shared_ptr<DXMesh> objMesh, DXMaterial* objMaterial)
+GameObject::GameObject(std::string objName, DXMesh* objMesh, DXMaterial* objMaterial)
 	:objectName(objName), ObjectMesh(objMesh), ObjectMaterial(objMaterial)
 {
 
