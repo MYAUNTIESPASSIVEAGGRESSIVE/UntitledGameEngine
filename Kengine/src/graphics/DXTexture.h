@@ -13,7 +13,14 @@ class DXTexture
 
 public:
 
-	DXTexture(DXRenderer& dxRend, std::string assetPath, bool transparent = false);
+	enum class TextureType
+	{
+		Texture2D,
+		Cubemap
+	};
+
+	DXTexture(DXRenderer& dxRend, std::string assetPath, std::string name, 
+		bool transparent = false, TextureType type = TextureType::Texture2D);
 
 	~DXTexture();
 
@@ -24,7 +31,10 @@ public:
 
 	bool isTransparent = false;
 
+
 private:
+
+	std::string texName;
 
 	ID3D11Device* dev;
 	ID3D11DeviceContext* devcon;

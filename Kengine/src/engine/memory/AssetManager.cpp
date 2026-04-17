@@ -27,7 +27,7 @@ void AssetManager::LoadAsset(std::string filePath, std::string ID,
 	{
 	case(AssetType::MESH):
 	{
-		MeshMap.emplace(ID, DXMesh(dxRend, filePath));
+		MeshMap.emplace(ID, DXMesh(dxRend, filePath, ID));
 		LOG("Mesh added to map");
 
 		aType = AssetType::UNKNOWN;
@@ -35,7 +35,7 @@ void AssetManager::LoadAsset(std::string filePath, std::string ID,
 	}
 	case(AssetType::MESH2SIDE):
 	{
-		MeshMap.emplace(ID, DXMesh(dxRend, filePath));
+		MeshMap.emplace(ID, DXMesh(dxRend, filePath, ID, true));
 		LOG("Mesh added to map");
 
 		aType = AssetType::UNKNOWN;
@@ -43,7 +43,7 @@ void AssetManager::LoadAsset(std::string filePath, std::string ID,
 	}
 	case(AssetType::TEXTURE):
 	{
-		TextureMap.emplace(ID, DXTexture(dxRend, filePath));
+		TextureMap.emplace(ID, DXTexture(dxRend, filePath, ID));
 		LOG("Texture added to map");
 
 		aType = AssetType::UNKNOWN;
@@ -51,7 +51,7 @@ void AssetManager::LoadAsset(std::string filePath, std::string ID,
 	}
 	case(AssetType::TEXTRANS):
 	{
-		TextureMap.emplace(ID, DXTexture(dxRend, filePath));
+		TextureMap.emplace(ID, DXTexture(dxRend, filePath, ID, true));
 		LOG("Texture added to map");
 
 		aType = AssetType::UNKNOWN;
@@ -65,10 +65,10 @@ AssetManager::AssetType AssetManager::CheckType(std::string type,
 	bool isTransparent, bool isDoubleSided)
 {
 	if (type == obj)
-		return isDoubleSided ? AssetType::MESH2SIDE : AssetType::MESH;
+		return aType = isDoubleSided ? AssetType::MESH2SIDE : AssetType::MESH;
 
 	if (type == png || type == jpg || type == jpeg || type == bmp)
-		return isTransparent ? AssetType::TEXTRANS : AssetType::TEXTURE;
+		return aType = isTransparent ? AssetType::TEXTRANS : AssetType::TEXTURE;
 
 	else return AssetType::NONE;
 }

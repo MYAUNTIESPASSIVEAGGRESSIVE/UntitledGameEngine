@@ -11,6 +11,8 @@ class DXMesh
 {
 private:
 
+	std::string meshName;
+
 	ID3D11Device* dev;
 	ID3D11DeviceContext* devcon;
 	ID3D11Buffer* vBuffer = NULL;
@@ -20,7 +22,7 @@ private:
 
 public:
 
-	DXMesh(DXRenderer& renderer, std::string objPath, bool doubleSided = false);
+	DXMesh(DXRenderer& renderer, std::string objPath, std::string name, bool doubleSided = false);
 	void Render();
 
 	bool isDoubleSided = false;

@@ -5,13 +5,24 @@
 #include "DXRenderer.h"
 #include "Debugger.h"
 
-DXTexture::DXTexture(DXRenderer& dxRend, std::string assetPath, bool transparent)
-	:dev(dxRend.GetDevice()), devcon(dxRend.GetDeviceContext()), isTransparent(transparent)
+DXTexture::DXTexture(DXRenderer& dxRend, std::string assetPath, std::string name, 
+	bool transparent, TextureType type)
+	:dev(dxRend.GetDevice()), devcon(dxRend.GetDeviceContext()), 
+	texName(name), isTransparent(transparent)
 {
 	std::wstring assetloc = std::wstring(assetPath.begin(), assetPath.end());
 
-	// create WICtexture
-	DirectX::CreateWICTextureFromFile(dev, devcon, assetloc.c_str(), NULL, &texture);
+	switch (type)
+	{
+	case DXTexture::TextureType::Texture2D:
+		DirectX::CreateWICTextureFromFile(dev, devcon, assetloc.c_str(), NULL, &texture);
+		break;
+	case DXTexture::TextureType::Cubemap:
+		DirectX::CreateDDSTextureFromFile(dev, devcon, assetloc.c_str(), NULL, &texture);
+		break;
+	default:
+		break;
+	}
 
 	// set filters
 	D3D11_SAMPLER_DESC sampDesc;

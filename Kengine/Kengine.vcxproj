@@ -129,7 +129,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\engine\gameobjects\LightObject.cpp" />
-    <ClCompile Include="src\engine\memory\ResourceManager.cpp" />
     <ClCompile Include="src\engine\InitGame.cpp" />
     <ClCompile Include="src\engine\physics\Collision.cpp" />
     <ClCompile Include="src\engine\physics\PhysicsManager.cpp" />
@@ -151,7 +150,6 @@
   <ItemGroup>
     <ClInclude Include="src\engine\gameobjects\LightObject.h" />
     <ClInclude Include="src\engine\MathHelper.h" />
-    <ClInclude Include="src\engine\memory\ResourceManager.h" />
     <ClInclude Include="src\engine\InitGame.h" />
     <ClInclude Include="src\engine\physics\Collision.h" />
     <ClInclude Include="src\engine\physics\PhysicsManager.h" />
@@ -189,7 +187,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="packages\packages.config" />
     <None Include="src\graphics\shaders\common.hlsli" />
     <None Include="src\graphics\shaders\Lighting.hlsli" />
   </ItemGroup>

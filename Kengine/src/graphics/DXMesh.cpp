@@ -5,8 +5,9 @@
 #include "ModelLoaders/OBJModelLoader.h"
 #include "Debugger.h"
 
-DXMesh::DXMesh(DXRenderer& renderer, std::string objPath, bool doubleSided)
-	: dev(renderer.GetDevice()), devcon(renderer.GetDeviceContext()), isDoubleSided(doubleSided)
+DXMesh::DXMesh(DXRenderer& renderer, std::string objPath, std::string name, bool doubleSided)
+	: dev(renderer.GetDevice()), devcon(renderer.GetDeviceContext()), 
+	meshName(name), isDoubleSided(doubleSided)
 {
 	OBJModelLoader ml{ objPath };
 

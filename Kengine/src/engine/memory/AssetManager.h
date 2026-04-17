@@ -2,8 +2,6 @@
 #include <string>
 #include <map>
 #include "graphics/Debugger.h"
-#include "graphics/DXMesh.h"
-#include "graphics/DXTexture.h"
 
 class DXRenderer;
 
@@ -21,7 +19,7 @@ public:
 	void LoadAsset(std::string filePath, std::string ID,
 		bool isTransparent = false, bool isDoubleSided = false);
 
-	// gets a texture
+	// gets reference texture
 	DXTexture& GetTexture(std::string ID)
 	{
 		auto it = TextureMap.find(ID);
@@ -29,11 +27,12 @@ public:
 		if (it == TextureMap.end())
 		{
 			LOG("Texture Map does not contain " + ID);
+			return;
 		}
-		else 
-			return TextureMap.at(ID);
+		else return TextureMap.at(ID);
 	}
 
+	// gets reference to mesh
 	DXMesh& GetMesh(std::string ID)
 	{
 		auto it = MeshMap.find(ID);
@@ -41,18 +40,20 @@ public:
 		if (it == MeshMap.end())
 		{
 			LOG("Mesh Map does not contain " + ID);
+			return;
 		}
-		else
-			return MeshMap.at(ID);
+		else return MeshMap.at(ID);
 	}
 
 private:
 
 	DXRenderer& dxRend;
 
+	// maps for assets
 	std::map<std::string, DXTexture> TextureMap;
 	std::map<std::string, DXMesh> MeshMap;
 
+	// string which defines the asset types you need
 	std::string obj = "obj", png = "png", jpg = "jpg", jpeg = "jpeg", bmp = "bmp";
 
 	enum class AssetType
@@ -64,9 +65,6 @@ private:
 
 	AssetType CheckType(std::string type,
 		bool isTransparent = false, bool isDoubleSided = false);
-
-	void DeleteTexture();
-	void DeleteMesh();
 
 };
 

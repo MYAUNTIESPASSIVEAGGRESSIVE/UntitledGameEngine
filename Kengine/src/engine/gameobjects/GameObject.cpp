@@ -13,5 +13,5 @@ void GameObject::SetParent(GameObject* parent)
 
 DXMesh* GameObject::SetObjectMesh(DXMesh* inMesh)
 {
-		return nullptr;
+	return nullptr;
 }
