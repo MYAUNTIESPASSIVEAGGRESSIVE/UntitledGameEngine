@@ -63,7 +63,7 @@
     <ClCompile Include="src\engine\Timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\gameobjects\LightObject.cpp">
+    <ClCompile Include="src\engine\gameobjects\PointLightObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\engine\gameobjects\Viewport.cpp">
@@ -125,7 +125,7 @@
     <ClInclude Include="src\graphics\Lighting.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\gameobjects\LightObject.h">
+    <ClInclude Include="src\engine\gameobjects\PointLightObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\engine\gameobjects\Viewport.h">
@@ -141,6 +141,8 @@
   <ItemGroup>
     <FxCompile Include="src\graphics\shaders\BasePixelShader.hlsl" />
     <FxCompile Include="src\graphics\shaders\BaseVertexShader.hlsl" />
+    <FxCompile Include="src\graphics\shaders\LightPixelShader.hlsl" />
+    <FxCompile Include="src\graphics\shaders\LightVertexShader.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\graphics\shaders\common.hlsli" />

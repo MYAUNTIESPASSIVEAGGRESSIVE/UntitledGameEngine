@@ -1,8 +1,6 @@
 #include "AssetManager.h"
 #include "graphics/Debugger.h"
 #include "graphics/DXRenderer.h"
-#include "graphics/DXMesh.h"
-#include "graphics/DXTexture.h"
 
 AssetManager::AssetManager(DXRenderer& inRend)
 	:dxRend(inRend)

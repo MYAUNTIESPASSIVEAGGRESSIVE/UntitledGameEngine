@@ -2,12 +2,10 @@
 #include <string>
 #include <map>
 #include "graphics/Debugger.h"
+#include "graphics/DXTexture.h"
+#include "graphics/DXMesh.h"
 
 class DXRenderer;
-
-class DXMesh;
-
-class DXTexture;
 
 class AssetManager
 {
@@ -26,8 +24,8 @@ public:
 
 		if (it == TextureMap.end())
 		{
-			LOG("Texture Map does not contain " + ID);
-			return;
+			LOG("Mesh Map does not contain " + ID);
+			return TextureMap.at(NULL);
 		}
 		else return TextureMap.at(ID);
 	}
@@ -40,7 +38,7 @@ public:
 		if (it == MeshMap.end())
 		{
 			LOG("Mesh Map does not contain " + ID);
-			return;
+			return MeshMap.at(NULL);
 		}
 		else return MeshMap.at(ID);
 	}

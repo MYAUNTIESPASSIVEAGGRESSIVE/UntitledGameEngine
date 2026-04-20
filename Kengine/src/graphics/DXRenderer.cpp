@@ -5,7 +5,7 @@
 #include "DirectXColors.h"
 #include "DirectXMath.h"
 #include "engine/gameobjects/GameObject.h"
-#include "DXMaterial.h"
+#include "materials/DXMaterial.h"
 #include "DXMesh.h"
 #include "DXTexture.h"
 using namespace DirectX;

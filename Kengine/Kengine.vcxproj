@@ -129,7 +129,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\engine\gameobjects\Object.cpp" />
-    <ClCompile Include="src\engine\gameobjects\LightObject.cpp" />
+    <ClCompile Include="src\engine\gameobjects\PointLightObject.cpp" />
     <ClCompile Include="src\engine\InitGame.cpp" />
     <ClCompile Include="src\engine\physics\Collision.cpp" />
     <ClCompile Include="src\engine\physics\PhysicsManager.cpp" />
@@ -150,7 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\gameobjects\Object.h" />
-    <ClInclude Include="src\engine\gameobjects\LightObject.h" />
+    <ClInclude Include="src\engine\gameobjects\PointLightObject.h" />
     <ClInclude Include="src\engine\MathHelper.h" />
     <ClInclude Include="src\engine\InitGame.h" />
     <ClInclude Include="src\engine\physics\Collision.h" />
@@ -180,6 +180,20 @@
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)src\Compiled Shaders\%(FileName).cso</ObjectFileOutput>
     </FxCompile>
     <FxCompile Include="src\graphics\shaders\BaseVertexShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)src\Compiled Shaders\%(FileName).cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="src\graphics\shaders\LightPixelShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)src\Compiled Shaders\%(FileName).cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="src\graphics\shaders\LightVertexShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>

@@ -1,17 +1,8 @@
 #include "GameObject.h"
 
-GameObject::GameObject(std::string objName, DXMesh* objMesh, DXMaterial* objMaterial)
-	:objectName(objName), ObjectMesh(objMesh), ObjectMaterial(objMaterial)
+GameObject::GameObject(std::string objName, DXMesh* objMesh, DXMaterial* objMaterial) 
+	: Object(objName)
 {
-
-}
-
-void GameObject::SetParent(GameObject* parent)
-{
-
-}
-
-DXMesh* GameObject::SetObjectMesh(DXMesh* inMesh)
-{
-	return nullptr;
+	ObjectMesh = objMesh;
+	ObjectMaterial = objMaterial;
 }
