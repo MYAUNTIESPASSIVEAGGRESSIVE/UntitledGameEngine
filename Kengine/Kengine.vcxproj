@@ -128,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\gameobjects\Object.cpp" />
     <ClCompile Include="src\engine\gameobjects\LightObject.cpp" />
     <ClCompile Include="src\engine\InitGame.cpp" />
     <ClCompile Include="src\engine\physics\Collision.cpp" />
@@ -140,7 +141,7 @@
     <ClCompile Include="src\graphics\ShaderLoader.cpp" />
     <ClCompile Include="src\graphics\Debugger.cpp" />
     <ClCompile Include="src\graphics\DXmain.cpp" />
-    <ClCompile Include="src\graphics\DXMaterial.cpp" />
+    <ClCompile Include="src\graphics\materials\DXMaterial.cpp" />
     <ClCompile Include="src\graphics\DXRenderer.cpp" />
     <ClCompile Include="src\graphics\DXWindow.cpp" />
     <ClCompile Include="src\engine\gameobjects\Transform.cpp" />
@@ -148,6 +149,7 @@
     <ClCompile Include="src\engine\gameobjects\Viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\gameobjects\Object.h" />
     <ClInclude Include="src\engine\gameobjects\LightObject.h" />
     <ClInclude Include="src\engine\MathHelper.h" />
     <ClInclude Include="src\engine\InitGame.h" />
@@ -162,7 +164,7 @@
     <ClInclude Include="src\graphics\ReadData.h" />
     <ClInclude Include="src\graphics\ShaderLoader.h" />
     <ClInclude Include="src\graphics\Debugger.h" />
-    <ClInclude Include="src\graphics\DXMaterial.h" />
+    <ClInclude Include="src\graphics\materials\DXMaterial.h" />
     <ClInclude Include="src\graphics\DXRenderer.h" />
     <ClInclude Include="src\graphics\DXWindow.h" />
     <ClInclude Include="src\engine\gameobjects\Transform.h" />

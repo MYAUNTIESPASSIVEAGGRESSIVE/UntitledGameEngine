@@ -27,7 +27,7 @@ public:
 	//DXMaterial* SetObjectMaterial()
 
 
-	private:
+private:
 
 	std::string objectName = "GameObject";
 

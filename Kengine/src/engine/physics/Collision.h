@@ -1,7 +1,7 @@
 #pragma once
 #include <DirectXMath.h>
 
-class Collision
+static class Collision
 {
 public:
 

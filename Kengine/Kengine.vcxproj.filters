@@ -27,7 +27,7 @@
     <ClCompile Include="src\graphics\DXmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\DXMaterial.cpp">
+    <ClCompile Include="src\graphics\materials\DXMaterial.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\graphics\ShaderLoader.cpp">
@@ -69,6 +69,9 @@
     <ClCompile Include="src\engine\gameobjects\Viewport.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\engine\gameobjects\Object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\graphics\DXRenderer.h">
@@ -80,7 +83,7 @@
     <ClInclude Include="src\graphics\Debugger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\graphics\DXMaterial.h">
+    <ClInclude Include="src\graphics\materials\DXMaterial.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\graphics\ShaderLoader.h">
@@ -129,6 +132,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\engine\MathHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\gameobjects\Object.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

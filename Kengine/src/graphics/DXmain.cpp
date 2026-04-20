@@ -2,7 +2,7 @@
 #include "DXRenderer.h"
 #include "DXWindow.h"
 #include "engine/gameobjects/GameObject.h"
-#include "DXMaterial.h"
+#include "materials/DXMaterial.h"
 #include "engine/memory/AssetManager.h"
 
 int WINAPI WinMain(
@@ -22,7 +22,7 @@ int WINAPI WinMain(
 	GameObject go_test { "GO" , &_AM.GetMesh("SampleMesh"), &material};
 
 	_dxRend.testGO = &go_test;
-
+	
 	_dxRend.camera.transform.position = DirectX::XMVectorSetZ(_dxRend.camera.transform.position, -10);
 
 	MSG msg;

@@ -1,8 +1,8 @@
 #include "DXMaterial.h"
-#include "Debugger.h"
-#include "DXTexture.h"
-#include "DXRenderer.h"
-#include "ShaderLoader.h"
+#include "graphics/Debugger.h"
+#include "graphics/DXTexture.h"
+#include "graphics/DXRenderer.h"
+#include "graphics/ShaderLoader.h"
 #include "d3d11.h"
 
 DXMaterial::DXMaterial(std::string name, DXRenderer& renderer,

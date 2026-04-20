@@ -3,20 +3,24 @@
 // circle vs circle collision check
 bool Collision::OnCircleCollide(DirectX::XMVECTOR c1, DirectX::XMVECTOR c2)
 {
-	//float distance = DirectX::XMVector3Length((DirectX::XMVectorSubtract(c2, c1));
+	//float dx = DirectX::XMVectorGetX(c2) - DirectX::XMVectorGetX(c1);
+	//float dy = DirectX::XMVectorGetY(c2) - DirectX::XMVectorGetY(c1);
 
-	//float c1r = c1.DirectX::Vector
-	//float c2r = c2.DirectX::;
+	//float distance = sqrt((dx * dx) + (dy * dy));
 
-	//return distance <= c1r + c2r ? true : false;
+	//float c1r = 
+	////float c2r = c2.DirectX::;
+
+	////return distance <= c1r + c2r ? true : false;
 	return false;
 }
 
 // AABB vs AABB collision check
 bool Collision::OnBoxCollide(DirectX::XMVECTOR v1, DirectX::XMVECTOR v2)
 {
+	//DirectX::XMVectorGetX(v1);
 
-
+	//DirectX::XMVectorMin
 
 	return false;
 }
