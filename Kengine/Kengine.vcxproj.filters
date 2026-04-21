@@ -57,9 +57,6 @@
     <ClCompile Include="src\engine\physics\Collision.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\InitGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\engine\Timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -70,6 +67,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\engine\gameobjects\Object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\gameobjects\DirectionalLightObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\RenderQueue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -116,9 +119,6 @@
     <ClInclude Include="src\engine\physics\Collision.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\InitGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\engine\Timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -135,6 +135,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\engine\gameobjects\Object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\gameobjects\DirectionalLightObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\RenderQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

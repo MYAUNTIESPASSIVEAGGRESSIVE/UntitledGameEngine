@@ -32,6 +32,9 @@ public:
 
 	~DXMaterial();
 
+	int GetRenderOrder() { return renderOrder; }
+	void SetRenderOrder(int order) { renderOrder = order; }
+
 protected:
 
 	struct CBufferBase // base mat type
@@ -55,6 +58,8 @@ protected:
 
 	void CreateCBuffer(unsigned int byteWidth, ID3D11Buffer*& targetBuffer);
 	void UpdateCBuffer(CBufferBase& cbData, ID3D11Buffer*& targetBuffer);
+
+	int renderOrder = 1000;
 
 };
 

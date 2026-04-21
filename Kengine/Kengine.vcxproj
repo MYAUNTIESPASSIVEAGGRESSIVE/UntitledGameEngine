@@ -111,6 +111,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>start robocopy $(ProjectDir)assets $(OutDir)assets /e /NFL /NDL /NJS /nc /ns /np</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -128,9 +131,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\RenderQueue.cpp" />
+    <ClCompile Include="src\engine\gameobjects\DirectionalLightObject.cpp" />
     <ClCompile Include="src\engine\gameobjects\Object.cpp" />
     <ClCompile Include="src\engine\gameobjects\PointLightObject.cpp" />
-    <ClCompile Include="src\engine\InitGame.cpp" />
     <ClCompile Include="src\engine\physics\Collision.cpp" />
     <ClCompile Include="src\engine\physics\PhysicsManager.cpp" />
     <ClCompile Include="src\engine\gameobjects\GameObject.cpp" />
@@ -149,10 +153,11 @@
     <ClCompile Include="src\engine\gameobjects\Viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\RenderQueue.h" />
+    <ClInclude Include="src\engine\gameobjects\DirectionalLightObject.h" />
     <ClInclude Include="src\engine\gameobjects\Object.h" />
     <ClInclude Include="src\engine\gameobjects\PointLightObject.h" />
     <ClInclude Include="src\engine\MathHelper.h" />
-    <ClInclude Include="src\engine\InitGame.h" />
     <ClInclude Include="src\engine\physics\Collision.h" />
     <ClInclude Include="src\engine\physics\PhysicsManager.h" />
     <ClInclude Include="src\engine\gameobjects\GameObject.h" />

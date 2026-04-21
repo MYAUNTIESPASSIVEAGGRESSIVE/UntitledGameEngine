@@ -25,7 +25,7 @@ public:
 		if (it == TextureMap.end())
 		{
 			LOG("Mesh Map does not contain " + ID);
-			return TextureMap.at(NULL);
+			return TextureMap.at(0);
 		}
 		else return TextureMap.at(ID);
 	}
@@ -38,7 +38,7 @@ public:
 		if (it == MeshMap.end())
 		{
 			LOG("Mesh Map does not contain " + ID);
-			return MeshMap.at(NULL);
+			return MeshMap.at(0);
 		}
 		else return MeshMap.at(ID);
 	}

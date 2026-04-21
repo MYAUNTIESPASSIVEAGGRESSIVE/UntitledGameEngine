@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 #include "Object.h"
 
 class DXMaterial;
@@ -16,6 +15,7 @@ public:
 	DXMesh* GetObjectMesh() { return ObjectMesh; }
 	DXMaterial* GetObjectMaterial() { return ObjectMaterial; }
 
+	void CompareMaterial();
 
 private:
 
