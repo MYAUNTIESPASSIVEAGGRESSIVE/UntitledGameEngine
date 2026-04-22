@@ -5,10 +5,17 @@ class GameObject;
 
 struct RenderQueue 
 {
-	std::set<GameObject> RenderableObjects;
+	bool ComapreMaterial(GameObject a, GameObject b);
 
-	void AddObject(GameObject GO);
+	std::set<GameObject, decltype(ComapreMaterial)*> RenderableObjects;
 
-	void RemoveObject(GameObject GO);
+
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="GO"></param>
+	void AddObject(GameObject& GO);
+
+	void RemoveObject(GameObject& GO);
 };
 

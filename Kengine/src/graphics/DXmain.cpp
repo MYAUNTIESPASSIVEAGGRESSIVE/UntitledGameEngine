@@ -21,7 +21,7 @@ int WINAPI WinMain(
 
 	GameObject go_test { "GO" , &_AM.GetMesh("SampleMesh"), &material};
 
-	_dxRend.testGO = &go_test;
+	_dxRend.renderQueue.AddObject(go_test);
 	
 	_dxRend.camera.transform.position = DirectX::XMVectorSetZ(_dxRend.camera.transform.position, -10);
 

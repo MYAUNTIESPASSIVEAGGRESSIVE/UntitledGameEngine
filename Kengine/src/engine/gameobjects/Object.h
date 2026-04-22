@@ -6,7 +6,7 @@ class Object
 {
 public:
 
-	Object(std::string name);
+	Object(std::string name = NULL);
 
 	std::string GetName() { return objectName; };
 

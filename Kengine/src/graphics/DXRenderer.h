@@ -1,5 +1,6 @@
 #pragma once
 #include "engine/gameobjects/Viewport.h"
+#include "engine/RenderQueue.h"
 
 #define MAX_POINT_LIGHTS 32
 
@@ -28,13 +29,13 @@ public:
 
 	Viewport camera;
 
-	GameObject* testGO;
-
 	DXRenderer(DXWindow& inWindow);
 	void Release();
 	void RenderFrame();
 	ID3D11Device* GetDevice() { return device; }
 	ID3D11DeviceContext* GetDeviceContext() { return devcon; }
+
+	RenderQueue renderQueue;
 
 private:
 

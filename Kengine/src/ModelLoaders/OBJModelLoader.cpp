@@ -172,6 +172,7 @@ void OBJModelLoader::LoadModelData(std::string path)
 			getline(ssLine, lineData);
 			XMFLOAT2 out = ParseFloat2(lineData);
 			out.y = -out.y;
+			out.x = -out.x;
 			read_uv.push_back(out);
 		}
 		else if (token == "vn")

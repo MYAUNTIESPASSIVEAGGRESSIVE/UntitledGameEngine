@@ -238,25 +238,29 @@ void DXRenderer::RenderFrame()
 	XMMATRIX view = camera.GetViewMatrix();
 	XMMATRIX projection = camera.GetProjectionMatrix(window.GetWidth(), window.GetHeight());
 
-	XMMATRIX world = testGO->transform.GetWorldMatrix();
-	cbufferData.World = world;
-	cbufferData.WVP = world * view * projection;
+	for (auto go : renderQueue.RenderableObjects)
+	{
+		XMMATRIX world = go.transform.GetWorldMatrix();
+		cbufferData.World = world;
+		cbufferData.WVP = world * view * projection;
 
-	devcon->UpdateSubresource(cBuffer_PerObject, NULL, NULL, &cbufferData, NULL, NULL);
-	devcon->VSSetConstantBuffers(12, 1, &cBuffer_PerObject);
+		devcon->UpdateSubresource(cBuffer_PerObject, NULL, NULL, &cbufferData, NULL, NULL);
+		devcon->VSSetConstantBuffers(12, 1, &cBuffer_PerObject);
 
-	devcon->RSSetState(testGO->GetObjectMesh()->isDoubleSided ?
-		rasterizerCullNone : rasterizerCullBack);
+		devcon->RSSetState(go.GetObjectMesh()->isDoubleSided ?
+			rasterizerCullNone : rasterizerCullBack);
 
-	devcon->OMSetBlendState(testGO->GetObjectMaterial()->GetTexture()->isTransparent ?
-		blendTransparent : blendOpaque, 0, 0xffffffff);
+		devcon->OMSetBlendState(go.GetObjectMaterial()->GetTexture()->isTransparent ?
+			blendTransparent : blendOpaque, 0, 0xffffffff);
 
-	devcon->OMSetDepthStencilState(testGO->GetObjectMaterial()->GetTexture()->isTransparent ?
-		depthWriteOff : nullptr, 1);
+		devcon->OMSetDepthStencilState(go.GetObjectMaterial()->GetTexture()->isTransparent ?
+			depthWriteOff : nullptr, 1);
 
-	testGO->GetObjectMaterial()->UpdateMaterial(testGO);
-	testGO->GetObjectMaterial()->Bind();
-	testGO->GetObjectMesh()->Render();
+
+		go.GetObjectMaterial()->UpdateMaterial(&go);
+		go.GetObjectMaterial()->Bind();
+		go.GetObjectMesh()->Render();
+	}
 
 	// flip the back and front buffers
 	swapchain->Present(0, 0);
