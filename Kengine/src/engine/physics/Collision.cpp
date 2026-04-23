@@ -12,12 +12,16 @@ bool Collision::OnCircleCollide(DirectX::XMVECTOR c1, DirectX::XMVECTOR c2, floa
 }
 
 // AABB vs AABB collision check
-bool Collision::OnBoxCollide(DirectX::XMVECTOR v1, DirectX::XMVECTOR v2)
+bool Collision::OnBoxCollide(DirectX::XMVECTOR amin, DirectX::XMVECTOR amax, DirectX::XMVECTOR bmin, DirectX::XMVECTOR bmax)
 {
+	BoxCollider box1{ amin, amax };
+	BoxCollider box2{ bmin, bmax };
 
-
-
-
-	return false;
+	return (box1.minX <= box2.maxX &&
+		box1.maxX >= box2.minX &&
+		box1.minY <= box2.maxY &&
+		box1.maxY >= box2.minY &&
+		box1.minZ <= box2.maxZ &&
+		box1.maxZ >= box2.minZ);
 }
 
