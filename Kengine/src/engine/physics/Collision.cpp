@@ -1,27 +1,41 @@
 #include "Collision.h"
 
 // circle vs circle collision check
-bool Collision::OnCircleCollide(DirectX::XMVECTOR c1, DirectX::XMVECTOR c2, float c1r, float c2r)
+bool Collision::OnSphereCollide(SphereCollider c1, SphereCollider c2)
 {
-	float dx = DirectX::XMVectorGetX(c2) - DirectX::XMVectorGetX(c1);
-	float dy = DirectX::XMVectorGetY(c2) - DirectX::XMVectorGetY(c1);
+	float dx = XMVectorGetX(c2.circleVector) - XMVectorGetX(c1.circleVector);
+	float dy = XMVectorGetY(c2.circleVector) - XMVectorGetY(c1.circleVector);
+	float dz = XMVectorGetZ(c2.circleVector) - XMVectorGetZ(c1.circleVector);
 
-	float distance = sqrt((dx * dx) + (dy * dy));
+	float distance = sqrt((dx * dx) + (dy * dy) + (dz * dz));
 
-	return distance <= c1r + c2r ? true : false;
+	return distance <= c1.radius + c2.radius ? true : false;
 }
 
 // AABB vs AABB collision check
-bool Collision::OnBoxCollide(DirectX::XMVECTOR amin, DirectX::XMVECTOR amax, DirectX::XMVECTOR bmin, DirectX::XMVECTOR bmax)
+bool Collision::OnBoxCollide(BoxCollider box1, BoxCollider box2)
 {
-	BoxCollider box1{ amin, amax };
-	BoxCollider box2{ bmin, bmax };
-
 	return (box1.minX <= box2.maxX &&
 		box1.maxX >= box2.minX &&
 		box1.minY <= box2.maxY &&
 		box1.maxY >= box2.minY &&
 		box1.minZ <= box2.maxZ &&
 		box1.maxZ >= box2.minZ);
+}
+
+// Box vs Cricle Collision
+bool Collision::OnBoxVCircleColldier(BoxCollider box, SphereCollider circle)
+{
+	float x = fmax(box.minX, fmin(XMVectorGetX(circle.circleVector), box.maxX));
+	float y = fmax(box.minY, fmin(XMVectorGetY(circle.circleVector), box.maxX));
+	float z = fmax(box.minZ, fmin(XMVectorGetZ(circle.circleVector), box.maxX));
+
+	float distance = sqrt(
+		(x - XMVectorGetX(circle.circleVector) * x - XMVectorGetX(circle.circleVector)) +
+		(y - XMVectorGetY(circle.circleVector) * y - XMVectorGetY(circle.circleVector)) +
+		(z - XMVectorGetZ(circle.circleVector) * z - XMVectorGetZ(circle.circleVector))
+	);
+
+	return distance < circle.radius ? true : false;
 }
 

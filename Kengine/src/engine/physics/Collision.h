@@ -1,10 +1,33 @@
 #pragma once
 #include <DirectXMath.h>
+using namespace DirectX;
 
-struct BoxCollider
+enum ColliderType
 {
-	DirectX::XMVECTOR min;
-	DirectX::XMVECTOR max;
+	SPHERE,
+	BOX
+};
+
+struct Collider
+{
+	ColliderType Type;
+};
+
+struct SphereCollider : Collider
+{
+	XMVECTOR circleVector;
+
+	float radius;
+
+	SphereCollider(XMVECTOR circle, float rad)
+		: circleVector(circle), radius(rad) { }
+};
+
+
+struct BoxCollider : Collider
+{
+	XMVECTOR min;
+	XMVECTOR max;
 
 	float minX;
 	float maxX;
@@ -13,17 +36,17 @@ struct BoxCollider
 	float minZ;
 	float maxZ;
 
-	BoxCollider(DirectX::XMVECTOR amin, DirectX::XMVECTOR amax)
+	BoxCollider(XMVECTOR amin, XMVECTOR amax)
 		:min(amin), max(amax)
 	{
-		minX = DirectX::XMVectorGetX(min);
-		maxX = DirectX::XMVectorGetX(max);
+		minX = XMVectorGetX(min);
+		maxX = XMVectorGetX(max);
 
-		minY = DirectX::XMVectorGetY(min);
-		maxY = DirectX::XMVectorGetY(max);
+		minY = XMVectorGetY(min);
+		maxY = XMVectorGetY(max);
 
-		minZ = DirectX::XMVectorGetZ(min);
-		maxZ = DirectX::XMVectorGetZ(max);
+		minZ = XMVectorGetZ(min);
+		maxZ = XMVectorGetZ(max);
 	};
 };
 
@@ -32,9 +55,13 @@ static class Collision
 {
 public:
 
-	static bool OnCircleCollide(DirectX::XMVECTOR c1, DirectX::XMVECTOR c2, float c1r, float c2r);
+	static bool OnSphereCollide(SphereCollider c1, SphereCollider c2);
 
-	static bool OnBoxCollide(DirectX::XMVECTOR amin, DirectX::XMVECTOR amax, DirectX::XMVECTOR bmin, DirectX::XMVECTOR bmax);
+	static bool OnBoxCollide(BoxCollider box1, BoxCollider box2);
+
+	static bool OnBoxVCircleColldier(BoxCollider box, SphereCollider circle);
+
+	//static bool RayCast(XMVECTOR point, Collider collider);
 };
 
 

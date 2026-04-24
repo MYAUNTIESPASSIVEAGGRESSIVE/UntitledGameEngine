@@ -15,8 +15,6 @@ public:
 	DXMesh* GetObjectMesh() { return ObjectMesh; }
 	DXMaterial* GetObjectMaterial() { return ObjectMaterial; }
 
-	void CompareMaterial();
-
 private:
 
 	DXMesh* ObjectMesh;
