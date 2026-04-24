@@ -4,6 +4,8 @@
 #include "engine/gameobjects/GameObject.h"
 #include "materials/DXMaterial.h"
 #include "engine/memory/AssetManager.h"
+#include "engine/Timer.h"
+#include "engine/physics/PhysicsManager.h"
 
 int WINAPI WinMain(
 	_In_ HINSTANCE hInstance,
@@ -19,7 +21,7 @@ int WINAPI WinMain(
 	_AM.LoadAsset("Assets/SampleTexture.jpg", "SampleTexture");
 	DXMaterial material{ "Test",_dxRend,"src/Compiled Shaders/BaseVertexShader.cso","src/Compiled Shaders/BasePixelShader.cso", &_AM.GetTexture("SampleTexture")};
 
-	GameObject go_test { "GO" , &_AM.GetMesh("SampleMesh"), &material};
+	GameObject go_test { "GO" , &_AM.GetMesh("SampleMesh"), &material, ColliderType::BOX, true};
 
 	_dxRend.renderQueue.AddObject(go_test);
 	
@@ -42,19 +44,21 @@ int WINAPI WinMain(
 		}
 		else 
 		{
+			Timer::Update();
+
 			auto kbState = DirectX::Keyboard::Get().GetState();
 
 			auto msState = DirectX::Mouse::Get().GetState();
 			_dxRend.camera.transform.Rotate({ -(float)msState.y * 0.001f, (float)msState.x * 0.001f, 0 });
 
 			if (kbState.W)
-				_dxRend.camera.transform.Translate(DirectX::XMVectorScale(_dxRend.camera.transform.GetForward(), 0.01f));
+				_dxRend.camera.transform.Translate(_dxRend.camera.transform.GetForward() * 5 * Timer::GetDeltaTime());
 			if (kbState.A)
-				_dxRend.camera.transform.Translate(DirectX::XMVectorScale(_dxRend.camera.transform.GetRight(), -0.01f));
+				_dxRend.camera.transform.Translate(-_dxRend.camera.transform.GetRight() * 5 * Timer::GetDeltaTime());
 			if (kbState.S)
-				_dxRend.camera.transform.Translate(DirectX::XMVectorScale(_dxRend.camera.transform.GetForward(), -0.01f));
+				_dxRend.camera.transform.Translate(-_dxRend.camera.transform.GetForward() * 5 * Timer::GetDeltaTime());
 			if (kbState.D)
-				_dxRend.camera.transform.Translate(DirectX::XMVectorScale(_dxRend.camera.transform.GetRight(), 0.01f));
+				_dxRend.camera.transform.Translate(_dxRend.camera.transform.GetRight() * 5 * Timer::GetDeltaTime());
 			if (kbState.Q)
 				_dxRend.camera.transform.Translate({ 0, 0.01f, 0 });
 			if (kbState.E)
@@ -68,6 +72,7 @@ int WINAPI WinMain(
 			if (msState.leftButton) _dxRend.camera.transform.position = { 0, 0, -5 };
 			if (msState.rightButton) _dxRend.camera.transform.position = { 0, 0, 5 };
 
+			PhysicsManager::Instance()->UpdatePhysics(Timer::GetDeltaTime());
 
 			_dxRend.RenderFrame();
 

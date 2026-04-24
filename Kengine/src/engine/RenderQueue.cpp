@@ -1,6 +1,7 @@
 #include "RenderQueue.h"
 #include "gameobjects/GameObject.h"
 #include "graphics/materials/DXMaterial.h"
+#include "physics/PhysicsManager.h"
 
 bool RenderQueue::ComapreMaterial(GameObject a, GameObject b)
 {
@@ -10,16 +11,12 @@ bool RenderQueue::ComapreMaterial(GameObject a, GameObject b)
 void RenderQueue::AddObject(GameObject& GO)
 {
 	RenderableObjects.insert(GO);
+
+	if(GO.SimulatePhysics) PhysicsManager::Instance()->AddGameObject(GO);
 }
 
 void RenderQueue::RemoveObject(GameObject& GO)
 {
-	//auto it = RenderableObjects.find(GO);
-
-	//if (it != RenderableObjects.end())
-	//{
-	//	RenderableObjects.erase(GO);
-	//}
 
 	RenderableObjects.erase(GO);
 }

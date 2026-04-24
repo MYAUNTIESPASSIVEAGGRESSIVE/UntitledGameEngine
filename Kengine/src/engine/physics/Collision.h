@@ -26,8 +26,8 @@ struct SphereCollider : Collider
 
 struct BoxCollider : Collider
 {
-	XMVECTOR min;
-	XMVECTOR max;
+	XMVECTOR minvec;
+	XMVECTOR maxvec;
 
 	float minX;
 	float maxX;
@@ -37,21 +37,21 @@ struct BoxCollider : Collider
 	float maxZ;
 
 	BoxCollider(XMVECTOR amin, XMVECTOR amax)
-		:min(amin), max(amax)
+		:minvec(amin), maxvec(amax)
 	{
-		minX = XMVectorGetX(min);
-		maxX = XMVectorGetX(max);
+		minX = XMVectorGetX(minvec);
+		maxX = XMVectorGetX(maxvec);
 
-		minY = XMVectorGetY(min);
-		maxY = XMVectorGetY(max);
+		minY = XMVectorGetY(minvec);
+		maxY = XMVectorGetY(maxvec);
 
-		minZ = XMVectorGetZ(min);
-		maxZ = XMVectorGetZ(max);
+		minZ = XMVectorGetZ(minvec);
+		maxZ = XMVectorGetZ(maxvec);
 	};
 };
 
 
-static class Collision
+class Collision
 {
 public:
 
