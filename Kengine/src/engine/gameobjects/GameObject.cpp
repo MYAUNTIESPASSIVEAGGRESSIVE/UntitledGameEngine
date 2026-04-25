@@ -8,6 +8,16 @@ GameObject::GameObject(std::string objName, DXMesh* objMesh, DXMaterial* objMate
 	SimulatePhysics = simulatePhysics;
 	ObjectMesh = objMesh;
 	ObjectMaterial = objMaterial;
+}
 
-	rigidBody = { transform.position, XMVECTOR{ 0.0f, 0.0f, 0.0f}, 10.0f };
+void GameObject::ApplyForce(XMVECTOR force, float deltaTime)
+{
+	XMVECTOR acceleration = force * (1.0f / Mass);
+
+	velocity = XMVectorAdd(velocity, acceleration * deltaTime);
+}
+
+void GameObject::UpdateBody(float deltaTime)
+{
+	transform.Translate(velocity * deltaTime);
 }

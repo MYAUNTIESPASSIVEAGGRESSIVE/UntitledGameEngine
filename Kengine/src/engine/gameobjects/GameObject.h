@@ -6,28 +6,6 @@ class DXMaterial;
 
 class DXMesh;
 
-struct RigidBody
-{
-	XMVECTOR position;
-	XMVECTOR velocity;
-	float Mass;
-
-	RigidBody(XMVECTOR pos = {0.0f,0.0f,0.0f}, XMVECTOR vel = {0.0f, 0.0f, 0.0f}, float m = 0.0f)
-		:position(pos), velocity(vel), Mass(m) { }
-	
-	void ApplyForce(XMVECTOR force, float deltaTime)
-	{
-		XMVECTOR acceleration = force * (1.0f / Mass);
-
-		velocity += acceleration * deltaTime;
-	}
-
-	void UpdateBody(float deltaTime)
-	{
-		position += velocity * deltaTime;
-	}
-};
-
 class GameObject :
 	public Object
 {
@@ -43,7 +21,17 @@ public:
 
 	Collider Collider;
 
-	RigidBody rigidBody;
+	XMVECTOR velocity;
+
+	float Mass = 10;
+
+	void ApplyForce(XMVECTOR force, float deltaTime);
+
+	void UpdateBody(float deltaTime);
+
+protected:
+
+	void Update() {};
 
 private:
 

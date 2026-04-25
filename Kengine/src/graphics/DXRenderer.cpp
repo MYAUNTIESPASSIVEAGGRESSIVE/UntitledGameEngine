@@ -240,26 +240,26 @@ void DXRenderer::RenderFrame()
 
 	for (auto go : renderQueue.RenderableObjects)
 	{
-		XMMATRIX world = go.transform.GetWorldMatrix();
+		XMMATRIX world = go->transform.GetWorldMatrix();
 		cbufferData.World = world;
 		cbufferData.WVP = world * view * projection;
 
 		devcon->UpdateSubresource(cBuffer_PerObject, NULL, NULL, &cbufferData, NULL, NULL);
 		devcon->VSSetConstantBuffers(12, 1, &cBuffer_PerObject);
 
-		devcon->RSSetState(go.GetObjectMesh()->isDoubleSided ?
+		devcon->RSSetState(go->GetObjectMesh()->isDoubleSided ?
 			rasterizerCullNone : rasterizerCullBack);
 
-		devcon->OMSetBlendState(go.GetObjectMaterial()->GetTexture()->isTransparent ?
+		devcon->OMSetBlendState(go->GetObjectMaterial()->GetTexture()->isTransparent ?
 			blendTransparent : blendOpaque, 0, 0xffffffff);
 
-		devcon->OMSetDepthStencilState(go.GetObjectMaterial()->GetTexture()->isTransparent ?
+		devcon->OMSetDepthStencilState(go->GetObjectMaterial()->GetTexture()->isTransparent ?
 			depthWriteOff : nullptr, 1);
 
 
-		go.GetObjectMaterial()->UpdateMaterial(&go);
-		go.GetObjectMaterial()->Bind();
-		go.GetObjectMesh()->Render();
+		go->GetObjectMaterial()->UpdateMaterial(go);
+		go->GetObjectMaterial()->Bind();
+		go->GetObjectMesh()->Render();
 	}
 
 	// flip the back and front buffers

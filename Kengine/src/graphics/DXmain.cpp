@@ -23,7 +23,7 @@ int WINAPI WinMain(
 
 	GameObject go_test { "GO" , &_AM.GetMesh("SampleMesh"), &material, ColliderType::BOX, true};
 
-	_dxRend.renderQueue.AddObject(go_test);
+	_dxRend.renderQueue.AddObject(&go_test);
 	
 	_dxRend.camera.transform.position = DirectX::XMVectorSetZ(_dxRend.camera.transform.position, -10);
 
@@ -69,8 +69,7 @@ int WINAPI WinMain(
 				PostQuitMessage(0);
 			}
 
-			if (msState.leftButton) _dxRend.camera.transform.position = { 0, 0, -5 };
-			if (msState.rightButton) _dxRend.camera.transform.position = { 0, 0, 5 };
+			go_test.ApplyForce({5,0,0}, Timer::GetDeltaTime());
 
 			PhysicsManager::Instance()->UpdatePhysics(Timer::GetDeltaTime());
 

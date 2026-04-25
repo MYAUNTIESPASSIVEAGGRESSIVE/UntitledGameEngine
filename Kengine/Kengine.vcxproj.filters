@@ -75,6 +75,9 @@
     <ClCompile Include="src\engine\RenderQueue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\graphics\materials\DXMaterial_Lit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\graphics\DXRenderer.h">
@@ -141,6 +144,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\engine\RenderQueue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\materials\DXMaterial_Lit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

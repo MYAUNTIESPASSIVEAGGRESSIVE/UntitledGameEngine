@@ -3,19 +3,19 @@
 #include "graphics/materials/DXMaterial.h"
 #include "physics/PhysicsManager.h"
 
-bool RenderQueue::ComapreMaterial(GameObject a, GameObject b)
+bool RenderQueue::ComapreMaterial(GameObject* a, GameObject* b)
 {
-	return (a.GetObjectMaterial()->GetRenderOrder() > b.GetObjectMaterial()->GetRenderOrder()) ? true : false;
+	return (a->GetObjectMaterial()->GetRenderOrder() > b->GetObjectMaterial()->GetRenderOrder()) ? true : false;
 }
 
-void RenderQueue::AddObject(GameObject& GO)
+void RenderQueue::AddObject(GameObject* GO)
 {
 	RenderableObjects.insert(GO);
 
-	if(GO.SimulatePhysics) PhysicsManager::Instance()->AddGameObject(GO);
+	if(GO->SimulatePhysics) PhysicsManager::Instance()->AddGameObject(GO);
 }
 
-void RenderQueue::RemoveObject(GameObject& GO)
+void RenderQueue::RemoveObject(GameObject* GO)
 {
 
 	RenderableObjects.erase(GO);

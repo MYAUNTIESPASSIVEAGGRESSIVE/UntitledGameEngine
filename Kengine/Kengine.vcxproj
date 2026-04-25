@@ -131,6 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\graphics\materials\DXMaterial_Lit.cpp" />
     <ClCompile Include="src\engine\RenderQueue.cpp" />
     <ClCompile Include="src\engine\gameobjects\DirectionalLightObject.cpp" />
     <ClCompile Include="src\engine\gameobjects\Object.cpp" />
@@ -153,6 +154,7 @@
     <ClCompile Include="src\engine\gameobjects\Viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\graphics\materials\DXMaterial_Lit.h" />
     <ClInclude Include="src\engine\RenderQueue.h" />
     <ClInclude Include="src\engine\gameobjects\DirectionalLightObject.h" />
     <ClInclude Include="src\engine\gameobjects\Object.h" />
