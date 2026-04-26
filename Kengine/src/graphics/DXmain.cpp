@@ -69,8 +69,6 @@ int WINAPI WinMain(
 				PostQuitMessage(0);
 			}
 
-			go_test.ApplyForce({5,0,0}, Timer::GetDeltaTime());
-
 			PhysicsManager::Instance()->UpdatePhysics(Timer::GetDeltaTime());
 
 			_dxRend.RenderFrame();

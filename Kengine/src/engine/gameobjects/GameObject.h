@@ -19,8 +19,6 @@ public:
 
 	bool SimulatePhysics;
 
-	Collider Collider;
-
 	XMVECTOR velocity;
 
 	float Mass = 10;
@@ -29,11 +27,15 @@ public:
 
 	void UpdateBody(float deltaTime);
 
+	//Collider GetCollider() const { return collider; }
+
 protected:
 
 	void Update() {};
 
 private:
+
+	//Collider collider;
 
 	DXMesh* ObjectMesh;
 

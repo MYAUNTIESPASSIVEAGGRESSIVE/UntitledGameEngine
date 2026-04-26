@@ -4,7 +4,7 @@ GameObject::GameObject(std::string objName, DXMesh* objMesh, DXMaterial* objMate
 	ColliderType type, bool simulatePhysics) 
 	: Object(objName)
 {
-	Collider.Type = type;
+	//collider = { type };
 	SimulatePhysics = simulatePhysics;
 	ObjectMesh = objMesh;
 	ObjectMaterial = objMaterial;

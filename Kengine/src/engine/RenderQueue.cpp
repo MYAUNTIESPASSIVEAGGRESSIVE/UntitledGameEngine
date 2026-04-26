@@ -17,6 +17,5 @@ void RenderQueue::AddObject(GameObject* GO)
 
 void RenderQueue::RemoveObject(GameObject* GO)
 {
-
 	RenderableObjects.erase(GO);
 }

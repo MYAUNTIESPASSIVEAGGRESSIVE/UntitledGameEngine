@@ -8,23 +8,19 @@ enum ColliderType
 	BOX
 };
 
-struct Collider
-{
-	ColliderType Type;
-};
-
-struct SphereCollider : Collider
+struct SphereCollider
 {
 	XMVECTOR circleVector;
 
 	float radius;
 
 	SphereCollider(XMVECTOR circle, float rad)
-		: circleVector(circle), radius(rad) { }
+		: circleVector(circle), radius(rad)
+	{ }
 };
 
 
-struct BoxCollider : Collider
+struct BoxCollider
 {
 	XMVECTOR minvec;
 	XMVECTOR maxvec;
@@ -50,6 +46,30 @@ struct BoxCollider : Collider
 	};
 };
 
+struct Collider
+{
+	//XMVECTOR ColliderHeight;
+	//XMVECTOR ColliderWidth;
+
+	ColliderType Type;
+
+	//SphereCollider sphereCollider;
+
+	//BoxCollider boxCollider;
+
+	Collider(ColliderType type)
+		:Type(type)
+	{
+		//if (Type == ColliderType::BOX)
+		//{
+		//	boxCollider = {};
+		//}
+		//else if (Type == ColliderType::SPHERE)
+		//{
+		//	sphereCollider = {};
+		//}
+	}
+};
 
 class Collision
 {
@@ -59,7 +79,7 @@ public:
 
 	static bool OnBoxCollide(BoxCollider box1, BoxCollider box2);
 
-	static bool OnBoxVCircleColldier(BoxCollider box, SphereCollider circle);
+	static bool OnBoxVCircleCollide(BoxCollider box, SphereCollider circle);
 
 	//static bool RayCast(XMVECTOR point, Collider collider);
 };

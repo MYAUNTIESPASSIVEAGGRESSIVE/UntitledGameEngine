@@ -1,4 +1,5 @@
 #include "Collision.h"
+#include "engine/gameobjects/GameObject.h"
 
 // circle vs circle collision check
 bool Collision::OnSphereCollide(SphereCollider c1, SphereCollider c2)
@@ -24,7 +25,7 @@ bool Collision::OnBoxCollide(BoxCollider box1, BoxCollider box2)
 }
 
 // Box vs Cricle Collision
-bool Collision::OnBoxVCircleColldier(BoxCollider box, SphereCollider circle)
+bool Collision::OnBoxVCircleCollide(BoxCollider box, SphereCollider circle)
 {
 	float x = fmax(box.minX, fmin(XMVectorGetX(circle.circleVector), box.maxX));
 	float y = fmax(box.minY, fmin(XMVectorGetY(circle.circleVector), box.maxX));
