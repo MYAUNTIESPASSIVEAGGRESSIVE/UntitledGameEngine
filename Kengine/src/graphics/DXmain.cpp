@@ -18,8 +18,8 @@ int WINAPI WinMain(
 	AssetManager _AM{ _dxRend };
 	Level _level { _dxRend, _AM };
 	
-	_AM.LoadAsset("Assets/cube.obj", "SampleMesh");
-	_AM.LoadAsset("Assets/SampleTexture.jpg", "SampleTexture");
+	//_AM.LoadAsset("Assets/cube.obj", "SampleMesh");
+	//_AM.LoadAsset("Assets/SampleTexture.jpg", "SampleTexture");
 
 	//DXMaterial material{ "Test", _dxRend, "src/Compiled Shaders/BaseVertexShader.cso","src/Compiled Shaders/BasePixelShader.cso", &_AM.GetTexture("SampleTexture") };
 
@@ -30,6 +30,7 @@ int WINAPI WinMain(
 	_dxRend.camera.transform.position = DirectX::XMVectorSetZ(_dxRend.camera.transform.position, -10);
 
 	_level.InitLevel();
+	LOG("initialised Level");
 
 	MSG msg;
 

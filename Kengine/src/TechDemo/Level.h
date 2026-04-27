@@ -3,6 +3,9 @@
 class AssetManager;
 class DXRenderer;
 
+class DXMesh;
+class DXTexture;
+
 class Level
 {
 public:
