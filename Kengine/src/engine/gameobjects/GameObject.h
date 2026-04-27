@@ -32,7 +32,7 @@ public:
 
 protected:
 
-	void Update() {};
+	virtual void Update() {};
 
 private:
 

@@ -4,6 +4,9 @@
 class Player :
     public GameObject
 {
+public:
+    float moveSpeed;
 
+    virtual void Update() override;
 };
 

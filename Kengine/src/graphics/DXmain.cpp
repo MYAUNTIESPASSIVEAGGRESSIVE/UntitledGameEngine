@@ -16,18 +16,20 @@ int WINAPI WinMain(
 	DXWindow _dxWind{ 800, 600, hInstance, nCmdShow };
 	DXRenderer _dxRend { _dxWind };
 	AssetManager _AM{ _dxRend };
-	//Level _level { _dxRend, _AM };
+	Level _level { _dxRend, _AM };
 	
 	_AM.LoadAsset("Assets/cube.obj", "SampleMesh");
 	_AM.LoadAsset("Assets/SampleTexture.jpg", "SampleTexture");
 
-	DXMaterial material{ "Test", _dxRend, "src/Compiled Shaders/BaseVertexShader.cso","src/Compiled Shaders/BasePixelShader.cso", &_AM.GetTexture("SampleTexture") };
+	//DXMaterial material{ "Test", _dxRend, "src/Compiled Shaders/BaseVertexShader.cso","src/Compiled Shaders/BasePixelShader.cso", &_AM.GetTexture("SampleTexture") };
 
-	GameObject go_test{ "GO" , &_AM.GetMesh("SampleMesh"), &material, ColliderType::BOX, true };
+	//GameObject go_test{ "GO" , &_AM.GetMesh("SampleMesh"), &material, ColliderType::BOX, true };
 
-	_dxRend.renderQueue.AddObject(&go_test);
+	//_dxRend.renderQueue.AddObject(&go_test);
 
 	_dxRend.camera.transform.position = DirectX::XMVectorSetZ(_dxRend.camera.transform.position, -10);
+
+	_level.InitLevel();
 
 	MSG msg;
 
