@@ -59,18 +59,6 @@ void AssetManager::LoadAsset(std::string filePath, std::string ID,
 	}
 }
 
-void AssetManager::CreateMaterial(std::string name, DXTexture* texture, bool litmaterial)
-{
-	if (litmaterial)
-	{
-		Materials.emplace(name, DXMaterial(name, dxRend, "src/Compiled Shaders/BaseVertexShader.cso", "src/Compiled Shaders/BasePixelShader.cso", texture));
-	}
-	else
-	{
-		LitMaterials.emplace(name, DXMaterial_Lit(name, dxRend, "src/Compiled Shaders/BaseVertexShader.cso", "src/Compiled Shaders/BasePixelShader.cso", texture));
-	}
-}
-
 AssetManager::AssetType AssetManager::CheckType(std::string type,
 	bool isTransparent, bool isDoubleSided)
 {

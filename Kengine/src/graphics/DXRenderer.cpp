@@ -22,7 +22,6 @@ struct CBuffer_PerFrame
 	float padding;
 };
 
-
 DXRenderer::DXRenderer(DXWindow& inWindow)
 	: window(inWindow)
 {

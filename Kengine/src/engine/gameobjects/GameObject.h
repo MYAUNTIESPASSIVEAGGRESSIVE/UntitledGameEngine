@@ -1,6 +1,7 @@
 #pragma once
 #include "Object.h"
 #include "engine/physics/Collision.h"
+#include <memory>
 
 class DXMaterial;
 

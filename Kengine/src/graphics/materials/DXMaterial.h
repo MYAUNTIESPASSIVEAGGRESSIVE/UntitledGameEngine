@@ -26,6 +26,8 @@ public:
 	
 	DXTexture* GetTexture() { return texture; }
 
+	std::string GetName() { return name; }
+
 	virtual void Bind(); // set rendering state + bind then draw material
 
 	virtual void UpdateMaterial(GameObject* entiry) {}

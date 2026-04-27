@@ -5,7 +5,6 @@
 #include "graphics/Debugger.h"
 #include "graphics/DXTexture.h"
 #include "graphics/DXMesh.h"
-#include "graphics/materials/DXMaterial_Lit.h"
 
 class DXRenderer;
 
@@ -18,8 +17,6 @@ public:
 
 	void LoadAsset(std::string filePath, std::string ID,
 		bool isTransparent = false, bool isDoubleSided = false);
-
-	void CreateMaterial(std::string name, DXTexture* texture, bool litmaterial = false);
 
 	// gets reference texture
 	DXTexture& GetTexture(std::string ID)
@@ -55,15 +52,12 @@ private:
 	std::map<std::string, DXTexture> TextureMap;
 	std::map<std::string, DXMesh> MeshMap;
 
-	std::map<std::string, std::unique_ptr<DXMaterial>> Materials;
-	std::map<std::string, std::unique_ptr<DXMaterial_Lit>> LitMaterials;
-
 	enum class AssetType
 	{
 		UNKNOWN, TEXTURE, TEXTRANS, MESH, MESH2SIDE, NONE
 	};
 
-	AssetType aType;
+	AssetType aType = AssetType::UNKNOWN;
 
 	AssetType CheckType(std::string type,
 		bool isTransparent = false, bool isDoubleSided = false);

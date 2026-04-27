@@ -131,6 +131,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\TechDemo\scripts\Player.cpp" />
+    <ClCompile Include="src\TechDemo\Level.cpp" />
     <ClCompile Include="src\graphics\materials\DXMaterial_Lit.cpp" />
     <ClCompile Include="src\engine\RenderQueue.cpp" />
     <ClCompile Include="src\engine\gameobjects\DirectionalLightObject.cpp" />
@@ -154,6 +156,8 @@
     <ClCompile Include="src\engine\gameobjects\Viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\TechDemo\scripts\Player.h" />
+    <ClInclude Include="src\TechDemo\Level.h" />
     <ClInclude Include="src\graphics\materials\DXMaterial_Lit.h" />
     <ClInclude Include="src\engine\RenderQueue.h" />
     <ClInclude Include="src\engine\gameobjects\DirectionalLightObject.h" />
