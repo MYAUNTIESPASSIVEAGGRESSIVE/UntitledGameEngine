@@ -1,14 +1,11 @@
 #include "Debugger.h"
 #include "DXRenderer.h"
 #include "DXWindow.h"
-#include "engine/gameobjects/GameObject.h"
-#include "materials/DXMaterial_Lit.h"
 #include "engine/memory/AssetManager.h"
 #include "engine/Timer.h"
 #include "engine/physics/PhysicsManager.h"
-extern DXRenderer _dxRend;
-extern AssetManager _AM;
-
+#include "materials/DXMaterial_Lit.h"
+#include "TechDemo/Level.h"
 
 int WINAPI WinMain(
 	_In_ HINSTANCE hInstance,
@@ -19,15 +16,17 @@ int WINAPI WinMain(
 	DXWindow _dxWind{ 800, 600, hInstance, nCmdShow };
 	DXRenderer _dxRend { _dxWind };
 	AssetManager _AM{ _dxRend };
-
+	//Level _level { _dxRend, _AM };
+	
 	_AM.LoadAsset("Assets/cube.obj", "SampleMesh");
 	_AM.LoadAsset("Assets/SampleTexture.jpg", "SampleTexture");
-	//DXMaterial material{ "Test", _dxRend, "src/Compiled Shaders/BaseVertexShader.cso","src/Compiled Shaders/BasePixelShader.cso", &_AM.GetTexture("SampleTexture") };
 
-	//GameObject go_test { "GO" , &_AM.GetMesh("SampleMesh"), &material, ColliderType::BOX, true};
+	DXMaterial material{ "Test", _dxRend, "src/Compiled Shaders/BaseVertexShader.cso","src/Compiled Shaders/BasePixelShader.cso", &_AM.GetTexture("SampleTexture") };
 
-	//_dxRend.renderQueue.AddObject(&go_test);
-	
+	GameObject go_test{ "GO" , &_AM.GetMesh("SampleMesh"), &material, ColliderType::BOX, true };
+
+	_dxRend.renderQueue.AddObject(&go_test);
+
 	_dxRend.camera.transform.position = DirectX::XMVectorSetZ(_dxRend.camera.transform.position, -10);
 
 	MSG msg;
@@ -73,6 +72,11 @@ int WINAPI WinMain(
 			}
 
 			PhysicsManager::Instance()->UpdatePhysics(Timer::GetDeltaTime());
+
+			//for (auto go : _dxRend.renderQueue.RenderableObjects)
+			//{
+			//	go->Update();
+			//}
 
 			_dxRend.RenderFrame();
 

@@ -1,6 +1,20 @@
 #pragma once
+
+class AssetManager;
+class DXRenderer;
+
 class Level
 {
-	static void InitLevel();
+public:
+
+	Level(DXRenderer& dxRend, AssetManager& AM);
+
+	void InitLevel();
+
+private:
+
+	DXRenderer& _dxRend;
+
+	AssetManager& _AM;
 };
 

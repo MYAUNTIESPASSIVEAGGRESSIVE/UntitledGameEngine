@@ -26,7 +26,6 @@ class GameObject;
 class DXRenderer
 {
 public:
-	static DXRenderer* Instance();
 
 	Viewport camera;
 
@@ -39,8 +38,6 @@ public:
 	RenderQueue renderQueue;
 
 private:
-
-	static DXRenderer* _instance;
 
 	DXWindow& window;
 

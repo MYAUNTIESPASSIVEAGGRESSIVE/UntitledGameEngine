@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-#include <memory>
 #include <map>
 #include "graphics/Debugger.h"
 #include "graphics/DXTexture.h"

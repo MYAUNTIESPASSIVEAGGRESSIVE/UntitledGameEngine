@@ -4,14 +4,17 @@
 #include "engine/gameobjects/GameObject.h"
 #include "graphics/materials/DXMaterial_Lit.h"
 
-extern DXRenderer _dxRend;
-extern AssetManager _AM;
+Level::Level(DXRenderer& dxRend, AssetManager& AM)
+	: _dxRend(dxRend), _AM(AM) { }
 
 void Level::InitLevel()
 {
-	DXMaterial material{ "Test", _dxRend, "src/Compiled Shaders/BaseVertexShader.cso","src/Compiled Shaders/BasePixelShader.cso", &_AM.GetTexture("SampleTexture") };
+	//_AM.LoadAsset("Assets/cube.obj", "SampleMesh");
+	//_AM.LoadAsset("Assets/SampleTexture.jpg", "SampleTexture");
 
-	GameObject go_test{ "GO" , &_AM.GetMesh("SampleMesh"), &material, ColliderType::BOX, true };
+	//DXMaterial material{ "Test", _dxRend, "src/Compiled Shaders/BaseVertexShader.cso","src/Compiled Shaders/BasePixelShader.cso", &_AM.GetTexture("SampleTexture")};
 
-	_dxRend.renderQueue.AddObject(&go_test);
+	//GameObject go_test{ "GO" , _AM.GetMesh("SampleMesh"), &material, ColliderType::BOX, true };
+
+	//_dxRend.renderQueue.AddObject(&go_test);
 }
