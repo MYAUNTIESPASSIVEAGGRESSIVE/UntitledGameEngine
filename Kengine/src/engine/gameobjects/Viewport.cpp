@@ -1,4 +1,5 @@
 #include "Viewport.h"
+#include "GameObject.h"
 
 DirectX::XMMATRIX Viewport::GetViewMatrix()
 {
@@ -17,4 +18,11 @@ DirectX::XMMATRIX Viewport::GetProjectionMatrix(int screenWidth, int screenHeigh
 		screenWidth / (float)screenHeight,
 		nearClippingPlane,
 		farClippingPlane);
+}
+
+void Viewport::SetParentObject(GameObject* object)
+{
+	DirectX::XMVectorSubtract(transform.position, object->transform.position);
+
+	parentObject = object;
 }

@@ -154,6 +154,8 @@
     <ClCompile Include="src\engine\gameobjects\Transform.cpp" />
     <ClCompile Include="src\engine\Timer.cpp" />
     <ClCompile Include="src\engine\gameobjects\Viewport.cpp" />
+    <ClCompile Include="src\TechDemo\scripts\Target.cpp" />
+    <ClCompile Include="src\TechDemo\scripts\Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\TechDemo\scripts\Player.h" />
@@ -181,6 +183,8 @@
     <ClInclude Include="src\engine\gameobjects\Transform.h" />
     <ClInclude Include="src\engine\Timer.h" />
     <ClInclude Include="src\engine\gameobjects\Viewport.h" />
+    <ClInclude Include="src\TechDemo\scripts\Target.h" />
+    <ClInclude Include="src\TechDemo\scripts\Weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="src\graphics\shaders\BasePixelShader.hlsl">

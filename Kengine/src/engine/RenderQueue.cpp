@@ -1,5 +1,4 @@
 #include "RenderQueue.h"
-#include "gameobjects/GameObject.h"
 #include "graphics/materials/DXMaterial.h"
 #include "physics/PhysicsManager.h"
 

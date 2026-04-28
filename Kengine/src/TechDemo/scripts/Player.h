@@ -1,12 +1,22 @@
 #pragma once
 #include "engine/gameobjects/GameObject.h"
+#include "engine/gameobjects/Viewport.h"
+
+class Viewport;
 
 class Player :
     public GameObject
 {
 public:
-    float moveSpeed;
 
-    virtual void Update() override;
+    Player(std::string name, ColliderType type, Viewport cam);
+
+    Viewport playercam;
+
+    float moveSpeed = 10;
+
+    virtual void Update();
+
+    void HandleInput();
 };
 

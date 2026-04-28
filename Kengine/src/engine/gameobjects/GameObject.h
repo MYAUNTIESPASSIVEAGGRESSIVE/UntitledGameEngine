@@ -30,8 +30,6 @@ public:
 
 	//Collider GetCollider() const { return collider; }
 
-protected:
-
 	virtual void Update() {};
 
 private:

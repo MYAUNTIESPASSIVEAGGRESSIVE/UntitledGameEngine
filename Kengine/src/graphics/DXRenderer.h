@@ -35,7 +35,7 @@ public:
 	ID3D11Device* GetDevice() { return device; }
 	ID3D11DeviceContext* GetDeviceContext() { return devcon; }
 
-	RenderQueue renderQueue;
+	//RenderQueue renderQueue;
 
 private:
 

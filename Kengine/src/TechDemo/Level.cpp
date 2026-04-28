@@ -5,7 +5,9 @@
 #include "graphics/materials/DXMaterial_Lit.h"
 
 Level::Level(DXRenderer& dxRend, AssetManager& AM)
-	: _dxRend(dxRend), _AM(AM) { }
+	: _dxRend(dxRend), _AM(AM)
+{
+}
 
 void Level::InitLevel()
 {
@@ -16,5 +18,7 @@ void Level::InitLevel()
 
 	GameObject go_test{ "GO" , &_AM.GetMesh("SampleMesh"), &material, ColliderType::BOX, true};
 
-	_dxRend.renderQueue.AddObject(&go_test);
+	RenderQueue::AddObject(&go_test);
+
+	//gameObjectsInLevel.push_back(&go_test);
 }

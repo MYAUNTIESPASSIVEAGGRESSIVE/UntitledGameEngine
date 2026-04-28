@@ -22,7 +22,5 @@ public:
 	int GetWidth() { return width; }
 
 	DXWindow(int width, int height, HINSTANCE instance, int nCmdShow);
-
-	DirectX::Keyboard::KeyboardStateTracker kbTracker;
 };
 
