@@ -12,11 +12,19 @@ class GameObject :
 {
 public:
 
-	GameObject(std::string objectName, DXMesh* objectMesh, DXMaterial* objMaterial, 
+	GameObject(std::string objectName, DXMesh* objectMesh, std::shared_ptr<DXMaterial> objMaterial, 
 		ColliderType type, bool simulatePhysics);
 
+	//GameObject() {};
+	//GameObject(GameObject&&) {};
+
+	//GameObject(const GameObject&) = delete;
+	//GameObject& operator=(const GameObject&) = delete;
+
+	~GameObject() {};
+
 	DXMesh* GetObjectMesh() { return ObjectMesh; }
-	DXMaterial* GetObjectMaterial() { return ObjectMaterial; }
+	std::shared_ptr<DXMaterial> GetObjectMaterial() { return ObjectMaterial; }
 
 	bool SimulatePhysics;
 
@@ -38,6 +46,6 @@ private:
 
 	DXMesh* ObjectMesh;
 
-	DXMaterial* ObjectMaterial;
+	std::shared_ptr<DXMaterial> ObjectMaterial;
 };
 

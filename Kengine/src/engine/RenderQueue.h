@@ -1,5 +1,6 @@
 #pragma once
 #include <set>
+#include <memory>
 #include "gameobjects/GameObject.h"
 
 struct RenderQueue

@@ -237,7 +237,7 @@ void DXRenderer::RenderFrame()
 	XMMATRIX view = camera.GetViewMatrix();
 	XMMATRIX projection = camera.GetProjectionMatrix(window.GetWidth(), window.GetHeight());
 
-	for (auto go : renderQueue.RenderableObjects)
+	for (auto& go : renderQueue.RenderableObjects)
 	{
 		XMMATRIX world = go->transform.GetWorldMatrix();
 		cbufferData.World = world;

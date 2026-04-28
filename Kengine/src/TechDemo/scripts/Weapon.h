@@ -6,7 +6,7 @@ class Weapon :
 {
 public:
 
-    Weapon(std::string name, DXMesh* mesh, DXMaterial* material, ColliderType type);
+    //Weapon(std::string name, DXMesh* mesh, DXMaterial* material, ColliderType type);
 
     float Damage = 3;
 

@@ -35,11 +35,11 @@ public:
 	ID3D11Device* GetDevice() { return device; }
 	ID3D11DeviceContext* GetDeviceContext() { return devcon; }
 
-	RenderQueue GetRenderQueue() { return renderQueue; }
+	//RenderQueue GetRenderQueue() { return renderQueue; }
+	RenderQueue renderQueue;
 
 private:
 
-	RenderQueue renderQueue;
 
 	DXWindow& window;
 

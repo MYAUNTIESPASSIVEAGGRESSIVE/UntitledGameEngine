@@ -1,6 +1,6 @@
 #include "GameObject.h"
 
-GameObject::GameObject(std::string objName, DXMesh* objMesh, DXMaterial* objMaterial, 
+GameObject::GameObject(std::string objName, DXMesh* objMesh, std::shared_ptr<DXMaterial> objMaterial, 
 	ColliderType type, bool simulatePhysics) 
 	: Object(objName)
 {

@@ -11,7 +11,7 @@ public:
 
 	void UpdatePhysics(float deltaTime)
 	{
-		for (auto* GO : physicsObjects)
+		for (auto GO : physicsObjects)
 		{
 			GO->UpdateBody(deltaTime);
 		}

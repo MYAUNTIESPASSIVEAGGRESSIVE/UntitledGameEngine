@@ -23,6 +23,8 @@ public:
 		std::string vShaderFilename, std::string pShaderFilename,
 		 DXTexture* texture);
 
+	DXMaterial(const DXMaterial&) = delete;
+	DXMaterial& operator=(const DXMaterial&) = delete;
 	
 	DXTexture* GetTexture() { return texture; }
 
