@@ -22,8 +22,8 @@ struct CBuffer_PerFrame
 	float padding;
 };
 
-DXRenderer::DXRenderer(DXWindow& inWindow)
-	: window(inWindow)
+DXRenderer::DXRenderer(DXWindow& inWindow/*RenderQueue* renderQueue*/)
+	: window(inWindow) //renderQueue(renderQueue)
 {
 	if (InitD3D() != S_OK)
 	{
@@ -237,7 +237,7 @@ void DXRenderer::RenderFrame()
 	XMMATRIX view = camera.GetViewMatrix();
 	XMMATRIX projection = camera.GetProjectionMatrix(window.GetWidth(), window.GetHeight());
 
-	for (auto go : RenderQueue::RenderableObjects)
+	for (auto go : renderQueue.RenderableObjects)
 	{
 		XMMATRIX world = go->transform.GetWorldMatrix();
 		cbufferData.World = world;

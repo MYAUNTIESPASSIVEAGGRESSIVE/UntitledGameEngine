@@ -18,7 +18,5 @@ void Level::InitLevel()
 
 	GameObject go_test{ "GO" , &_AM.GetMesh("SampleMesh"), &material, ColliderType::BOX, true};
 
-	RenderQueue::AddObject(&go_test);
-
-	//gameObjectsInLevel.push_back(&go_test);
+	//_dxRend.GetRenderQueue()->AddObject(&go_test);
 }

@@ -8,7 +8,7 @@ Weapon::Weapon(std::string name, DXMesh* mesh, DXMaterial* material, ColliderTyp
 
 void Weapon::Reload()
 {
-	if()
+	//if()
 }
 
 void Weapon::Shoot()

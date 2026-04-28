@@ -16,21 +16,22 @@ int WINAPI WinMain(
 	_In_ int nCmdShow)
 {
 	DXWindow _dxWind{ 800, 600, hInstance, nCmdShow };
+	//RenderQueue* renderQueue{nullptr};
 	DXRenderer _dxRend { _dxWind };
 	AssetManager _AM{ _dxRend };
 	Level _level { _dxRend, _AM };
 
-	//_AM.LoadAsset("Assets/cube.obj", "SampleMesh");
-	//_AM.LoadAsset("Assets/bust.obj", "Bust");
-	//_AM.LoadAsset("Assets/SampleTexture.jpg", "SampleTexture");
-	//DXMaterial material{ "Test", _dxRend, "src/Compiled Shaders/BaseVertexShader.cso","src/Compiled Shaders/BasePixelShader.cso", &_AM.GetTexture("SampleTexture") };
+	_AM.LoadAsset("Assets/cube.obj", "SampleMesh");
+	_AM.LoadAsset("Assets/bust.obj", "Bust");
+	_AM.LoadAsset("Assets/SampleTexture.jpg", "SampleTexture");
+	DXMaterial material{ "Test", _dxRend, "src/Compiled Shaders/BaseVertexShader.cso","src/Compiled Shaders/BasePixelShader.cso", &_AM.GetTexture("SampleTexture") };
 
-	//GameObject go_test{ "GO" , &_AM.GetMesh("SampleMesh"), &material, ColliderType::BOX, true };
+	GameObject go_test{ "GO" , &_AM.GetMesh("SampleMesh"), &material, ColliderType::BOX, true };
 
-	//_dxRend.renderQueue.AddObject(&go_test);
+	_dxRend.GetRenderQueue().AddObject(&go_test);
 
-	_level.InitLevel();
-	LOG("initialised Level");
+	//_level.InitLevel();
+	//LOG("initialised Level");
 
 	Player player{ "Player", ColliderType::BOX, _dxRend.camera };
 
