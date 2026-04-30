@@ -1,10 +1,10 @@
 #include "Weapon.h"
 
-//Weapon::Weapon(std::string name, DXMesh* mesh, DXMaterial* material, ColliderType type)
-//	: GameObject(name, mesh, material, type, false)
-//{
-//
-//}
+Weapon::Weapon(std::string name, DXMesh* mesh, DXMaterial* material, ColliderType type)
+	: GameObject(name, mesh, material, type, false)
+{
+
+}
 
 void Weapon::Reload()
 {
@@ -13,4 +13,5 @@ void Weapon::Reload()
 
 void Weapon::Shoot()
 {
+
 }

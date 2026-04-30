@@ -3,6 +3,8 @@
 #include "engine/gameobjects/Transform.h"
 using namespace DirectX;
 
+class GameObject;
+
 enum ColliderType
 {
 	SPHERE,
@@ -97,7 +99,7 @@ public:
 
 	static bool OnBoxVCircleCollide(BoxCollider box, SphereCollider circle);
 
-	static bool OnCollide(Collider obj1, Collider obj2);
+	static bool OnCollide(GameObject obj1, GameObject obj2);
 
 	//static bool RayCast(XMVECTOR point, Collider collider);
 };

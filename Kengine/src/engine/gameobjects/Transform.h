@@ -15,6 +15,7 @@ public:
 	void Rotate(DirectX::XMVECTOR inRotation);
 
 	DirectX::XMVECTOR GetForward();
+	DirectX::XMVECTOR GetUnitForward();
 	DirectX::XMVECTOR GetRight();
 	DirectX::XMVECTOR GetUp();
 };

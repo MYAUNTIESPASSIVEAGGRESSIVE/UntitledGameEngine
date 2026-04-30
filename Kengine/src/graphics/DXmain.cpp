@@ -6,6 +6,7 @@
 #include "engine/physics/PhysicsManager.h"
 #include "materials/DXMaterial_Lit.h"
 #include "TechDemo/scripts/Player.h"
+#include "TechDemo/scripts/Weapon.h"
 
 int WINAPI WinMain(
 	_In_ HINSTANCE hInstance,
@@ -21,6 +22,7 @@ int WINAPI WinMain(
 #pragma region Initialising Assets
 
 	_AM.LoadAsset("Assets/cube.obj", "SampleMesh");
+	_AM.LoadAsset("Assets/blaster-a.obj", "Gun");
 	_AM.LoadAsset("Assets/bust.obj", "Bust");
 	_AM.LoadAsset("Assets/SampleTexture.jpg", "SampleTexture");
 
@@ -34,16 +36,21 @@ int WINAPI WinMain(
 
 #pragma region Initalising Game Objects
 
-	GameObject go_test{ "GO" , &_AM.GetMesh("SampleMesh"), &material, ColliderType::SPHERE, true, 2};
+	GameObject go_test{ "GO" , &_AM.GetMesh("SampleMesh"), &material, ColliderType::SPHERE, true, 1};
 	RenderQueue::Instance()->AddObject(&go_test);
+
 
 #pragma endregion
 
 	// -----Player Initalisation-----
-	Player player{ "Player", ColliderType::SPHERE, 2 };
-	player.transform.Translate({ 0,0,10 });
+	Player player{ "Player", ColliderType::SPHERE, 1 };
 	player.collider.UpdatePosition(player.transform);
 	_dxRend.camera.SetParentObject(&player);
+
+	Weapon Gun{ "Gun" , &_AM.GetMesh("Gun"), &material, ColliderType::NONE };
+	Gun.SetParent(&player);
+
+	player.Gun = &Gun;
 
 #pragma region DirectX MainLoop
 
@@ -66,29 +73,58 @@ int WINAPI WinMain(
 		{
 			Timer::Update();
 
+#pragma region INPUT
+
 			auto kbState = DirectX::Keyboard::Get().GetState();
 
 			auto msState = DirectX::Mouse::Get().GetState();
+			auto msTracker = Mouse::ButtonStateTracker();
+			msTracker.Update(msState);
+
 			_dxRend.camera.transform.Rotate({ -(float)msState.y * 0.001f, (float)msState.x * 0.001f, 0 });
+			player.transform.Rotate({ -(float)msState.y * 0.001f, (float)msState.x * 0.001f, 0 });
 
 			if (kbState.W)
+			{
 				_dxRend.camera.transform.Translate(_dxRend.camera.transform.GetForward() * player.moveSpeed * Timer::GetDeltaTime());
+				player.transform.Translate(player.transform.GetForward() * player.moveSpeed * Timer::GetDeltaTime());
+
+			}
 			if (kbState.A)
+			{
 				_dxRend.camera.transform.Translate(-_dxRend.camera.transform.GetRight() * player.moveSpeed * Timer::GetDeltaTime());
+				player.transform.Translate(-player.transform.GetRight() * player.moveSpeed * Timer::GetDeltaTime());
+
+			}
 			if (kbState.S)
+			{
 				_dxRend.camera.transform.Translate(-_dxRend.camera.transform.GetForward() * player.moveSpeed * Timer::GetDeltaTime());
+				player.transform.Translate(-player.transform.GetForward() * player.moveSpeed * Timer::GetDeltaTime());
+
+			}
 			if (kbState.D)
+			{
 				_dxRend.camera.transform.Translate(_dxRend.camera.transform.GetRight() * player.moveSpeed * Timer::GetDeltaTime());
+				player.transform.Translate(player.transform.GetRight() * player.moveSpeed * Timer::GetDeltaTime());
+				
+			}
+
+			player.Update();
+
+			if (msState.leftButton == msTracker.PRESSED)
+			{
+				printf("Shots Fired!");
+				Gun.Shoot();
+			}
 
 			if (kbState.Escape)
 			{
 				PostQuitMessage(0);
 			}
 
-			player.Update();
+#pragma endregion
 
-			if (Collision::OnCollide(player.collider, go_test.collider)) 
-				printf("Collision Occured");
+			//if (Collision::OnCollide(player, go_test));
 
 			PhysicsManager::Instance()->UpdatePhysics(Timer::GetDeltaTime());
 

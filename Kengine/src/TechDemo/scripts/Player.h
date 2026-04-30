@@ -1,6 +1,8 @@
 #pragma once
 #include "engine/gameobjects/GameObject.h"
 
+class Weapon;
+
 class Player :
     public GameObject
 {
@@ -12,6 +14,6 @@ public:
 
     virtual void Update();
 
-    void HandleInput();
+    Weapon* Gun = nullptr;
 };
 

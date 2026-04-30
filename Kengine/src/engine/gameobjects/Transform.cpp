@@ -1,4 +1,5 @@
 #include "Transform.h"
+
 	DirectX::XMMATRIX Transform::GetWorldMatrix()
 	{
 		DirectX::XMMATRIX scaleMat = DirectX::XMMatrixScalingFromVector(scale);
@@ -27,6 +28,21 @@
 		{
 			cosf(pitch) * sinf(yaw),
 			sinf(pitch),
+			cosf(pitch) * cosf(yaw),
+		};
+		
+		return DirectX::XMVector3Normalize(direction);
+	}
+
+	DirectX::XMVECTOR Transform::GetUnitForward()
+	{
+		float pitch = DirectX::XMVectorGetX(rotation);
+		float yaw = DirectX::XMVectorGetY(rotation);
+
+		DirectX::XMVECTOR direction
+		{
+			cosf(pitch) * sinf(yaw),
+			0.0,
 			cosf(pitch) * cosf(yaw),
 		};
 
