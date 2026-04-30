@@ -1,30 +1,25 @@
 #pragma once
 #include "Object.h"
 #include "engine/physics/Collision.h"
-#include <memory>
 
 class DXMaterial;
 
 class DXMesh;
+
+class DXRenderer;
 
 class GameObject :
 	public Object
 {
 public:
 
-	GameObject(std::string objectName, DXMesh* objectMesh, std::shared_ptr<DXMaterial> objMaterial, 
-		ColliderType type, bool simulatePhysics);
+	GameObject(std::string objectName, DXMesh* objectMesh, DXMaterial* objMaterial, 
+		ColliderType type, bool simulatePhysics = true, float circlerad = 1);
 
-	//GameObject() {};
-	//GameObject(GameObject&&) {};
-
-	//GameObject(const GameObject&) = delete;
-	//GameObject& operator=(const GameObject&) = delete;
-
-	~GameObject() {};
+	~GameObject();
 
 	DXMesh* GetObjectMesh() { return ObjectMesh; }
-	std::shared_ptr<DXMaterial> GetObjectMaterial() { return ObjectMaterial; }
+	DXMaterial* GetObjectMaterial() { return ObjectMaterial; }
 
 	bool SimulatePhysics;
 
@@ -32,20 +27,21 @@ public:
 
 	float Mass = 10;
 
+	void DestoryObject();
+
 	void ApplyForce(XMVECTOR force, float deltaTime);
 
 	void UpdateBody(float deltaTime);
 
-	//Collider GetCollider() const { return collider; }
-
 	virtual void Update() {};
+
+	Collider collider;
 
 private:
 
-	//Collider collider;
 
 	DXMesh* ObjectMesh;
 
-	std::shared_ptr<DXMaterial> ObjectMaterial;
+	DXMaterial* ObjectMaterial;
 };
 

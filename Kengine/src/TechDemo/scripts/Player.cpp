@@ -3,11 +3,9 @@
 #include "Mouse.h"
 #include "engine/Timer.h"
 
-Player::Player(std::string name, ColliderType type, Viewport cam)
-	: GameObject(name, nullptr, nullptr, type, true)
+Player::Player(std::string name, ColliderType type, float circlerad)
+	: GameObject(name, nullptr, nullptr, type, true, circlerad)
 {
-	playercam = cam;
-	playercam.SetParentObject(this);
 }
 
 /// <summary>
@@ -15,15 +13,12 @@ Player::Player(std::string name, ColliderType type, Viewport cam)
 /// </summary>
 void Player::Update()
 {
-
+	HandleInput();
 }
 
 void Player::HandleInput()
 {
 	auto kbState = DirectX::Keyboard::Get().GetState();
-
-	auto msState = DirectX::Mouse::Get().GetState();
-	playercam.transform.Rotate({ -(float)msState.y * 0.001f, (float)msState.x * 0.001f, 0 });
 
 	if (kbState.W)
 		transform.Translate(transform.GetForward() * moveSpeed * Timer::GetDeltaTime());
@@ -33,4 +28,6 @@ void Player::HandleInput()
 		transform.Translate(-transform.GetForward() * moveSpeed * Timer::GetDeltaTime());
 	if (kbState.D)
 		transform.Translate(transform.GetRight() * moveSpeed * Timer::GetDeltaTime());
+
+	collider.UpdatePosition(transform);
 }

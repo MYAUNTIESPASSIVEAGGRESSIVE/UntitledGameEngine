@@ -1,17 +1,12 @@
 #pragma once
 #include "engine/gameobjects/GameObject.h"
-#include "engine/gameobjects/Viewport.h"
-
-class Viewport;
 
 class Player :
     public GameObject
 {
 public:
 
-    Player(std::string name, ColliderType type, Viewport cam);
-
-    Viewport playercam;
+    Player(std::string name, ColliderType type, float circlerad = 1);
 
     float moveSpeed = 10;
 

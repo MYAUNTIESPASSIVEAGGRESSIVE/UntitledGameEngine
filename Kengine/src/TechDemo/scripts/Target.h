@@ -15,7 +15,5 @@ public:
 
     virtual void Update();
 
-    void DestorySelf();
-
 };
 

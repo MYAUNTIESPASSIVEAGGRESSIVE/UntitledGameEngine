@@ -3,9 +3,11 @@
 #include <memory>
 #include "gameobjects/GameObject.h"
 
-struct RenderQueue
+class RenderQueue
 {
-	//static RenderQueue* Instance();
+public:
+
+	static RenderQueue* Instance();
 
 	bool ComapreMaterial(GameObject* a, GameObject* b);
 
@@ -21,15 +23,15 @@ struct RenderQueue
 
 	void RemoveObject(GameObject* GO);
 
-//private:
-//
-//	static RenderQueue* _instance;
-//
-//	RenderQueue() {};
-//	~RenderQueue()
-//	{
-//		delete _instance;
-//		_instance = NULL;
-//	}
+private:
+
+	static RenderQueue* _instance;
+
+	RenderQueue() {};
+	~RenderQueue()
+	{
+		delete _instance;
+		_instance = NULL;
+	}
 };
 

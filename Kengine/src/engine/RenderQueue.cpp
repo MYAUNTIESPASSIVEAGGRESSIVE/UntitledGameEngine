@@ -2,14 +2,14 @@
 #include "graphics/materials/DXMaterial.h"
 #include "physics/PhysicsManager.h"
 
-//RenderQueue* RenderQueue::_instance = NULL;
-//
-//RenderQueue* RenderQueue::Instance()
-//{
-//	if (_instance == NULL) return _instance = new RenderQueue();
-//
-//	return _instance;
-//}
+RenderQueue* RenderQueue::_instance = NULL;
+
+RenderQueue* RenderQueue::Instance()
+{
+	if (_instance == NULL) return _instance = new RenderQueue();
+
+	return _instance;
+}
 
 bool RenderQueue::ComapreMaterial(GameObject* a, GameObject* b)
 {
@@ -25,5 +25,7 @@ void RenderQueue::AddObject(GameObject* GO)
 
 void RenderQueue::RemoveObject(GameObject* GO)
 {
+	if (GO->SimulatePhysics) PhysicsManager::Instance()->RemoveGameObject(GO);
 	RenderableObjects.erase(GO);
+	delete GO;
 }

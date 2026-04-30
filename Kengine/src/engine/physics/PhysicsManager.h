@@ -22,6 +22,15 @@ public:
 		physicsObjects.push_back(GO);
 	}
 
+	void RemoveGameObject(GameObject* GO)
+	{
+		auto gameObject = std::find(physicsObjects.begin(), physicsObjects.end(), GO);
+		if (gameObject != physicsObjects.end())
+		{
+			physicsObjects.erase(gameObject);
+		}
+	}
+
 private:
 
 	static PhysicsManager* _instance;

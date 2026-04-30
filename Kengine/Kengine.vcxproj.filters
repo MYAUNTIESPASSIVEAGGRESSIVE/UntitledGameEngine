@@ -78,9 +78,6 @@
     <ClCompile Include="src\graphics\materials\DXMaterial_Lit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\TechDemo\Level.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\TechDemo\scripts\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -159,9 +156,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\graphics\materials\DXMaterial_Lit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\TechDemo\Level.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\TechDemo\scripts\Player.h">

@@ -29,14 +29,12 @@ public:
 
 	Viewport camera;
 
-	DXRenderer(DXWindow& inWindow /*RenderQueue* renderQueue*/);
+	DXRenderer(DXWindow& inWindow);
 	void Release();
 	void RenderFrame();
 	ID3D11Device* GetDevice() { return device; }
 	ID3D11DeviceContext* GetDeviceContext() { return devcon; }
-
-	//RenderQueue GetRenderQueue() { return renderQueue; }
-	RenderQueue renderQueue;
+	//RenderQueue renderQueue;
 
 private:
 
