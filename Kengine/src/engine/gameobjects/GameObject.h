@@ -13,7 +13,7 @@ class GameObject :
 {
 public:
 
-	GameObject(std::string objectName, DXMesh* objectMesh, DXMaterial* objMaterial, 
+	GameObject(std::string objectName, std::string Tag, DXMesh* objectMesh, DXMaterial* objMaterial, 
 		ColliderType type, bool simulatePhysics = true, float circlerad = 1);
 
 	~GameObject();

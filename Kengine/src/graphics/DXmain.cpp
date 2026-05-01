@@ -36,20 +36,22 @@ int WINAPI WinMain(
 
 #pragma region Initalising Game Objects
 
-	GameObject go_test{ "GO" , &_AM.GetMesh("SampleMesh"), &material, ColliderType::SPHERE, true, 1};
+	GameObject go_test{ "GO" , "Wall", & _AM.GetMesh("SampleMesh"), &material, ColliderType::SPHERE, true, 1};
 	RenderQueue::Instance()->AddObject(&go_test);
 
 
 #pragma endregion
 
 	// -----Player Initalisation-----
-	Player player{ "Player", ColliderType::SPHERE, 1 };
+	Player player{ "Player", "Player", ColliderType::SPHERE, 1};
+	player.transform.position = XMVectorSetZ(player.transform.position, -10);
 	player.collider.UpdatePosition(player.transform);
 	_dxRend.camera.SetParentObject(&player);
+	_dxRend.camera.ray = { _dxRend.camera.transform, { 0, 0, 5 }, 1.5 };
 
 	Weapon Gun{ "Gun" , &_AM.GetMesh("Gun"), &material, ColliderType::NONE };
 	Gun.SetParent(&player);
-
+	RenderQueue::Instance()->AddObject(&Gun);
 	player.Gun = &Gun;
 
 #pragma region DirectX MainLoop
@@ -84,34 +86,41 @@ int WINAPI WinMain(
 			_dxRend.camera.transform.Rotate({ -(float)msState.y * 0.001f, (float)msState.x * 0.001f, 0 });
 			player.transform.Rotate({ -(float)msState.y * 0.001f, (float)msState.x * 0.001f, 0 });
 
-			if (kbState.W)
+			printf("%.2f", XMVectorGetY(player.transform.rotation));
+
+			if (kbState.W && !player.blockedforward)
 			{
-				_dxRend.camera.transform.Translate(_dxRend.camera.transform.GetForward() * player.moveSpeed * Timer::GetDeltaTime());
-				player.transform.Translate(player.transform.GetForward() * player.moveSpeed * Timer::GetDeltaTime());
+				_dxRend.camera.transform.Translate(_dxRend.camera.transform.GetUnitForward() * player.moveSpeed * Timer::GetDeltaTime());
+				player.transform.Translate(player.transform.GetUnitForward() * player.moveSpeed * Timer::GetDeltaTime());
+				player.direction = CurrentDirection::Forward;
 
 			}
-			if (kbState.A)
+			if (kbState.A && !player.blockedleft)
 			{
 				_dxRend.camera.transform.Translate(-_dxRend.camera.transform.GetRight() * player.moveSpeed * Timer::GetDeltaTime());
 				player.transform.Translate(-player.transform.GetRight() * player.moveSpeed * Timer::GetDeltaTime());
+				player.direction = CurrentDirection::Left;
 
 			}
-			if (kbState.S)
+			if (kbState.S && !player.blockedbackward)
 			{
-				_dxRend.camera.transform.Translate(-_dxRend.camera.transform.GetForward() * player.moveSpeed * Timer::GetDeltaTime());
-				player.transform.Translate(-player.transform.GetForward() * player.moveSpeed * Timer::GetDeltaTime());
+				_dxRend.camera.transform.Translate(-_dxRend.camera.transform.GetUnitForward() * player.moveSpeed * Timer::GetDeltaTime());
+				player.transform.Translate(-player.transform.GetUnitForward() * player.moveSpeed * Timer::GetDeltaTime());
+				player.direction = CurrentDirection::Backward;
 
 			}
-			if (kbState.D)
+			if (kbState.D && !player.blockedright)
 			{
 				_dxRend.camera.transform.Translate(_dxRend.camera.transform.GetRight() * player.moveSpeed * Timer::GetDeltaTime());
 				player.transform.Translate(player.transform.GetRight() * player.moveSpeed * Timer::GetDeltaTime());
+				player.direction = CurrentDirection::Right;
 				
 			}
 
 			player.Update();
+			_dxRend.camera.ray.UpdateValues(_dxRend.camera.transform);
 
-			if (msState.leftButton == msTracker.PRESSED)
+			if (msTracker.leftButton == Mouse::ButtonStateTracker::PRESSED)
 			{
 				printf("Shots Fired!");
 				Gun.Shoot();
@@ -124,7 +133,44 @@ int WINAPI WinMain(
 
 #pragma endregion
 
-			//if (Collision::OnCollide(player, go_test));
+			for (auto go : RenderQueue::Instance()->RenderableObjects)
+			{
+				if (Collision::OnCollide(&player, go))
+				{
+					if (go->Tag == "Wall")
+					{
+					switch (player.direction)
+						{
+						case CurrentDirection::Forward:
+							player.blockedforward = Collision::RayCastCheck(_dxRend.camera.ray, go->collider);
+							break;
+						case CurrentDirection::Backward:
+							player.blockedbackward = Collision::RayCastCheck(_dxRend.camera.ray, go->collider);
+							break;
+						case CurrentDirection::Right:
+							player.blockedright = Collision::RayCastCheck(_dxRend.camera.ray, go->collider);
+							break;
+						case CurrentDirection::Left:
+							player.blockedleft = Collision::RayCastCheck(_dxRend.camera.ray, go->collider);
+							break;
+						}
+					}
+					else
+					{
+						player.blockedforward = false;
+						player.blockedbackward = false;
+						player.blockedleft = false;
+						player.blockedright = false;
+					}
+				}
+				else
+				{
+					player.blockedforward = false;
+					player.blockedbackward = false;
+					player.blockedleft = false;
+					player.blockedright = false;
+				}
+			}
 
 			PhysicsManager::Instance()->UpdatePhysics(Timer::GetDeltaTime());
 

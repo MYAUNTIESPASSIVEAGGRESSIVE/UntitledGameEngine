@@ -1,8 +1,8 @@
 #include "GameObject.h"
 #include "graphics/DXRenderer.h"
 
-GameObject::GameObject(std::string objectName, DXMesh* objectMesh, DXMaterial* objMaterial, ColliderType type, bool simulatePhysics, float circlerad)
-	:Object(objectName)
+GameObject::GameObject(std::string objectName, std::string tag ,DXMesh* objectMesh, DXMaterial* objMaterial, ColliderType type, bool simulatePhysics, float circlerad)
+	:Object(objectName, tag)
 {
 	ObjectMesh = objectMesh;
 	ObjectMaterial = objMaterial;

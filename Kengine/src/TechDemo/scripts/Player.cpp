@@ -4,8 +4,8 @@
 #include "engine/Timer.h"
 #include "Weapon.h"
 
-Player::Player(std::string name, ColliderType type, float circlerad)
-	: GameObject(name, nullptr, nullptr, type, true, circlerad)
+Player::Player(std::string name, std::string tag, ColliderType type, float circlerad)
+	: GameObject(name, tag, nullptr, nullptr, type, true, circlerad)
 {
 }
 

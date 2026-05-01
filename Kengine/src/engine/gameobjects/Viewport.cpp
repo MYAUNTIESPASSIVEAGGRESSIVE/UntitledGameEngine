@@ -22,7 +22,7 @@ DirectX::XMMATRIX Viewport::GetProjectionMatrix(int screenWidth, int screenHeigh
 
 void Viewport::SetParentObject(GameObject* object)
 {
-	transform.position =- object->transform.position;
+	transform.position = object->transform.position;
 
 	parentObject = object;
 }

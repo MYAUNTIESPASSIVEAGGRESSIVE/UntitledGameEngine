@@ -78,7 +78,6 @@ LRESULT DXWindow::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 		{
 		case VK_ESCAPE:
 			DestroyWindow(hWnd); // destorying window is not closing app
-			break;
 		}
 	case WM_KEYUP:
 		// keyup events

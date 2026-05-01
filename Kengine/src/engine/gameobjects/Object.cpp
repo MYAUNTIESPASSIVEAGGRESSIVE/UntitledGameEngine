@@ -1,7 +1,7 @@
 #include "Object.h"
 
-Object::Object(std::string name)
-	: objectName(name)
+Object::Object(std::string name, std::string tag)
+	: objectName(name), Tag(tag)
 {
 
 }

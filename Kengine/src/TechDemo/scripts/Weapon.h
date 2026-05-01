@@ -20,5 +20,7 @@ public:
 
     void Shoot();
 
+    Raycast gunray;
+
 };
 

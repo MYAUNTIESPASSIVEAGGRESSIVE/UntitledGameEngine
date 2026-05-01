@@ -1,6 +1,7 @@
 #pragma once
 #include "DirectXMath.h"
 #include "Transform.h"
+#include "engine/physics/Collision.h"
 
 class GameObject;
 
@@ -19,6 +20,8 @@ public:
 
 	void SetParentObject(GameObject* object);
 	GameObject* GetParentObject() { return parentObject; }
+
+	Raycast ray;
 
 private:
 

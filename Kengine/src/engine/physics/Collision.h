@@ -1,5 +1,6 @@
 #pragma once
 #include <DirectXMath.h>
+#include <DirectXCollision.h>
 #include "engine/gameobjects/Transform.h"
 using namespace DirectX;
 
@@ -18,45 +19,66 @@ struct SphereCollider
 
 	float radius;
 
-	SphereCollider(Transform circle = {0.0f, 0.0f, 0.0f}, float rad = 0)
-		: transform(circle), radius(rad){ }
+	SphereCollider(Transform circle = { 0.0f, 0.0f, 0.0f }, float rad = 0)
+		: transform(circle), radius(rad)
+	{
+		//boundingSphere.Radius = radius;
+	}
 
 	void UpdatePosition(Transform objectpos)
 	{
 		transform = objectpos;
+		//boundingSphere.Center = { XMVectorGetX(transform.position),XMVectorGetY(transform.position),XMVectorGetZ(transform.position) };
 	}
+
+	//BoundingSphere boundingSphere;
 };
 
 
-struct BoxCollider
+//struct BoxCollider
+//{
+//	Transform transform;
+//
+//	float minX;
+//	float maxX;
+//	float minY;
+//	float maxY;
+//	float minZ;
+//	float maxZ;
+//
+//	BoxCollider(Transform transform = {0,0,0})
+//		:transform(transform)
+//	{
+//		UpdatePosition(transform);
+//	};
+//
+//	void UpdatePosition(Transform objectpos)
+//	{
+//		transform = objectpos;
+//		maxX = XMVectorGetX(XMVectorAdd(transform.position, transform.scale));
+//		maxY = XMVectorGetY(XMVectorAdd(transform.position, transform.scale));
+//		maxZ = XMVectorGetY(XMVectorAdd(transform.position, transform.scale));
+//
+//	}
+//
+//};
+
+struct Raycast
 {
-	Transform transform;
+	Transform raypos;
 
-	float minX;
-	float maxX;
-	float minY;
-	float maxY;
-	float minZ;
-	float maxZ;
+	XMVECTOR direction;
 
-	BoxCollider(Transform transform = {0,0,0})
-		:transform(transform)
+	float distance;
+
+	Raycast(Transform transform = { 0,0,0 }, XMVECTOR dir = { 0,0,0 }, float dist = 0)
+		: raypos(transform), direction(dir), distance(dist) 
 	{
-		UpdatePosition(transform);
-	};
+	}
 
-	void UpdatePosition(Transform objectpos)
+	void UpdateValues(Transform transform)
 	{
-		transform = objectpos;
-
-		minX = XMVectorGetX(XMVectorSubtract(transform.position, transform.scale));
-		maxX = XMVectorGetX(XMVectorAdd(transform.position, transform.scale));
-
-		minY = XMVectorGetY(XMVectorSubtract(transform.position, transform.scale));
-		maxY = XMVectorGetY(XMVectorAdd(transform.position, transform.scale));
-
-		minZ = XMVectorGetY(XMVectorSubtract(transform.position, transform.scale));
-		maxZ = XMVectorGetY(XMVectorAdd(transform.position, transform.scale));
+		raypos = transform;
 	}
 };
 
@@ -66,14 +88,14 @@ struct Collider
 
 	SphereCollider sphereCollider;
 
-	BoxCollider boxCollider;
+	//BoxCollider boxCollider;
 
 	Collider(ColliderType type = NONE, Transform transform = {0,0,0}, float radius = 0.0f)
 		:Type(type)
 	{
 		if (Type == ColliderType::BOX)
 		{
-			boxCollider = { transform };
+			//boxCollider = { transform };
 		}
 		else if (Type == ColliderType::SPHERE)
 		{
@@ -83,7 +105,7 @@ struct Collider
 
 	void UpdatePosition(Transform objectpos)
 	{
-		if (Type == ColliderType::BOX) boxCollider.UpdatePosition(objectpos);
+		//if (Type == ColliderType::BOX) boxCollider.UpdatePosition(objectpos);
 
 		if (Type == ColliderType::SPHERE) sphereCollider.UpdatePosition(objectpos);
 	}
@@ -95,13 +117,13 @@ public:
 
 	static bool OnSphereCollide(SphereCollider c1, SphereCollider c2);
 
-	static bool OnBoxCollide(BoxCollider box1, BoxCollider box2);
+	//static bool OnBoxCollide(BoxCollider box1, BoxCollider box2);
 
-	static bool OnBoxVCircleCollide(BoxCollider box, SphereCollider circle);
+	//static bool OnBoxVCircleCollide(BoxCollider box, SphereCollider circle);
 
-	static bool OnCollide(GameObject obj1, GameObject obj2);
+	static bool OnCollide(GameObject* obj1, GameObject* obj2);
 
-	//static bool RayCast(XMVECTOR point, Collider collider);
+	static bool RayCastCheck(Raycast point, Collider collider);
 };
 
 

@@ -6,7 +6,7 @@ class Object
 {
 public:
 
-	Object(std::string name = NULL);
+	Object(std::string name = NULL, std::string tag = NULL);
 
 	std::string GetName() { return objectName; };
 
@@ -15,6 +15,8 @@ public:
 	Object* GetParent() { return parentObject; }
 
 	void SetParent(Object* parent);
+
+	std::string Tag;
 
 protected:
 
