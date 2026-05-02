@@ -1,4 +1,5 @@
 #include "Weapon.h"
+#include "engine/RenderQueue.h"
 
 Weapon::Weapon(std::string name, DXMesh* mesh, DXMaterial* material, ColliderType type)
 	: GameObject(name, name, mesh, material, type, false)
@@ -13,8 +14,15 @@ void Weapon::Reload()
 
 void Weapon::Shoot()
 {
-	//for (auto go : RenderQueue::Instance()->RenderableObjects)
-	//{
+	for (auto go : RenderQueue::Instance()->RenderableObjects)
+	{
+		if (Collision::RayCastCheck(gunray, go->collider))
+		{
+			if (go->Tag == "Target")
+			{
+				go->DestoryObject();
+			}
 
-	//}
+		}
+	}
 }

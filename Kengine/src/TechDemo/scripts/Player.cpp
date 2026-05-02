@@ -15,4 +15,5 @@ Player::Player(std::string name, std::string tag, ColliderType type, float circl
 void Player::Update()
 {
 	collider.UpdatePosition(transform);
+	//Gun->UpdateChildPosition();
 }

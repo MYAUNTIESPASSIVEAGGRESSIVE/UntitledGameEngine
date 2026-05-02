@@ -2,6 +2,7 @@
 #include <DirectXMath.h>
 #include <DirectXCollision.h>
 #include "engine/gameobjects/Transform.h"
+#include <string>
 using namespace DirectX;
 
 class GameObject;
@@ -89,6 +90,8 @@ struct Collider
 	SphereCollider sphereCollider;
 
 	//BoxCollider boxCollider;
+
+	std::string previousCollidedObject = "";
 
 	Collider(ColliderType type = NONE, Transform transform = {0,0,0}, float radius = 0.0f)
 		:Type(type)

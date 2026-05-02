@@ -1,7 +1,9 @@
 #pragma once
 #include <set>
+#include <vector>
 #include <memory>
 #include "gameobjects/GameObject.h"
+#include "graphics/materials/DXMaterial.h"
 #include "gameobjects/DirectionalLightObject.h"
 #include "gameobjects/PointLightObject.h"
 #include <DirectXColors.h>
@@ -12,9 +14,9 @@ public:
 
 	static RenderQueue* Instance();
 
-	bool ComapreMaterial(GameObject* a, GameObject* b);
+	//std::set<GameObject*, decltype()> RenderableObjects;
 
-	std::set<GameObject*, decltype(ComapreMaterial)*> RenderableObjects;
+	std::vector<GameObject*> RenderableObjects;
 
 	XMVECTOR ambientLightColour = { 0,0,0 };
 	DirectionalLightObject* directionalLight;

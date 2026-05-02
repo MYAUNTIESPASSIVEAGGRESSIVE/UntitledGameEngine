@@ -16,6 +16,11 @@ public:
 
 	void SetParent(Object* parent);
 
+	void UpdateChildPosition()
+	{
+		if(parentObject != nullptr) transform.position = parentObject->transform.position;
+	}
+
 	std::string Tag;
 
 protected:
