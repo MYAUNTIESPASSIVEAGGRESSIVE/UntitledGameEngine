@@ -39,7 +39,7 @@ int WINAPI WinMain(
 
 	XMVECTOR ambientLightColour{ 0.1f,0.1f,0.1f };
 	RenderQueue::Instance()->ambientLightColour = ambientLightColour;
-	DirectionalLightObject dirLight{ "DirectionalLight", XMVECTOR{0.5f, 10.0f, 10.0f}, DirectX::Colors::DeepPink};
+	DirectionalLightObject dirLight{ "DirectionalLight", XMVECTOR{0.5f, 5.0f, 5.0f}, DirectX::Colors::DeepPink};
 	RenderQueue::Instance()->directionalLight = &dirLight;
 
 	PointLightObject light1 { "PointLight1", DirectX::Colors::Aqua, 10};
@@ -58,7 +58,7 @@ int WINAPI WinMain(
 	// -----Lit Materials-----
 	DXMaterial_Lit litmaterial{ "Base Lit Material", _dxRend, "LightVertexShader.cso","ReflectPixelShader.cso", &_AM.GetTexture("SampleTexture") };
 	litmaterial.SetReflectionTexture(&_AM.GetTexture("SkyBox"));
-	litmaterial.reflectiveness = -0.5f;
+	litmaterial.reflectiveness = 1.0f;
 
 	// -----Transparent Materials-----
 	//DXMaterial_Transparent transparentmat{ "Base Lit Material", _dxRend, "TransparentVertexShader.cso","TransparentPixelShader.cso", &_AM.GetTexture("SampleTexture") };

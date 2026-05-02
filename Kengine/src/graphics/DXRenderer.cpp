@@ -167,7 +167,7 @@ void DXRenderer::InitGraphics()
 	device->CreateBlendState(&bdDesc, &blendTransparent);
 
 	// opaque blend state
-	bdDesc.RenderTarget[0].BlendEnable = TRUE;
+	bdDesc.RenderTarget[0].BlendEnable = FALSE;
 	device->CreateBlendState(&bdDesc, &blendOpaque);
 
 
