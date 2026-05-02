@@ -9,7 +9,7 @@ class PointLightObject
 {
 public:
 
-	PointLightObject(std::string name, DirectX::XMVECTOR colour, float strength);
+	PointLightObject(std::string name, DirectX::XMVECTORF32 colour, float strength);
 
 	PointLight pointLight;
 };

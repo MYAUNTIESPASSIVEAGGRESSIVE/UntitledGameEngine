@@ -1,10 +1,13 @@
 #include "Debugger.h"
 #include "DXRenderer.h"
 #include "DXWindow.h"
+#include "engine/gameobjects/GameObject.h"
+#include "engine/gameobjects/DirectionalLightObject.h"
+#include "engine/gameobjects/PointLightObject.h"
 #include "engine/memory/AssetManager.h"
 #include "engine/Timer.h"
 #include "engine/physics/PhysicsManager.h"
-#include "materials/DXMaterial_Lit.h"
+#include "materials/DXMaterial_Transparent.h"
 #include "TechDemo/scripts/Player.h"
 #include "TechDemo/scripts/Weapon.h"
 
@@ -21,23 +24,60 @@ int WINAPI WinMain(
 
 #pragma region Initialising Assets
 
+	// -----Meshes-----
 	_AM.LoadAsset("Assets/cube.obj", "SampleMesh");
 	_AM.LoadAsset("Assets/blaster-a.obj", "Gun");
 	_AM.LoadAsset("Assets/bust.obj", "Bust");
+
+	// -----Textures-----
 	_AM.LoadAsset("Assets/SampleTexture.jpg", "SampleTexture");
+	_AM.LoadAsset("Assets/SkyBox.dds", "SkyBox");
 
 #pragma endregion
 
+#pragma region Initialise Lights
+
+	XMVECTOR ambientLightColour{ 0.1f,0.1f,0.1f };
+	RenderQueue::Instance()->ambientLightColour = ambientLightColour;
+	DirectionalLightObject dirLight{ "DirectionalLight", XMVECTOR{0.9f, 1.0f, 1.0f}, DirectX::Colors::DeepPink};
+	RenderQueue::Instance()->directionalLight = &dirLight;
+
+	PointLightObject light1 { "PointLight1", DirectX::Colors::Aqua, 10};
+	RenderQueue::Instance()->pointLights[0] = light1.pointLight;
+
+#pragma endregion
+
+
 #pragma region Initalising Materials
 
-	DXMaterial material{ "Test", _dxRend, "src/Compiled Shaders/BaseVertexShader.cso","src/Compiled Shaders/BasePixelShader.cso", &_AM.GetTexture("SampleTexture") };
+	// -----Unlit Materials-----
+	DXMaterial material{ "BaseMaterial", _dxRend, "BaseVertexShader.cso","BasePixelShader.cso", &_AM.GetTexture("SampleTexture") };
+	DXMaterial skyboxmaterial{ "SkyBoxMaterial", _dxRend, "SkyBoxVertexShader.cso","SkyBoxPixelShader.cso", &_AM.GetTexture("SkyBox") };
+
+	// -----Lit Materials-----
+	DXMaterial_Lit litmaterial{ "Base Lit Material", _dxRend, "LightVertexShader.cso","ReflectPixelShader.cso", &_AM.GetTexture("SampleTexture") };
+	litmaterial.SetReflectionTexture(&_AM.GetTexture("SkyBox"));
+	litmaterial.reflectiveness = 0.5f;
+
+	// -----Transparent Materials-----
+	//DXMaterial_Transparent transparentmat{ "Base Lit Material", _dxRend, "TransparentVertexShader.cso","TransparentPixelShader.cso", &_AM.GetTexture("SampleTexture") };
+	//transparentmat.SetReflectionTexture(&_AM.GetTexture("SkyBox"));
+	//transparentmat.transparency = 0.1f;
 
 #pragma endregion
 
 #pragma region Initalising Game Objects
 
-	GameObject go_test{ "GO" , "Wall", & _AM.GetMesh("SampleMesh"), &material, ColliderType::SPHERE, true, 1};
+	// ----SkyBox GO----
+	GameObject go_skybox{ "SkyBoxGO", "SkyBox", & _AM.GetMesh("SampleMesh"), &skyboxmaterial, ColliderType::NONE, false };
+	_dxRend.SkyBox = &go_skybox;
+
+	// -----Gameplay GOs-----
+	GameObject go_test{ "GO" , "Wall", & _AM.GetMesh("SampleMesh"), &litmaterial, ColliderType::SPHERE, true, 1};
 	RenderQueue::Instance()->AddObject(&go_test);
+
+	//GameObject go_bust{ "Head" , "Target", &_AM.GetMesh("Bust"), &material, ColliderType::SPHERE, false, 1 };
+	//RenderQueue::Instance()->AddObject(&go_bust);
 
 
 #pragma endregion
@@ -51,7 +91,7 @@ int WINAPI WinMain(
 
 	Weapon Gun{ "Gun" , &_AM.GetMesh("Gun"), &material, ColliderType::NONE };
 	Gun.SetParent(&player);
-	RenderQueue::Instance()->AddObject(&Gun);
+	//RenderQueue::Instance()->AddObject(&Gun);
 	player.Gun = &Gun;
 
 #pragma region DirectX MainLoop
@@ -86,7 +126,7 @@ int WINAPI WinMain(
 			_dxRend.camera.transform.Rotate({ -(float)msState.y * 0.001f, (float)msState.x * 0.001f, 0 });
 			player.transform.Rotate({ -(float)msState.y * 0.001f, (float)msState.x * 0.001f, 0 });
 
-			printf("%.2f", XMVectorGetY(player.transform.rotation));
+			//printf("%.2f", XMVectorGetY(player.transform.rotation));
 
 			if (kbState.W && !player.blockedforward)
 			{

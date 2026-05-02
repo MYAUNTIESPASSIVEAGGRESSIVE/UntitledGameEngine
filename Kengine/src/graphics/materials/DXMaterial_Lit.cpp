@@ -29,39 +29,39 @@ void DXMaterial_Lit::Bind()
 
 void DXMaterial_Lit::UpdateMaterial(GameObject* GO)
 {
-	//using namespace DirectX;
-	//DXMaterial::UpdateMaterial(GO);
+	using namespace DirectX;
+	DXMaterial::UpdateMaterial(GO);
 
-	////lighting
-	//CBufferLighting cbData;
-	////ambient light
-	//cbData.ambientLightColour = renderer.ambientLightColour;
-	//// directional light
-	//DirectionalLight& dirLight = renderer.directionalLight;
-	//cbData.directionalLight.colour = dirLight.colour;
-	//XMMATRIX transpose = XMMatrixTranspose(GO->transform.GetWorldMatrix());
-	//cbData.directionalLight.transposedDirection = XMVector3Transform(XMVector3Normalize(dirLight.directionFrom), transpose);
+	//lighting
+	CBufferLighting cbData;
+	//ambient light
+	cbData.ambientLightColour = RenderQueue::Instance()->ambientLightColour;
+	// directional light
+	DirectionalLight& dirLight = RenderQueue::Instance()->directionalLight->directionalLight;
+	cbData.directionalLight.colour = dirLight.colour;
+	XMMATRIX transpose = XMMatrixTranspose(GO->transform.GetWorldMatrix());
+	cbData.directionalLight.transposedDirection = XMVector3Transform(XMVector3Normalize(dirLight.directionFrom), transpose);
 
-	//PointLight* pointLights = renderer.pointLights;
-	//for (size_t i = 0; i < MAX_POINT_LIGHTS; i++)
-	//{
-	//	cbData.pointLights[i].enabled = pointLights[i].enabled;
+	PointLight* pointLights = RenderQueue::Instance()->pointLights;
+	for (size_t i = 0; i < MAX_POINT_LIGHTS; i++)
+	{
+		cbData.pointLights[i].enabled = pointLights[i].enabled;
 
-	//	if (!pointLights[i].enabled)
-	//		continue;
+		if (!pointLights[i].enabled)
+			continue;
 
-	//	XMMATRIX inverse = XMMatrixInverse(nullptr, GO->transform.GetWorldMatrix());
+		XMMATRIX inverse = XMMatrixInverse(nullptr, GO->transform.GetWorldMatrix());
 
-	//	cbData.pointLights[i].position = XMVector3Transform(pointLights[i].position, inverse);
-	//	cbData.pointLights[i].colour = pointLights[i].colour;
-	//	cbData.pointLights[i].strength = pointLights[i].strength;
-	//}
+		cbData.pointLights[i].position = XMVector3Transform(pointLights[i].position, inverse);
+		cbData.pointLights[i].colour = pointLights[i].colour;
+		cbData.pointLights[i].strength = pointLights[i].strength;
+	}
 
-	//UpdateCBuffer(cbData, cbuffer);
+	UpdateCBuffer(cbData, cbuffer);
 
-	//CBufferPS cbpsData;
-	//cbpsData.reflectiveness = reflectiveness;
-	//UpdateCBuffer(cbpsData, cbufferPixelShader);
+	CBufferPS cbpsData;
+	cbpsData.reflectiveness = reflectiveness;
+	UpdateCBuffer(cbpsData, cbufferPixelShader);
 }
 
 

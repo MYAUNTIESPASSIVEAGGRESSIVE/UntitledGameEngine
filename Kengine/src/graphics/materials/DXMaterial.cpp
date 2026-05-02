@@ -13,14 +13,16 @@ DXMaterial::DXMaterial(std::string name, DXRenderer& renderer,
 {
 	HRESULT hr;
 
-	hr = ShaderLoading::LoadVertexShader(vShaderFilename, dev, &vShader, &vLayout);
+	std::string shaderfolder = "src/Compiled Shaders/";
+
+	hr = ShaderLoading::LoadVertexShader("src/Compiled Shaders/" + vShaderFilename, dev, &vShader, &vLayout);
 	if (FAILED(hr))
 	{
 		LOG("Material " + name + "failed to load, aborting");
 		return;
 	}
 
-	hr = ShaderLoading::LoadPixelShader(pShaderFilename, dev, &pShader);
+	hr = ShaderLoading::LoadPixelShader("src/Compiled Shaders/" + pShaderFilename, dev, &pShader);
 	if (FAILED(hr))
 	{
 		LOG("Material " + name + "failed to load, aborting");
@@ -34,7 +36,7 @@ void DXMaterial::Bind()
 	devcon->PSSetShader(pShader, 0, 0);
 	devcon->IASetInputLayout(vLayout);
 
-	// fix issue with non-textured mats having previous texture
+	// from agp - fix issue with non-textured mats having previous texture
 	if (texture != nullptr)
 	{
 		ID3D11SamplerState* s = texture->GetSampler();

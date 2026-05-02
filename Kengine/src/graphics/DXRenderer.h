@@ -34,7 +34,8 @@ public:
 	void RenderFrame();
 	ID3D11Device* GetDevice() { return device; }
 	ID3D11DeviceContext* GetDeviceContext() { return devcon; }
-	//RenderQueue renderQueue;
+	
+	GameObject* SkyBox = nullptr;
 
 private:
 
@@ -67,5 +68,6 @@ private:
 	long InitD3D();
 	void InitGraphics();
 	long InitDepthBuffer();
+	void DrawSkyBox();
 };
 

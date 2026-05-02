@@ -55,6 +55,14 @@ void AssetManager::LoadAsset(std::string filePath, std::string ID,
 		aType = AssetType::UNKNOWN;
 		break;
 	}
+	case(AssetType::SKYBOX):
+	{
+		TextureMap.try_emplace(ID, DXTexture{ dxRend, filePath, ID, false, DXTexture::TextureType::Cubemap });
+		LOG("Texture added to map");
+
+		aType = AssetType::UNKNOWN;
+		break;
+	}
 
 	}
 }
@@ -67,6 +75,9 @@ AssetManager::AssetType AssetManager::CheckType(std::string type,
 
 	if (type == "png" || type == "jpg"  || type == "jpeg"  || type == "bmp")
 		return aType = isTransparent ? AssetType::TEXTRANS : AssetType::TEXTURE;
+
+	if (type == "dds")
+		return aType = AssetType::SKYBOX;
 
 	else return AssetType::NONE;
 }

@@ -6,7 +6,7 @@ class DXMaterial_Lit :
     public DXMaterial
 {
 public:
-    float reflectiveness = 0.1f;
+    float reflectiveness = 0.0f;
 
     DXMaterial_Lit(std::string name, DXRenderer& renderer,
         std::string vShaderFilename, std::string pShaderFilename,
@@ -17,6 +17,8 @@ public:
     virtual void UpdateMaterial(GameObject* GO) override;
 
     void SetReflectionTexture(DXTexture* reflectionTexture) { skyboxTexture = reflectionTexture; }
+
+    int renderOrder = 2000;
 
 protected:
 

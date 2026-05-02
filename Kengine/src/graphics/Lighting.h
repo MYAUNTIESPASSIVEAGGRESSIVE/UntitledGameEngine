@@ -6,7 +6,7 @@
 struct PointLight
 {
 	DirectX::XMVECTOR position{ 0.0f, 0.0f, 0.0f };
-	DirectX::XMVECTOR colour{ 1.0f, 1.0f, 1.0f };
+	DirectX::XMVECTORF32 colour{ 1.0f, 1.0f, 1.0f };
 	float strength = 10;
 	bool enabled = true;
 

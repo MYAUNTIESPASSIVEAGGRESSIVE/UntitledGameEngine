@@ -53,7 +53,7 @@ private:
 
 	enum class AssetType
 	{
-		UNKNOWN, TEXTURE, TEXTRANS, MESH, MESH2SIDE, NONE
+		UNKNOWN, TEXTURE, TEXTRANS, SKYBOX ,MESH, MESH2SIDE, NONE
 	};
 
 	AssetType aType = AssetType::UNKNOWN;

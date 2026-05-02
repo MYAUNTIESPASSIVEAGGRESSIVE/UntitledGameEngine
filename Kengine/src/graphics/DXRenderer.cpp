@@ -221,12 +221,41 @@ long DXRenderer::InitDepthBuffer()
 	return S_OK;
 }
 
+void DXRenderer::DrawSkyBox()
+{
+	if (SkyBox == nullptr) return;
+
+	//front face culling and disable depth write
+	devcon->OMSetDepthStencilState(depthWriteOff, 1);
+	devcon->RSSetState(rasterizerCullFront);
+
+	CBuffer_PerObject cbuf;
+	XMMATRIX translation, projection, view;
+	XMVECTOR camPos = camera.transform.position;
+	translation = XMMatrixTranslation(XMVectorGetX(camPos), XMVectorGetY(camPos), XMVectorGetZ(camPos));
+	projection = camera.GetProjectionMatrix(window.GetWidth(), window.GetHeight());
+	view = camera.GetViewMatrix();
+
+	cbuf.WVP = translation * view * projection;
+	devcon->UpdateSubresource(cBuffer_PerObject, 0, 0, &cbuf, 0, 0);
+	devcon->VSSetConstantBuffers(12, 1, &cBuffer_PerObject);
+
+	SkyBox->GetObjectMaterial()->UpdateMaterial(SkyBox);
+	SkyBox->GetObjectMaterial()->Bind();
+	SkyBox->GetObjectMesh()->Render();
+
+	devcon->OMSetDepthStencilState(nullptr, 1);
+	devcon->RSSetState(rasterizerCullBack);
+}
+
 
 void DXRenderer::RenderFrame()
 {
 	// clear back buffer with colour
 	devcon->ClearRenderTargetView(backBuffer, DirectX::Colors::Gray);
 	devcon->ClearDepthStencilView(depthBuffer, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+
+	DrawSkyBox();
 
 	CBuffer_PerFrame cbufferPerFrameData;
 	XMStoreFloat3(&cbufferPerFrameData.camPos, camera.transform.position);
@@ -272,5 +301,6 @@ void DXRenderer::Release()
 	if (swapchain) swapchain->Release();
 	if (device) device->Release();
 	if (devcon) devcon->Release();
+	if (cBuffer_PerObject) cBuffer_PerObject->Release();
 	if (depthBuffer) depthBuffer->Release();
 }

@@ -65,5 +65,5 @@ float3 CalculateReflectionUVW(matrix World, float4 vertexPos, float3 vertexNorm,
     
     float3 eyeDir = normalize(camPos - wpos);
     
-    return 2.0 * dot(eyeDir, wnormal) * wnormal - eyeDir;
+    return reflect(-eyeDir, wnormal);
 }

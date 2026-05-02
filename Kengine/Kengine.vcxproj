@@ -131,6 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\graphics\materials\DXMaterial_Transparent.cpp" />
     <ClCompile Include="src\TechDemo\scripts\Player.cpp" />
     <ClCompile Include="src\graphics\materials\DXMaterial_Lit.cpp" />
     <ClCompile Include="src\engine\RenderQueue.cpp" />
@@ -157,6 +158,7 @@
     <ClCompile Include="src\TechDemo\scripts\Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\graphics\materials\DXMaterial_Transparent.h" />
     <ClInclude Include="src\TechDemo\scripts\Player.h" />
     <ClInclude Include="src\graphics\materials\DXMaterial_Lit.h" />
     <ClInclude Include="src\engine\RenderQueue.h" />
@@ -207,6 +209,41 @@
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)src\Compiled Shaders\%(FileName).cso</ObjectFileOutput>
     </FxCompile>
     <FxCompile Include="src\graphics\shaders\LightVertexShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)src\Compiled Shaders\%(FileName).cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="src\graphics\shaders\ReflectPixelShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)src\Compiled Shaders\%(FileName).cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="src\graphics\shaders\SkyboxPixelShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)src\Compiled Shaders\%(FileName).cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="src\graphics\shaders\SkyboxVertexShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)src\Compiled Shaders\%(FileName).cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="src\graphics\shaders\TransparentPixelShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)src\Compiled Shaders\%(FileName).cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="src\graphics\shaders\TransparentVertexShader.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
