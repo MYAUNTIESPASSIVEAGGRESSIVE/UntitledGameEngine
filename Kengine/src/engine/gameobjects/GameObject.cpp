@@ -22,6 +22,8 @@ void GameObject::ApplyForce(XMVECTOR force, float deltaTime)
 	XMVECTOR acceleration = force * (1.0f / Mass);
 
 	velocity = XMVectorAdd(velocity, acceleration * deltaTime);
+
+	collider.UpdatePosition(transform);
 }
 
 void GameObject::UpdateBody(float deltaTime)

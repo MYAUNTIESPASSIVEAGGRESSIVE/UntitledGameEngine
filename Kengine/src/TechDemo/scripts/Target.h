@@ -6,6 +6,8 @@ class Target :
 {
 public:
 
+    Target(std::string name = "", std::string tag = "Target", DXMesh* mesh = nullptr, DXMaterial* material = nullptr, ColliderType type = ColliderType::SPHERE, bool SimulatePhysics = true, float rad = 0.5f);
+
     float health;
 
     void TakeDamage(float dmg)

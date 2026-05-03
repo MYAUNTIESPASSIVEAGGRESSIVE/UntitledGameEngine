@@ -1,5 +1,6 @@
 #include "Weapon.h"
 #include "engine/RenderQueue.h"
+#include "Target.h"
 
 Weapon::Weapon(std::string name, DXMesh* mesh, DXMaterial* material, ColliderType type)
 	: GameObject(name, name, mesh, material, type, false)
@@ -18,6 +19,7 @@ void Weapon::Shoot()
 	{
 		if (Collision::RayCastCheck(gunray, go->collider))
 		{
+			printf("CollisionHit");
 			if (go->Tag == "Target")
 			{
 				go->DestoryObject();

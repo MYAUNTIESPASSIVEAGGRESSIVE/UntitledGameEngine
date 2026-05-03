@@ -181,8 +181,6 @@
     <FxCompile Include="src\graphics\shaders\LightVertexShader.hlsl" />
     <FxCompile Include="src\graphics\shaders\SkyboxPixelShader.hlsl" />
     <FxCompile Include="src\graphics\shaders\SkyboxVertexShader.hlsl" />
-    <FxCompile Include="src\graphics\shaders\TransparentPixelShader.hlsl" />
-    <FxCompile Include="src\graphics\shaders\TransparentVertexShader.hlsl" />
     <FxCompile Include="src\graphics\shaders\ReflectPixelShader.hlsl" />
   </ItemGroup>
   <ItemGroup>

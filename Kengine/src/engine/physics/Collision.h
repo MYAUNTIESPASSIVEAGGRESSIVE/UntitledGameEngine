@@ -35,10 +35,12 @@ struct SphereCollider
 	//BoundingSphere boundingSphere;
 };
 
-
+//
 //struct BoxCollider
 //{
 //	Transform transform;
+//
+//	BoundingBox boundingBox;
 //
 //	float minX;
 //	float maxX;
@@ -60,6 +62,19 @@ struct SphereCollider
 //		maxY = XMVectorGetY(XMVectorAdd(transform.position, transform.scale));
 //		maxZ = XMVectorGetY(XMVectorAdd(transform.position, transform.scale));
 //
+//		boundingBox.Center = XMFLOAT3{
+//			XMVectorGetX(transform.position),
+//			XMVectorGetY(transform.position),
+//			XMVectorGetZ(transform.position)
+//		};
+//
+//		boundingBox.Extents = XMFLOAT3{
+//			XMVectorGetX(transform.position) - XMVectorGetX(transform.scale),
+//			XMVectorGetY(transform.position) - XMVectorGetY(transform.scale),
+//			XMVectorGetZ(transform.position) - XMVectorGetZ(transform.scale)
+//		};
+//
+//
 //	}
 //
 //};
@@ -72,6 +87,7 @@ struct Raycast
 
 	float distance;
 
+	
 	Raycast(Transform transform = { 0,0,0 }, XMVECTOR dir = { 0,0,0 }, float dist = 0)
 		: raypos(transform), direction(dir), distance(dist) 
 	{
@@ -80,6 +96,8 @@ struct Raycast
 	void UpdateValues(Transform transform)
 	{
 		raypos = transform;
+
+		direction = transform.GetForward();
 	}
 };
 

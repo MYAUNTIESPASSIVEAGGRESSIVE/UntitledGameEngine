@@ -16,9 +16,13 @@ public:
 
 	void SetParent(Object* parent);
 
-	void UpdateChildPosition()
+	void UpdateChildPosition(DirectX::XMVECTOR pos, DirectX::XMVECTOR rot)
 	{
-		if(parentObject != nullptr) transform.position = parentObject->transform.position;
+		if (parentObject != nullptr)
+		{
+			transform.rotation = rot;
+			transform.position = pos;
+		}
 	}
 
 	std::string Tag;

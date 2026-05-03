@@ -15,15 +15,15 @@ struct PointLight
     float2 padding;
 };
 
-struct SpotLight
-{
-    float4 directionFrom;
-    float4 colour;
-    float strength;
-    bool enabled;
-    float coneWidth;
-    float padding;
-};
+//struct SpotLight
+//{
+//    float4 directionFrom;
+//    float4 colour;
+//    float strength;
+//    bool enabled;
+//    float coneWidth;
+//    float padding;
+//};
 
 float3 CalculateDirectionalContribution(DirectionalLight light, float3 vNormal)
 {

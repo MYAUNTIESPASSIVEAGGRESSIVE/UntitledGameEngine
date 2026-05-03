@@ -15,5 +15,16 @@ Player::Player(std::string name, std::string tag, ColliderType type, float circl
 void Player::Update()
 {
 	collider.UpdatePosition(transform);
-	//Gun->UpdateChildPosition();
+
+	//GunHolder.rotation = transform.rotation;
+
+	GunHolder.position = XMVectorSet(
+		XMVectorGetX(transform.position), 
+		XMVectorGetY(transform.GetForward()) - 0.5f, 
+		XMVectorGetZ(transform.position) + 1.0f,
+		1
+	);
+
+	Gun->UpdateChildPosition(GunHolder.position, GunHolder.rotation);
+	Gun->gunray.UpdateValues(GunHolder);
 }

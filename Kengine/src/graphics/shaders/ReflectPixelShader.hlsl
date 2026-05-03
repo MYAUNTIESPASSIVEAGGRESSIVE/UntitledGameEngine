@@ -20,8 +20,8 @@ float4 main(PIn input) : SV_TARGET
 {
     float4 sampled = texture0.Sample(sampler0, input.uv);
     float4 reflectedSampled = skybox0.Sample(sampler0, input.uvw);
-    clip(sampled.a < 0.1f ? -1 : 1);
-    float4 combined = ((input.colour * sampled) * (1.0 - reflectiveness)) + (reflectedSampled * reflectiveness); // hard coded mixes -> use constant buffers to be able to control this
+    //clip(sampled.a < 0.1f ? -1 : 1);
+    float4 combined = ((input.colour * sampled) * (1.5 - reflectiveness)) + (reflectedSampled * reflectiveness); // hard coded mixes -> use constant buffers to be able to control this
     
     return saturate(combined);
 }

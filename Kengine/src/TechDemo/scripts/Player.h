@@ -26,6 +26,8 @@ public:
 
     CurrentDirection direction;
 
+    Transform GunHolder;
+
     bool blockedforward = false, blockedleft = false, blockedright = false, blockedbackward = false;
 };
 

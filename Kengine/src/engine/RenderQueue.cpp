@@ -10,6 +10,10 @@ RenderQueue* RenderQueue::Instance()
 	return _instance;
 }
 
+/// <summary>
+/// Adds object to the render queue
+/// </summary>
+/// <param name="GO"></param>
 void RenderQueue::AddObject(GameObject* GO)
 {
 	RenderableObjects.push_back(GO);
@@ -17,6 +21,10 @@ void RenderQueue::AddObject(GameObject* GO)
 	if(GO->SimulatePhysics) PhysicsManager::Instance()->AddGameObject(GO);
 }
 
+/// <summary>
+/// Removes object from the render queue
+/// </summary>
+/// <param name="GO"></param>
 void RenderQueue::RemoveObject(GameObject* GO)
 {
 	if (GO->SimulatePhysics) PhysicsManager::Instance()->RemoveGameObject(GO);
