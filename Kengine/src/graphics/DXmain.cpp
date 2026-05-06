@@ -56,15 +56,15 @@ int WINAPI WinMain(
 	light1.transform.rotation = XMVectorSet(3, 0, 0, 1);
 	RenderQueue::Instance()->pointLights[0] = light1.pointLight;
 
-	PointLightObject light2{ "PointLight1", DirectX::Colors::Red, 50 };
+	PointLightObject light2{ "PointLight2", DirectX::Colors::Red, 50 };
 	light2.transform.position = XMVectorSet(-23, 5, 0, 1);
 	light2.transform.rotation = XMVectorSet(3, 0, 0, 1);
-	RenderQueue::Instance()->pointLights[0] = light2.pointLight;
+	RenderQueue::Instance()->pointLights[1] = light2.pointLight;
 
-	PointLightObject light3{ "PointLight1", DirectX::Colors::Green, 50 };
+	PointLightObject light3{ "PointLight3", DirectX::Colors::Green, 50 };
 	light3.transform.position = XMVectorSet(-23, 5, 20, 1);
 	light3.transform.rotation = XMVectorSet(3, 0, 0, 1);
-	RenderQueue::Instance()->pointLights[0] = light3.pointLight;
+	RenderQueue::Instance()->pointLights[2] = light3.pointLight;
 
 #pragma endregion
 
@@ -117,6 +117,7 @@ int WINAPI WinMain(
 	go_wall.transform.position = XMVectorSet(-30, 0, -20, 1);
 	go_wall.collider.UpdatePosition(go_wall.transform);
 
+	// this is a copy constructor which is useful for having multiple objects with the same information such as these walls!
 	GameObject go_wall2{ go_wall };
 	RenderQueue::Instance()->AddObject(&go_wall2);
 	go_wall2.transform.scale = { 1,10,10 };
@@ -175,12 +176,6 @@ int WINAPI WinMain(
 	RenderQueue::Instance()->AddObject(&go_collider);
 	go_collider.collider.UpdatePosition(go_collider.transform);
 
-	GameObject go_collider2{ go_collider };
-	RenderQueue::Instance()->AddObject(&go_collider2);
-	go_collider2.transform.position = XMVectorSet(30, 50, 0, 1);
-	go_collider2.Mass = 100;
-	go_collider2.collider.UpdatePosition(go_collider2.transform);
-
 #pragma endregion
 
 	// -----Player Initalisation-----
@@ -190,6 +185,7 @@ int WINAPI WinMain(
 	_dxRend.camera.SetParentObject(&player);
 	_dxRend.camera.ray = { _dxRend.camera.transform, { 0, 0, 5 }, 0.2f };
 
+	// -----Gun Initalisation-----
 	Weapon Gun{ "Gun" , &_AM.GetMesh("Gun"), &metallitmaterial, ColliderType::NONE };
 	//Gun.transform.scale = { 0.1f,0.1f,0.1f };
 	Gun.transform.position = XMVectorSet(5, 0, 0, 1);
@@ -285,6 +281,7 @@ int WINAPI WinMain(
 
 #pragma region CollisionDetection
 
+			// example collision
 			for (auto go : RenderQueue::Instance()->RenderableObjects)
 			{
 				if (Collision::OnCollide(&player, go) && go->Tag == "Wall")
@@ -322,8 +319,7 @@ int WINAPI WinMain(
 
 #pragma endregion
 
-			go_collider2.ApplyForce({ PhysicsManager::Instance()->Gravity * 20}, Timer::GetDeltaTime());
-
+			// updates the physics objects physics
 			PhysicsManager::Instance()->UpdatePhysics(Timer::GetDeltaTime());
 
 			// do not remove
